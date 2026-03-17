@@ -1017,30 +1017,31 @@ a:hover {
 }
 
 .hero-with-photo .hero-content .meta {
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  font-weight: 400;
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-weight: 500;
   margin: 0 auto 1.5rem;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 0.75rem 1rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
 .hero-with-photo .hero-content .meta-dates {
-  color: rgba(255,255,255,0.95);
+  color: #fff;
 }
 
 .hero-with-photo .hero-content .meta-place {
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.95);
 }
 
 .hero-with-photo .hero-content .meta-place::before {
   content: "·";
   margin-right: 0.75rem;
-  color: rgba(255,255,255,0.5);
-  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  font-weight: 400;
 }
 
 @media (max-width: 480px) {
