@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program — NEUDC 2026 · Cornell University</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+  <a href="#top" class="scroll-to-top" aria-label="Scroll to top" title="Back to top">↑</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-left">
+        <a href="index.html" class="logo-link">
+          <img src="SC-Johnson-College-Logo-package/Digital/SVG/SC Johnson Logo black.svg" alt="Cornell SC Johnson College of Business" class="logo-cornell">
+        </a>
+        <button type="button" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+      <nav class="nav-wrapper" aria-label="Main">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="program.html" class="active">Program</a></li>
+          <li><a href="logistics.html">Logistics</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="content-section">
+    <div class="section-wrap">
+      <span class="section-label">Program</span>
+      <h1 class="section-title">Program</h1>
+
+      <h2 class="section-subtitle">Conference Program</h2>
+      <p class="lead">The full program will be posted once paper decisions are released in fall 2026.</p>
+
+      <h2 class="section-subtitle">Paper Submissions</h2>
+      <p>Papers are submitted for program consideration. Decisions will be released approximately October 1, 2026.</p>
+      <p><a href="https://editorialexpress.com/cgi-bin/conference/conference.cgi?action=login&db_name=NEUDC2026" class="cta cta-primary">Submit a paper</a></p>
+
+      <h3 class="section-subtitle">Full Program Coming Fall 2026</h3>
+      <p>Accepted papers, session assignments, and keynote speakers will be posted here once decisions are released.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer__wrap">
+      <div class="site-footer__brand">
+        <span class="site-footer__name">NEUDC 2026</span>
+        <span class="site-footer__meta">November 6–8, 2026</span>
+        <span class="site-footer__address">Sage Hall, 114 Feeney Way, Ithaca, NY 14853</span>
+      </div>
+      <a href="#" class="site-footer__link" title="Contact email TBA">Contact</a>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      var btn = document.querySelector('.scroll-to-top');
+      if (!btn) return;
+      function toggle() { btn.classList.toggle('visible', window.scrollY > 400); }
+      window.addEventListener('scroll', toggle);
+      toggle();
+    })();
+    (function() {
+      var hamburger = document.querySelector('.hamburger');
+      var nav = document.querySelector('.nav-wrapper');
+      if (!hamburger || !nav) return;
+      function openMenu() {
+        hamburger.setAttribute('aria-expanded', 'true');
+        nav.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+      function closeMenu() {
+        hamburger.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+      hamburger.addEventListener('click', function() {
+        if (nav.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      });
+      nav.querySelectorAll('.nav a').forEach(function(a) {
+        a.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>
