@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Register — NEUDC 2026 · Cornell University</title>
+  <title>Register · NEUDC 2026 · Cornell University</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body id="top">
+<body id="top" class="register-page">
   <a href="#top" class="scroll-to-top" aria-label="Scroll to top" title="Back to top">↑</a>
   <header class="site-header">
     <div class="wrap">
       <div class="header-left">
         <a href="index.html" class="logo-link">
-          <img src="SC-Johnson-College-Logo-package/Digital/SVG/SC Johnson Logo black.svg" alt="Cornell SC Johnson College of Business" class="logo-cornell">
+          <img src="SC-Johnson-College-Logo-package/Digital/PNG/cornell-cider-header-logo.png" alt="Cornell SC Johnson College of Business" class="logo-cornell">
         </a>
         <button type="button" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
           <span class="hamburger-line"></span>
@@ -24,45 +24,83 @@
         <ul class="nav">
           <li><a href="index.html">Home</a></li>
           <li><a href="register.html" class="active">Register</a></li>
-          <li><a href="program.html">Program</a></li>
-          <li><a href="logistics.html">Logistics</a></li>
+          <li><a href="travel.html">Travel &amp; Venue</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section class="content-section register-hero">
-    <div class="section-wrap register-hero__wrap">
-      <span class="section-label register-hero__label">Registration</span>
-      <h1 class="register-hero__title">Register</h1>
-      <p class="register-hero__dates">July 1 – October 17, 2026</p>
-      <p class="register-hero__lead">Secure your place at NEUDC 2026. Payment is handled at checkout.</p>
-      <a href="#" class="cta cta-primary register-hero__cta">Register now</a>
-    </div>
-  </section>
+  <section class="content-section register-page-section" aria-labelledby="register-page-heading">
+    <div class="section-wrap register-page__wrap">
+      <div class="register-column">
+        <div class="program-panel">
+          <div class="program-panel-head">
+            <h1 id="register-page-heading" class="subpage-title">Register</h1>
+            <p class="register-status-banner"><strong>Registration is not open yet.</strong> Registration opens July 1, 2026.</p>
+            <div class="program-panel-head__summary">
+              <p>Registration will be open from July 1 through October 17, 2026.</p>
+              <p>The registration fees will be posted in dollars when registration opens on July 1, 2026.</p>
+            </div>
+          </div>
+        </div>
 
-  <section class="content-section register-fees">
-    <div class="section-wrap">
-      <span class="section-label">Fees</span>
-      <h2 class="section-title register-fees__title">Registration fees</h2>
-      <p class="register-fee-note">Final amounts confirmed when registration opens. Based on prior NEUDC conferences.</p>
-      <div class="fee-cards">
-        <div class="fee-card">
-          <span class="fee-card__badge">General</span>
-          <div class="fee-card__price">$300</div>
-          <h3 class="fee-card__title">Faculty &amp; professionals</h3>
-          <p class="fee-card__desc">Researchers and professionals at universities and research institutions.</p>
+        <div class="register-fees-panel">
+          <div class="register-fee-table-wrap">
+            <table class="register-fee-table">
+              <thead>
+                <tr>
+                  <th scope="col">Rate</th>
+                  <th scope="col">Applies to</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>General</td>
+                  <td>Faculty and professionals at universities and research institutions.</td>
+                </tr>
+                <tr>
+                  <td>Reduced</td>
+                  <td>Eligible if you meet one of the criteria in the list below.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="register-reduced-eligibility">
+            <h2 class="register-reduced-eligibility__title">Who qualifies for the reduced rate?</h2>
+            <ul class="register-reduced-eligibility__list">
+              <li>PhD students</li>
+              <li>Post-docs</li>
+              <li>Researchers based in low- and middle-income countries</li>
+              <li>Faculty at community colleges</li>
+              <li>Faculty at historically Black colleges and universities (HBCUs)</li>
+            </ul>
+          </div>
+
+          <div class="register-includes">
+            <h2 class="register-includes__title">Included with your fee</h2>
+            <ul class="register-includes__list">
+              <li>Welcome reception</li>
+              <li>Breakfast and lunch on both full program days</li>
+              <li>Dinner on the first conference evening</li>
+              <li>Coffee breaks</li>
+            </ul>
+          </div>
+
+          <div class="register-checkout" id="register-checkout">
+            <div class="register-checkout__intro">
+              <p class="register-checkout__lead"><strong>Registration opens July 1, 2026.</strong></p>
+              <p class="register-checkout__sub">Check back then to register and pay.</p>
+            </div>
+            <button
+              type="button"
+              class="cta cta-primary register-checkout__cta register-checkout__cta--disabled"
+              disabled
+              title="Registration opens July 1, 2026"
+            >Register now</button>
+            <p class="register-checkout__detail">Payment will be processed through CVENT when registration opens.</p>
+          </div>
         </div>
-        <div class="fee-card fee-card--reduced">
-          <span class="fee-card__badge">Reduced</span>
-          <div class="fee-card__price">$250</div>
-          <h3 class="fee-card__title">Students &amp; scholars</h3>
-          <p class="fee-card__desc">PhD students, post-docs, LMIC researchers, and faculty at community colleges and HBCUs.</p>
-        </div>
-      </div>
-      <div class="register-includes">
-        <span class="register-includes__label">Included</span>
-        <p class="register-includes__text">Breakfast both days · Lunch Day 1 · Coffee breaks · Saturday reception</p>
       </div>
     </div>
   </section>
@@ -71,10 +109,10 @@
     <div class="site-footer__wrap">
       <div class="site-footer__brand">
         <span class="site-footer__name">NEUDC 2026</span>
-        <span class="site-footer__meta">November 6–8, 2026</span>
-        <span class="site-footer__address">Sage Hall, 114 Feeney Way, Ithaca, NY 14853</span>
+        <span class="site-footer__meta">November 6-8, 2026</span>
+        <span class="site-footer__address">Physical Sciences Building, Cornell University, Ithaca, NY 14853</span>
       </div>
-      <a href="#" class="site-footer__link" title="Contact email TBA">Contact</a>
+      <a href="mailto:tmt1@cornell.edu" class="site-footer__link" title="Email tmt1@cornell.edu">Contact us</a>
     </div>
   </footer>
   <script>

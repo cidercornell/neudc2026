@@ -1,50 +1,54 @@
 # Logistics
 
-## Venue & Travel
-
-Everything you need to get to Cornell and find a place to stay in Ithaca.
-
----
-
-## Conference Venue
-
-**Cornell University**  
-Ithaca, New York 14853
-
-Specific building to be confirmed. All sessions will be in the same building. Details posted here once finalized.
-
-[Campus maps and directions](https://www.cornell.edu/visit/).
+NEUDC 2026 takes place at the **Physical Sciences Building** on Cornell's Ithaca campus.
 
 ---
 
 ## Getting to Ithaca
 
-- **Ithaca Tompkins International (ITH)** — Closest airport, direct regional flights from major hubs
-- **Syracuse Hancock International (SYR)** — ~1 hour drive, broader flight options including low-cost carriers
-- **Rochester Douglas International (ROC)** — ~1.5 hour drive, additional flight options
-- **Newark Liberty International (EWR)** — ~4 hour drive, widest range of international connections
-- **Shortline / Coach USA Bus** — Bus service from New York City to Ithaca (~5 hrs), good option for those flying into EWR or JFK
+The logistics page uses cards for: **ITH**, **SYR**, **JFK**, and **EWR**.
 
 ---
 
-## Recommended Hotels
+## Around Ithaca and campus
 
-| Hotel | Location | Book |
-|-------|----------|-----|
-| The Statler Hotel at Cornell University | 130 Statler Drive · On Cornell's campus | [Book →](https://statlerhotel.cornell.edu) |
-| Canopy by Hilton Ithaca Downtown | 324 E State St · Downtown, ~2 miles from campus | [Book →](https://www.hilton.com/en/hotels/ithsspy-canopy-ithaca-downtown/) |
-| Hilton Garden Inn Ithaca | 130 E Seneca St · Downtown Commons, ~1 mile from campus | [Book →](https://www.hilton.com/en/hotels/ithiggi-hilton-garden-inn-ithaca/) |
-| Ithaca Marriott Downtown on the Commons | 120 S Aurora St · Downtown, ~1 mile from campus | [Book →](https://www.marriott.com/en-us/hotels/ithmc-ithaca-marriott-downtown-on-the-commons/overview/) |
-| Courtyard by Marriott Ithaca Airport/University | 29 Thornwood Dr · Near airport, ~3 miles from campus | [Book →](https://www.marriott.com/en-us/hotels/ithcy-courtyard-ithaca-airport-university/overview/) |
+### TCAT
+
+**What is TCAT?** TCAT (Tompkins Consolidated Area Transit) is Ithaca's public bus system. The bright blue buses run frequently between Cornell and downtown.
+
+Photo on the site: `cornell_photos/tcat-route-10-campus.png` (Route 10 on campus).
+
+**Closest stop for NEUDC:** Route 10 stops at **Goldwin Smith Hall** on East Avenue, directly across from the **Physical Sciences Building**.
+
+**How to pay:** Use the **Tfare** app, a Tcard, or exact cash on board.
+
+- [TCAT schedules and routes](https://tcatbus.com/)
+- [Tfare for iPhone](https://apps.apple.com/app/tfare-ithaca-ny-tcat/id6471411363) and [Android](https://play.google.com/store/apps/details?id=com.genfare.mobile2.tcat)
+- [Passes (online store)](https://tcatbus.com/store/) and [fare FAQ](https://tcatbus.com/learn/smart-card-faq/)
+- [Live bus map](https://realtimetcatbus.availtec.com/InfoPoint/)
+
+### Campus-to-Campus (Ithaca / NYC)
+
+Cornell operates daily coaches between its Ithaca and New York City campuses—a convenient option if you are flying into a New York–area airport and heading to Ithaca.
+
+Graphic: `cornell_photos/campus-to-campus-banner.png` on the site.
+
+Cornell runs coaches daily between Ithaca and New York City. [Book a trip](https://c2cbus.ipp.cornell.edu/) or review [schedules and stops](https://fcs.cornell.edu/departments/transportation-delivery-services/campus-campus-bus-service) on the Cornell site.
+
+Reservations are required. Call 607-254-8747 or email [c2cbus@cornell.edu](mailto:c2cbus@cornell.edu).
+
+### Parking
+
+On weekdays, plan for a permit or paid visitor parking (ParkMobile and lot kiosks). Forest Home garage and Toboggan Lodge are common choices, and weekends sometimes allow parking on Hoy Road. Follow posted signs in each lot.
+
+The [Cornell visitor parking guide](https://www.cornell.edu/visit/parking/) explains visitor options. See [short-term lots](https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options) for locations, and use [virtual permits](https://fcs.cornell.edu/departments/transportation-delivery-services/parking/virtual-permits) if you buy parking online in advance.
+
+### Lodging
+
+Hotel block information will be posted by summer 2026. Check back soon.
 
 ---
 
-## Parking at Cornell
-
-Visitor parking is available on campus for a fee. Details on specific lots near the venue will be posted once the building is confirmed. Street parking in Ithaca is limited; staying within walking distance or using a campus lot is recommended.
-
----
-
-**NEUDC 2026** · Cornell University · CIDER
+**NEUDC 2026** · Held at Cornell University · Hosted by CIDER within CoPilot
 
 Questions? [Contact us](mailto:tmt1@cornell.edu)
