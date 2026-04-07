@@ -1,6 +1,73 @@
 /* NEUDC 2026 — Cornell University / CIDER */
 
+/* Branded fonts — Freight Sans (body), Utopia (headlines) */
+@font-face {
+  font-family: "Freight Sans Pro";
+  src: url("Branded Fonts/Freight Sans/FreightSansProBook-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Freight Sans Pro";
+  src: url("Branded Fonts/Freight Sans/FreightSansProBook-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Freight Sans Pro";
+  src: url("Branded Fonts/Freight Sans/FreightSansProSemibold-Regular.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Freight Sans Pro";
+  src: url("Branded Fonts/Freight Sans/FreightSansProBold-Regular.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Utopia Std";
+  src: url("Branded Fonts/Utopia/UtopiaStd-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Utopia Std";
+  src: url("Branded Fonts/Utopia/UtopiaStd-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Utopia Std";
+  src: url("Branded Fonts/Utopia/UtopiaStd-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Utopia Std";
+  src: url("Branded Fonts/Utopia/UtopiaStd-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
+  --font-body: "Freight Sans Pro", Georgia, "Times New Roman", serif;
+  --font-heading: "Utopia Std", Georgia, "Times New Roman", serif;
   /* Primary palette — Cornell red, used for primary CTAs, nav active, links, accents */
   --cornell-red: #b31b1b;
   --cornell-red-dark: #8b1515;
@@ -26,9 +93,10 @@
   /* Typography — aligned with register page */
   --type-page-title: clamp(1.45rem, 2.6vw, 1.85rem);
   --type-section: 1.03rem;
-  --type-body: 1.02rem;
-  --type-lead: 1.05rem;
-  --type-detail: 0.98rem;
+  /* Body copy — slightly larger for Freight Sans readability */
+  --type-body: 1.18rem;
+  --type-lead: 1.22rem;
+  --type-detail: 1.06rem;
   --type-line-snug: 1.55;
   --type-line-prose: 1.62;
   /* One max width for all main content (sections, subpages, footer, hero text block) */
@@ -49,8 +117,8 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 21px;
+  font-family: var(--font-body);
+  font-size: 23px;
   line-height: 1.65;
   color: var(--text);
   background: var(--bg);
@@ -261,7 +329,7 @@ body {
   }
   /* Responsive text — scale on small screens only; large screens unchanged */
   body {
-    font-size: clamp(17px, 3.5vw, 21px);
+    font-size: clamp(18px, 3.5vw, 23px);
     line-height: 1.6;
   }
   .section-title,
@@ -1623,6 +1691,27 @@ body {
 }
 
 /* Typography — body and headings */
+h1,
+h2,
+h3,
+.subpage-title,
+.section-title,
+.content-section .section-title,
+.section-label,
+.program-section__title,
+.key-dates-group__title,
+.logistics-flow__h,
+.register-reduced-eligibility__title,
+.register-page .register-includes__title,
+.person-card__name,
+.transport-card__title,
+.travel-list__title,
+.hero-with-photo .hero-content h1,
+.hero-with-photo .hero-content .hero-year,
+.site-footer__name {
+  font-family: var(--font-heading);
+}
+
 h1 {
   font-size: 2.15rem;
   margin: 0 0 0.5rem;
@@ -1734,41 +1823,57 @@ a:hover {
 }
 
 .hero-with-photo .hero-content .meta {
-  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  font-size: clamp(1.05rem, 1.85vw, 1.3rem);
   font-weight: 500;
   margin: 0 auto 1.5rem;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem 1rem;
+  gap: 0;
+  row-gap: 0.5rem;
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  max-width: 36em;
 }
 
 .hero-with-photo .hero-content .meta-dates {
   color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: lining-nums;
 }
 
 .hero-with-photo .hero-content .meta-place {
-  color: rgba(255,255,255,0.95);
+  color: rgba(255,255,255,0.92);
+  font-weight: 400;
+  letter-spacing: 0.03em;
 }
 
-.hero-with-photo .hero-content .meta-place::before {
-  content: "·";
-  margin-right: 0.75rem;
-  color: rgba(255,255,255,0.85);
-  font-weight: 400;
+/* Subtle divider between dates and location (not copy — layout only) */
+.hero-with-photo .hero-content .meta-sep {
+  flex: 0 0 auto;
+  align-self: stretch;
+  width: 1px;
+  min-height: 1.15em;
+  margin: 0 0.85rem;
+  background: rgba(255, 255, 255, 0.38);
 }
 
 @media (max-width: 480px) {
   .hero-with-photo .hero-content .meta {
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0;
+    row-gap: 0.45rem;
   }
-  .hero-with-photo .hero-content .meta-place::before {
-    content: none;
-    margin-right: 0;
+
+  .hero-with-photo .hero-content .meta-sep {
+    width: 2.75rem;
+    height: 1px;
+    min-height: 0;
+    margin: 0.15rem 0;
+    align-self: center;
+    background: rgba(255, 255, 255, 0.35);
   }
 }
 
