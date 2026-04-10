@@ -395,8 +395,32 @@ body {
 }
 
 #section-dates,
-#cfp {
+#cfp,
+#contact {
   scroll-margin-top: 1rem;
+}
+
+.contact-block {
+  font-style: normal;
+  margin: 0;
+}
+
+.contact-email {
+  font-weight: 600;
+  color: var(--cornell-red);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(179, 27, 27, 0.42);
+}
+
+.contact-email:hover {
+  color: var(--cornell-red-dark);
+  border-bottom-color: var(--cornell-red-dark);
+}
+
+.contact-email:focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 #agenda,
