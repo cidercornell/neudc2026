@@ -10,7 +10,7 @@ The page opens with **Register** as the main heading: when registration is open 
 
 Registration will be open from July 1 through October 17, 2026.
 
-The registration fees will be posted in dollars when registration opens on July 1, 2026.
+The registration fees will be posted when registration opens on July 1, 2026.
 
 ### General rate
 
