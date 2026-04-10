@@ -2143,22 +2143,18 @@ a:hover {
   margin: 2rem auto 0;
 }
 
-/* Hero scroll hint — signals more content below */
+/* Hero scroll hint — chevron only; label via aria-label */
 .hero-scroll-hint {
   position: absolute;
   bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: center;
+  padding: 0.35rem;
   color: rgba(255,255,255,0.85);
   text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   z-index: 2;
 }
 
