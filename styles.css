@@ -375,10 +375,6 @@ body {
   .hero-with-photo .hero-content .meta {
     font-size: clamp(0.85rem, 2.5vw, 1.2rem);
   }
-
-  .hero-with-photo {
-    min-height: calc(100vh - 84px + 30px);
-  }
 }
 
 /* Content sections — single background, thin line between */
@@ -1940,6 +1936,22 @@ a:hover {
   color: var(--link-hover);
 }
 
+/* Home: header + photo hero together fill the first viewport (no guessed header height) */
+.home-viewport {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-viewport .site-header {
+  flex-shrink: 0;
+}
+
+.home-viewport .hero-with-photo {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
 /* Hero (home only) */
 .hero {
   text-align: center;
@@ -1956,7 +1968,6 @@ a:hover {
   margin: 0;
   /* No bottom border: light line reads as a gap next to white sections */
   border-bottom: none;
-  min-height: calc(100vh - 84px);
   padding: 4rem 2rem;
   background-size: cover;
   background-position: center;
