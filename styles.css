@@ -2143,16 +2143,14 @@ a:hover {
   margin: 2rem auto 0;
 }
 
-/* Hero scroll hint — signals more content below */
+/* Hero scroll hint — in flow below CTAs so it never overlaps buttons on short viewports */
 .hero-scroll-hint {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.25rem;
+  margin: clamp(2rem, 5vw, 2.75rem) auto 0;
   color: rgba(255,255,255,0.85);
   text-decoration: none;
   font-size: 0.8rem;
@@ -2612,7 +2610,11 @@ em {
   }
 
   .hero-with-photo .hero-content {
-    padding: 1.5rem 1rem;
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .hero-scroll-hint {
+    margin-top: 2.25rem;
   }
 
   .ctas {
