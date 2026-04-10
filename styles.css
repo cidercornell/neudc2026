@@ -72,6 +72,8 @@
   --cornell-red: #b31b1b;
   --cornell-red-dark: #8b1515;
   --cornell-red-light: #d43838;
+  /* Cornell brand blue — paired with red in header logo separator */
+  --cornell-blue: #003d7c;
   /* Neutrals */
   --text: #0a0a0a;
   /* Match body: avoid gray secondary copy site-wide */
@@ -189,7 +191,10 @@ body {
 .logo-link {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  align-self: center;
+  gap: 1.25rem;
+  min-width: 0;
+  max-width: 100%;
   text-decoration: none;
   color: var(--text);
   transition: opacity var(--transition-fast);
@@ -199,34 +204,44 @@ body {
   opacity: 0.85;
 }
 
-.logo-link {
-  gap: 1.25rem;
-}
-
 .logo-link img {
-  height: 52px;
   width: auto;
-  max-height: 56px;
+  height: auto;
   display: block;
   object-fit: contain;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+/* Large screens: original header logo scale */
+.logo-link .logo-cornell {
+  height: 76px;
+  width: auto;
+  max-height: 84px;
 }
 
 .logo-link .logo-neudc {
   height: 34px;
+  width: auto;
   max-height: 38px;
 }
 
-.logo-link .logo-cornell {
-  height: 76px;
-  max-height: 84px;
-}
-
+/* | between logos — left half Cornell blue, right half Cornell red */
 .logo-sep {
-  color: var(--border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
   font-weight: 300;
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
   line-height: 1;
   user-select: none;
+  padding: 0 0.05em;
+  background: linear-gradient(90deg, var(--cornell-blue) 50%, var(--cornell-red) 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 
 .nav {
@@ -260,29 +275,41 @@ body {
 /* Mobile: hamburger + slide-down nav (large screens unchanged) */
 @media (max-width: 768px) {
   .site-header .wrap {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .header-left {
     width: 100%;
+    min-width: 0;
     min-height: 56px;
-    align-items: flex-start;
+    align-items: center;
     padding-right: 56px;
+  }
+
+  .logo-link {
+    gap: 0.4rem;
+    flex: 1 1 auto;
+    align-items: center;
   }
 
   .hamburger {
     display: flex;
     position: absolute;
-    top: 6px;
+    top: 50%;
     right: 0;
+    transform: translateY(-50%);
     z-index: 60;
   }
+  /* Full viewport width — nav sits inside .wrap; center + translate breaks out to 100vw */
   .nav-wrapper {
     position: absolute;
     top: 100%;
     left: 50%;
-    transform: translateX(-50%) translateY(-8px);
+    right: auto;
     width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
+    transform: translateX(-50%) translateY(-8px);
     background: var(--white);
     border-top: 1px solid var(--border-light);
     box-shadow: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
@@ -2738,10 +2765,21 @@ em {
     --type-detail: 0.98rem;
   }
 
-  /* Header logo scales down on smaller screens */
+  /* Header logos scale down on smaller screens */
   .logo-link .logo-cornell {
-    height: clamp(46px, 12vw, 64px);
-    max-height: 64px;
+    height: auto;
+    max-height: clamp(34px, 10vw, 44px);
+    max-width: min(120px, 40vw);
+  }
+
+  .logo-link .logo-neudc {
+    height: auto;
+    max-height: clamp(16px, 4.5vw, 20px);
+    max-width: min(72px, 28vw);
+  }
+
+  .logo-sep {
+    font-size: clamp(0.95rem, 3.2vw, 1.35rem);
   }
 
   /* Travel tables: keep headers readable on small screens */
