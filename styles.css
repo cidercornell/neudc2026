@@ -2747,3 +2747,10 @@ em {
     padding: 0.62rem 0.7rem;
   }
 }
+
+/* Phones only: lift scroll hint so it clears stacked hero CTAs (centered flex + short viewport) */
+@media (max-width: 480px) {
+  .hero-scroll-hint {
+    bottom: 3.5rem;
+  }
+}
