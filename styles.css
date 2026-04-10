@@ -1997,6 +1997,10 @@ a:hover {
   letter-spacing: 0.06em;
 }
 
+.hero-with-photo .hero-content .hero-tagline strong {
+  font-weight: 700;
+}
+
 .hero-with-photo .hero-content h1 {
   font-weight: 600;
   letter-spacing: -0.01em;
