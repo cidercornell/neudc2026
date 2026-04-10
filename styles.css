@@ -226,22 +226,18 @@ body {
   max-height: 38px;
 }
 
-/* | between logos — left half Cornell blue, right half Cornell red */
+/* | between logos */
 .logo-sep {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-weight: 300;
-  font-size: clamp(1.25rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 2.7vw, 2rem);
   line-height: 1;
   user-select: none;
   padding: 0 0.05em;
-  background: linear-gradient(90deg, var(--cornell-blue) 50%, var(--cornell-red) 50%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
+  color: var(--cornell-red);
 }
 
 .nav {
@@ -265,6 +261,7 @@ body {
 .nav a:hover {
   background: rgba(179, 27, 27, 0.08);
   color: var(--cornell-red);
+  text-decoration: none;
 }
 
 .nav a.active {
@@ -346,6 +343,7 @@ body {
   }
   .nav a:hover {
     background: rgba(179, 27, 27, 0.06);
+    text-decoration: none;
   }
   .nav a.active {
     background: rgba(179, 27, 27, 0.1);
@@ -1963,6 +1961,14 @@ a:hover {
   color: var(--link-hover);
 }
 
+/* Button-styled links: global a:hover underline must not apply */
+a.cta:hover,
+a.cta-primary:hover,
+a.cta-secondary:hover,
+a.scroll-to-top:hover {
+  text-decoration: none;
+}
+
 /* Home: header + photo hero together fill the first viewport (no guessed header height) */
 .home-viewport {
   min-height: 100vh;
@@ -2126,6 +2132,7 @@ a:hover {
   border-color: var(--white);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  text-decoration: none;
 }
 
 .hero h1 {
@@ -2278,6 +2285,7 @@ a:hover {
 
 .content-section .cta-secondary:hover {
   background: rgba(179, 27, 27, 0.08);
+  text-decoration: none;
 }
 
 /* Lists */
@@ -2779,7 +2787,8 @@ em {
   }
 
   .logo-sep {
-    font-size: clamp(0.95rem, 3.2vw, 1.35rem);
+    font-size: clamp(1.05rem, 3.4vw, 1.5rem);
+    font-weight: 700;
   }
 
   /* Travel tables: keep headers readable on small screens */
