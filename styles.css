@@ -1615,26 +1615,6 @@ button.lodging-card__book-cta {
   text-decoration: underline;
 }
 
-/* Campus-to-Campus callout — neutral black/gray links (not brand red) */
-.logistics-page .travel-callout .logistics-flow__text a {
-  color: #141414;
-  text-decoration: underline;
-  text-decoration-color: rgba(10, 10, 10, 0.38);
-  text-underline-offset: 0.15em;
-  text-decoration-thickness: 1px;
-}
-
-.logistics-page .travel-callout .logistics-flow__text a:hover {
-  color: #0a0a0a;
-  text-decoration-color: rgba(10, 10, 10, 0.72);
-}
-
-.logistics-page .travel-callout .logistics-flow__text a:focus-visible {
-  outline: 2px solid #1f1f1f;
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
 .logistics-flow__text {
   margin: 0;
   font-size: var(--type-body);
@@ -1876,18 +1856,18 @@ button.lodging-card__book-cta {
   max-width: 44rem;
   margin: 1.5rem 0 0;
   padding: 1.35rem 1.35rem 1.4rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-left: 4px solid #1f1f1f;
+  border: 1px solid rgba(179, 27, 27, 0.18);
+  border-left: 4px solid var(--cornell-red);
   border-radius: 12px;
   background: linear-gradient(
-    165deg,
-    #ecebe8 0%,
-    #f7f6f4 42%,
+    155deg,
+    rgba(179, 27, 27, 0.07) 0%,
+    #faf9f8 36%,
     #ffffff 100%
   );
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.88) inset,
-    0 10px 32px rgba(0, 0, 0, 0.07);
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 12px 36px rgba(10, 10, 10, 0.07);
 }
 
 .travel-callout .logistics-flow__text {
@@ -1908,11 +1888,11 @@ button.lodging-card__book-cta {
   line-height: var(--type-line-prose);
   padding-bottom: 1rem;
   margin-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(179, 27, 27, 0.14);
 }
 
 .travel-callout > .logistics-flow__text:first-child strong {
-  color: var(--text);
+  color: var(--cornell-red-dark);
   font-weight: 700;
 }
 
@@ -1924,10 +1904,10 @@ button.lodging-card__book-cta {
   gap: 0.35rem 0.75rem;
   padding: 0.72rem 0.9rem;
   margin-top: 0.65rem;
-  background: rgba(255, 255, 255, 0.78);
-  border: 1px solid rgba(0, 0, 0, 0.09);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(179, 27, 27, 0.14);
   border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(179, 27, 27, 0.06);
 }
 
 .travel-callout > .logistics-flow__text:not(:first-child) strong {
@@ -1937,7 +1917,7 @@ button.lodging-card__book-cta {
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #3a3a3a;
+  color: var(--cornell-red-dark);
 }
 
 @media (max-width: 520px) {
