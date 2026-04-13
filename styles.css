@@ -1053,14 +1053,6 @@ body {
   background: rgba(179, 27, 27, 0.04);
 }
 
-.program-section__note {
-  margin: 1.25rem 0 0;
-  max-width: 38em;
-  font-size: var(--type-body);
-  line-height: var(--type-line-snug);
-  color: var(--text-muted);
-}
-
 /* Logistics page — matches Program / Register (panel head, content-max, divider blocks) */
 .logistics-page .logistics-page__wrap {
   max-width: var(--content-max);
