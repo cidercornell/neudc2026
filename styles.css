@@ -453,6 +453,7 @@ body {
 }
 
 #agenda,
+#keynotes,
 #our-team {
   scroll-margin-top: 1rem;
 }
