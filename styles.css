@@ -1191,7 +1191,7 @@ body {
   margin-top: 1.35rem;
 }
 
-/* Airport table: compact type, full width, no horizontal scroll; notes wrap in-cell */
+/* Airport table: match page body type; notes wrap in-cell; no horizontal scroll */
 @media (min-width: 769px) {
   .logistics-getting-there .register-fee-table-wrap.travel-table-wrap {
     overflow-x: hidden;
@@ -1200,13 +1200,8 @@ body {
   .logistics-getting-there .airport-drive-table {
     table-layout: fixed;
     width: 100%;
-    font-size: 0.9rem;
-    line-height: 1.45;
-  }
-
-  .logistics-getting-there .airport-drive-table thead th {
-    font-size: 0.7rem;
-    letter-spacing: 0.07em;
+    font-size: var(--type-body);
+    line-height: var(--type-line-snug);
   }
 
   .logistics-getting-there .airport-drive-table th:nth-child(1),
@@ -2034,42 +2029,78 @@ button.lodging-card__book-cta {
   margin-top: 0.65rem;
 }
 
-.logistics-page .logistics-inline-links {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.45rem;
-  margin: 0.75rem 0 0;
+/* Conference venue — stacked external links (label + hint, hairline rows) */
+.logistics-page .section-venue .venue-links {
+  margin: 1rem 0 0;
   max-width: 38em;
+}
+
+.logistics-page .section-venue .venue-links__heading {
+  margin: 0 0 0.5rem;
+  padding: 0;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #3d3d3d;
+  line-height: 1.35;
+}
+
+.logistics-page .section-venue .venue-links__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logistics-page .section-venue .venue-links__item {
+  margin: 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.logistics-page .section-venue .venue-links__item:last-child {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.logistics-page .section-venue .venue-links__a {
+  display: block;
+  padding: 0.7rem 0.1rem 0.75rem 0;
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+.logistics-page .section-venue .venue-links__label {
+  display: block;
   font-size: var(--type-body);
-  line-height: var(--type-line-snug);
-}
-
-.logistics-inline-links__sep {
-  color: var(--text);
-  opacity: 0.32;
-  font-weight: 300;
-  user-select: none;
-  line-height: 1;
-}
-
-.logistics-page .logistics-inline-links a {
   font-weight: 600;
+  line-height: 1.35;
   color: var(--link);
   text-decoration: underline;
   text-underline-offset: 0.15em;
   text-decoration-thickness: 1px;
   text-decoration-skip-ink: auto;
+  transition: color var(--transition-fast);
 }
 
-.logistics-page .logistics-inline-links a:hover {
+.logistics-page .section-venue .venue-links__a:hover .venue-links__label {
   color: var(--link-hover);
 }
 
-.logistics-page .logistics-inline-links a:focus-visible {
+.logistics-page .section-venue .venue-links__desc {
+  display: block;
+  margin-top: 0.28rem;
+  font-size: var(--type-detail);
+  line-height: var(--type-line-snug);
+  color: #4a4a4a;
+  font-weight: 400;
+}
+
+.logistics-page .section-venue .venue-links__a:focus-visible {
   outline: 2px solid var(--cornell-red);
-  outline-offset: 2px;
-  border-radius: 2px;
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 .venue-address {
