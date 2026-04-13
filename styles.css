@@ -1254,6 +1254,68 @@ body {
   box-sizing: border-box;
 }
 
+.airport-taxi-fallback {
+  margin: 0.85rem 0 0;
+  max-width: 44rem;
+}
+
+.airport-taxi-fallback__title {
+  margin: 0 0 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #3d3d3d;
+}
+
+.airport-taxi-fallback__list {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(11.5rem, 15rem) minmax(0, 1fr);
+  column-gap: 0.9rem;
+  row-gap: 0.55rem;
+}
+
+.airport-taxi-fallback__list dt {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #3d3d3d;
+}
+
+.airport-taxi-fallback__list dd {
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.airport-taxi-fallback__list a {
+  font-weight: 600;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+  text-decoration-skip-ink: auto;
+}
+
+.airport-taxi-fallback__list a:hover {
+  color: var(--link-hover);
+}
+
+@media (max-width: 700px) {
+  .airport-taxi-fallback__list {
+    grid-template-columns: 1fr;
+    row-gap: 0.18rem;
+  }
+
+  .airport-taxi-fallback__list dd {
+    margin-bottom: 0.45rem;
+  }
+}
+
 /* Lodging: card list (not the airport-style table) */
 .lodging-list {
   margin: 1.35rem 0 0;
