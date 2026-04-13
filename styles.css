@@ -1191,6 +1191,49 @@ body {
   margin-top: 1.35rem;
 }
 
+/* Airport table: compact type, full width, no horizontal scroll; notes wrap in-cell */
+@media (min-width: 769px) {
+  .logistics-getting-there .register-fee-table-wrap.travel-table-wrap {
+    overflow-x: hidden;
+  }
+
+  .logistics-getting-there .airport-drive-table {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .logistics-getting-there .airport-drive-table thead th {
+    font-size: 0.7rem;
+    letter-spacing: 0.07em;
+  }
+
+  .logistics-getting-there .airport-drive-table th:nth-child(1),
+  .logistics-getting-there .airport-drive-table td:nth-child(1) {
+    width: 32%;
+    white-space: nowrap;
+  }
+
+  .logistics-getting-there .airport-drive-table th:nth-child(2),
+  .logistics-getting-there .airport-drive-table td:nth-child(2) {
+    width: 12%;
+    white-space: nowrap;
+  }
+
+  .logistics-getting-there .airport-drive-table th:nth-child(3),
+  .logistics-getting-there .airport-drive-table td:nth-child(3) {
+    width: 56%;
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .logistics-getting-there .airport-drive-table td {
+    vertical-align: middle;
+  }
+}
+
 /* Campus-to-Campus callout: align to airport table width (full content column, not 44rem cap) */
 .logistics-getting-there .travel-callout {
   max-width: none;
@@ -1672,14 +1715,152 @@ button.lodging-card__book-cta {
   border-color: transparent;
 }
 
-/* TCAT copy aligns with photo column width */
-#tcat .logistics-detail .logistics-flow__text,
-#tcat .logistics-detail .logistics-flow__link-list {
+/* TCAT + parking — spec grid + link lists (shared pattern) */
+#tcat .logistics-detail--tcat,
+#parking .logistics-detail--parking {
   max-width: 38em;
+}
+
+#tcat .tcat-detail__specs,
+#parking .parking-detail__specs {
+  display: grid;
+  grid-template-columns: minmax(5.75rem, 7rem) minmax(0, 1fr);
+  column-gap: 1rem;
+  row-gap: 0.85rem;
+  margin: 0 0 1.1rem;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+#parking .parking-detail__specs {
+  grid-template-columns: minmax(6.5rem, 8rem) minmax(0, 1fr);
+}
+
+#tcat .tcat-detail__specs {
+  padding-top: 0.85rem;
+}
+
+#tcat .tcat-detail__specs dt,
+#parking .parking-detail__specs dt {
+  margin: 0;
+  padding: 0.2rem 0 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #3d3d3d;
+  line-height: 1.35;
+}
+
+#tcat .tcat-detail__specs dd,
+#parking .parking-detail__specs dd {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: var(--type-line-prose);
+  color: var(--text);
+}
+
+#tcat .tcat-detail__specs dd strong,
+#parking .parking-detail__specs dd strong {
+  font-weight: 600;
+}
+
+.logistics-page #parking .parking-detail__specs dd a {
+  font-weight: 600;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+  text-decoration-skip-ink: auto;
+}
+
+.logistics-page #parking .parking-detail__specs dd a:hover {
+  color: var(--link-hover);
+}
+
+#parking .parking-detail__intro {
+  margin-bottom: 0.75rem;
+}
+
+#parking .parking-detail__specs dd p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+#parking .parking-detail__specs dd p + p {
+  margin-top: 0.5rem;
+}
+
+#tcat .tcat-detail__links-kicker,
+#parking .parking-detail__links-kicker {
+  margin: 0 0 0.45rem;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #3d3d3d;
+}
+
+#tcat .tcat-detail__links,
+#parking .parking-detail__links {
+  margin-top: 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem 1.25rem;
+}
+
+@media (min-width: 480px) {
+  #tcat .tcat-detail__links,
+  #parking .parking-detail__links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+#tcat .tcat-detail__links li,
+#parking .parking-detail__links li {
+  margin: 0;
+}
+
+#tcat .tcat-detail__links a,
+#parking .parking-detail__links a {
+  display: inline;
+  font-weight: 600;
 }
 
 #getting-around #tcat .logistics-flow__figure {
   margin-bottom: 0.75rem;
+}
+
+@media (max-width: 420px) {
+  #tcat .tcat-detail__specs,
+  #parking .parking-detail__specs {
+    grid-template-columns: 1fr;
+    row-gap: 0.35rem;
+  }
+
+  #tcat .tcat-detail__specs dt,
+  #parking .parking-detail__specs dt {
+    padding-top: 0.65rem;
+  }
+
+  #tcat .tcat-detail__specs dt:first-of-type,
+  #parking .parking-detail__specs dt:first-of-type {
+    padding-top: 0.1rem;
+  }
+
+  #tcat .tcat-detail__specs dd,
+  #parking .parking-detail__specs dd {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  #tcat .tcat-detail__specs dd:last-of-type,
+  #parking .parking-detail__specs dd:last-of-type {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 }
 
 /* Getting around intro should not wrap early */
@@ -1797,17 +1978,36 @@ button.lodging-card__book-cta {
   border: 1px solid var(--border-light);
 }
 
-/* Travel page: keep venue and transit photos consistent */
+/* Travel page — venue / transit photos: framed mat + soft depth */
 .logistics-page .logistics-flow__figure {
   max-width: 38em;
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.55rem;
+  box-sizing: border-box;
+  background: linear-gradient(
+    168deg,
+    #faf9f7 0%,
+    #f2f0ec 42%,
+    #eae7e1 100%
+  );
+  border: 1px solid rgba(10, 10, 10, 0.09);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.82) inset,
+    0 16px 42px rgba(10, 10, 10, 0.07),
+    0 2px 8px rgba(10, 10, 10, 0.04);
 }
 
 .logistics-page .logistics-flow__img {
+  display: block;
+  width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
-  border: none;
-  border-radius: 6px;
-  box-shadow: none;
+  border-radius: 10px;
+  border: 1px solid rgba(10, 10, 10, 0.14);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.35) inset,
+    0 4px 18px rgba(10, 10, 10, 0.1);
 }
 
 .logistics-flow__caption {
