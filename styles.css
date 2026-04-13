@@ -80,6 +80,8 @@
   --text-muted: var(--text);
   --text-light: var(--text);
   --bg: #f8f7f5;
+  /* Key dates timeline dot halo (matches section wash); program agenda uses --bg-alt on cards */
+  --bg-soft: #f8f7f5;
   --bg-subtle: #f3f2ef;
   --bg-alt: #fff;
   --white: #fff;
@@ -1008,50 +1010,114 @@ body {
   outline-offset: 2px;
 }
 
-.program-agenda-day {
-  font-size: var(--type-section);
+/* Program agenda — day sheets + light timeline (kept restrained) */
+.program-agenda {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.25rem, 3vw, 1.65rem);
+  margin-top: 0.5rem;
+}
+
+.program-agenda-day-block {
+  margin: 0;
+}
+
+.program-agenda-day-block__sheet {
+  border-radius: 14px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.program-agenda-day-block__head {
+  padding: 1.1rem 1.25rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.program-agenda-day-block__title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.program-agenda-day-block__weekday {
+  font-size: 0.72rem;
   font-weight: 600;
-  margin: 1.75rem 0 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.72;
+}
+
+.program-agenda-day-block__dateline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.12rem, 2.4vw, 1.35rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
   color: var(--text);
 }
 
-.program-page .program-agenda-day:first-of-type {
-  margin-top: 0.35rem;
+/* Agenda rail — same as homepage .key-dates-list (border + dots) */
+.program-agenda-list {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  max-width: 44rem;
+  border-left: 2px solid rgba(179, 27, 27, 0.24);
+  padding: 0.25rem 1.25rem 1.15rem 1.1rem;
 }
 
-.program-agenda-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 0 0 1.25rem;
+.program-agenda-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 7.25rem) minmax(0, 1fr);
+  align-items: start;
+  gap: 0.5rem 1.15rem;
+  padding: 0.85rem 0 0.85rem 0.2rem;
+  border-bottom: 1px solid var(--border-light);
   font-size: var(--type-body);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  overflow: hidden;
+  line-height: var(--type-line-prose);
 }
 
-.program-agenda-table th,
-.program-agenda-table td {
-  padding: 0.72rem 0.9rem;
-  text-align: left;
-  border: 1px solid var(--border-light);
-  vertical-align: top;
+.program-agenda-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0.35rem;
 }
 
-.program-agenda-table th {
-  background: #1f1f1f;
-  color: var(--white);
-  font-size: 0.82rem;
+.program-agenda-item::before {
+  content: "";
+  position: absolute;
+  left: -1.47rem;
+  top: 1.05rem;
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background: var(--cornell-red);
+  box-shadow: 0 0 0 4px var(--bg-alt);
+}
+
+.program-agenda-item__time {
+  display: block;
+  color: var(--cornell-red-dark);
+  font-size: 0.92rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+  padding-top: 0.05rem;
+  font-variant-numeric: tabular-nums;
+  text-transform: capitalize;
 }
 
-.program-agenda-table tbody tr:nth-child(even) {
-  background: rgba(0, 0, 0, 0.015);
+.program-agenda-item__detail {
+  min-width: 0;
+  color: var(--text);
 }
 
-.program-agenda-table tbody tr:hover {
-  background: rgba(179, 27, 27, 0.04);
+.program-agenda-item__detail em {
+  font-style: italic;
+  font-weight: 500;
 }
 
 /* Logistics page — matches Program / Register (panel head, content-max, divider blocks) */
@@ -1384,19 +1450,39 @@ button.lodging-card__book-cta {
 }
 
 @media (max-width: 768px) {
-  .travel-table-wrap .airport-table,
-  .travel-table-wrap .program-agenda-table {
+  .travel-table-wrap .airport-table {
     table-layout: fixed;
   }
 
   .logistics-page .airport-table th,
-  .logistics-page .airport-table td,
-  .program-page .program-agenda-table th,
-  .program-page .program-agenda-table td {
+  .logistics-page .airport-table td {
     word-break: break-word;
     overflow-wrap: anywhere;
     hyphens: auto;
     white-space: normal;
+  }
+
+  .program-agenda-day-block__head {
+    padding: 1.05rem 1.1rem 0.95rem;
+  }
+
+  .program-agenda-list {
+    padding-left: 0.95rem;
+  }
+
+  .program-agenda-item {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+    padding: 0.62rem 0 0.62rem 0.1rem;
+  }
+
+  .program-agenda-item::before {
+    left: -1.32rem;
+    top: 0.95rem;
+  }
+
+  .program-agenda-item__time {
+    font-size: 0.88rem;
   }
 
   .register-fee-table {
@@ -3073,8 +3159,7 @@ em {
   }
 
   /* Travel tables: compact type; headers wrap (nowrap caused horizontal scroll) */
-  .airport-table th,
-  .program-agenda-table th {
+  .airport-table th {
     font-size: 0.9rem;
     letter-spacing: 0.01em;
     text-transform: none;
@@ -3083,8 +3168,7 @@ em {
     padding: 0.62rem 0.7rem;
   }
 
-  .airport-table td,
-  .program-agenda-table td {
+  .airport-table td {
     padding: 0.62rem 0.7rem;
     white-space: normal;
     overflow-wrap: anywhere;
