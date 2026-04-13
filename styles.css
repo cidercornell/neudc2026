@@ -2815,6 +2815,25 @@ a.scroll-to-top:hover {
   box-shadow: 0 4px 14px rgba(179, 27, 27, 0.35);
 }
 
+
+a.cta-disabled,
+a.cta[aria-disabled="true"] {
+  background: #b8b2ab;
+  border-color: #b8b2ab;
+  color: var(--white) !important;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+}
+
+a.cta-disabled:hover,
+a.cta[aria-disabled="true"]:hover {
+  background: #b8b2ab;
+  border-color: #b8b2ab;
+  text-decoration: none;
+}
+
 /* Secondary CTA in content sections — outline style */
 .content-section .cta-secondary {
   background: transparent;

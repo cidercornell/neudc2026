@@ -112,16 +112,17 @@
   <section id="cfp" class="content-section section-cfp" aria-labelledby="cfp-heading">
     <div class="section-wrap">
       <h2 id="cfp-heading" class="subpage-title">Call for Papers</h2>
-      <p class="lead">Submit your paper by <span class="deadline-accent">August 17, 2026</span>.</p>
-      <p class="section-subtitle cfp-checklist-title">Before submitting, please ensure you have the following information ready:</p>
+      <p class="section-subtitle cfp-checklist-title">Paper Submission Timeline</p>
+      <p>The submission portal opens on <strong>June 15</strong> and closes on <strong>July 31</strong>. Acceptance decisions will be announced on <strong>September 15</strong>.</p>
+      <p class="section-subtitle cfp-checklist-title">Before submitting, please have the following information ready:</p>
       <ul class="cfp-checklist" aria-label="Submission information checklist">
         <li>Presenter name, title, and institutional affiliation</li>
         <li>Year PhD was received (or expected)</li>
         <li>Whether this paper is your job market paper (JMP)</li>
-        <li>Author composition: faculty only / mix of faculty and students / students only / other</li>
+        <li>Author composition (e.g., faculty only, students only, or a mix)</li>
         <li>The fields most relevant to your paper (used for reviewer assignment)</li>
       </ul>
-      <p><a href="https://editorialexpress.com/cgi-bin/conference/conference.cgi?action=login&db_name=NEUDC2026" class="cta cta-primary">Submit Your Paper</a></p>
+      <p><a id="cfp-submit-link" class="cta cta-primary cta-disabled" data-open-date="2026-06-15" data-href="https://editorialexpress.com/cgi-bin/conference/conference.cgi?action=login&db_name=NEUDC2026" aria-disabled="true" tabindex="-1">Submission opens June 15</a></p>
     </div>
   </section>
 
@@ -187,6 +188,26 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeMenu();
       });
+    })();
+    (function() {
+      var submitLink = document.getElementById('cfp-submit-link');
+      if (!submitLink) return;
+
+      var openDateStr = submitLink.getAttribute('data-open-date');
+      var liveHref = submitLink.getAttribute('data-href');
+      if (!openDateStr || !liveHref) return;
+
+      var openDate = new Date(openDateStr + 'T00:00:00');
+      var today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (today >= openDate) {
+        submitLink.setAttribute('href', liveHref);
+        submitLink.textContent = 'Submit Your Paper';
+        submitLink.classList.remove('cta-disabled');
+        submitLink.removeAttribute('aria-disabled');
+        submitLink.removeAttribute('tabindex');
+      }
     })();
   </script>
 </body>
