@@ -707,6 +707,37 @@ body {
   margin-bottom: 0;
 }
 
+.register-visa-note {
+  margin: 0.85rem 0 0;
+  font-size: var(--type-detail);
+  line-height: var(--type-line-snug);
+  color: var(--text-muted);
+}
+
+/* Prose links in registration — refined underline, no global a:hover clutter */
+.register-page .register-fees-panel .register-reduced-eligibility a,
+.register-page .register-fees-panel .register-visa-note a {
+  color: var(--cornell-red);
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(179, 27, 27, 0.38);
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.register-page .register-fees-panel .register-reduced-eligibility a:hover,
+.register-page .register-fees-panel .register-visa-note a:hover {
+  color: var(--cornell-red-dark);
+  border-bottom-color: var(--cornell-red-dark);
+  text-decoration: none;
+}
+
+.register-page .register-fees-panel .register-reduced-eligibility a:focus-visible,
+.register-page .register-fees-panel .register-visa-note a:focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 .register-page .register-includes {
   margin: 0 0 1.35rem;
   padding: 1rem 0 0;
