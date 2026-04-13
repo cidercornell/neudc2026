@@ -57,7 +57,7 @@
       <h2 class="section-title">Getting to Ithaca</h2>
       <p id="airport-panel-label" class="airport-fees-intro">Approximate drive times to Cornell</p>
       <div class="register-fee-table-wrap travel-table-wrap">
-        <table class="register-fee-table" aria-labelledby="airport-panel-label">
+        <table class="register-fee-table airport-drive-table" aria-labelledby="airport-panel-label">
           <thead>
             <tr>
               <th scope="col">Airport</th>
@@ -144,11 +144,17 @@
           <figure class="logistics-flow__figure">
             <img src="cornell_photos/tcat-route-10-campus.png" alt="A bright blue TCAT bus on Route 10 at Cornell." class="logistics-flow__img" width="1024" height="682" loading="lazy" decoding="async">
           </figure>
-          <div class="logistics-detail" aria-label="TCAT Route 10 details">
-            <p class="logistics-flow__text"><strong>Route:</strong> <strong>TCAT Route 10</strong> runs frequently between Cornell University and downtown Ithaca and stops at Goldwin Smith Hall, directly across from the Physical Sciences Building.</p>
-            <p class="logistics-flow__text"><strong>Fares:</strong> You can pay with the Tfare app, a Tcard, or exact cash.</p>
-            <p class="logistics-flow__text"><strong>Trip planning:</strong> Check live bus times in the map links below or in Google Maps.</p>
-            <ul class="logistics-flow__link-list">
+          <div class="logistics-detail logistics-detail--tcat" aria-label="TCAT Route 10 details">
+            <dl class="tcat-detail__specs">
+              <dt>Route</dt>
+              <dd>TCAT Route 10 runs frequently between Cornell University and downtown Ithaca. Stops at <strong>Goldwin Smith Hall</strong>, directly across from the Physical Sciences Building.</dd>
+              <dt>Fares</dt>
+              <dd>Pay with the <strong>Tfare</strong> app, a <strong>Tcard</strong>, or exact cash.</dd>
+              <dt>Trip planning</dt>
+              <dd>Use the links below or <strong>Google Maps</strong> for live bus times.</dd>
+            </dl>
+            <p class="tcat-detail__links-kicker" id="tcat-links-label">Quick links</p>
+            <ul class="logistics-flow__link-list tcat-detail__links" aria-labelledby="tcat-links-label">
               <li><a href="https://realtimetcatbus.availtec.com/InfoPoint/" target="_blank" rel="noopener">Live bus map</a></li>
               <li><a href="https://tcatbus.com/" target="_blank" rel="noopener">Schedules and routes</a></li>
               <li><a href="https://tcatbus.com/store/" target="_blank" rel="noopener">Passes and fares</a></li>
@@ -167,13 +173,19 @@
       <h2 class="section-title">Parking at Cornell</h2>
       <div class="logistics-flow">
         <div class="logistics-flow__item">
-          <div class="logistics-detail" aria-label="Parking details">
-            <p class="logistics-flow__text">Parking options vary by day and lot. Use the guidance below to plan ahead.</p>
-            <p class="logistics-flow__text"><strong>Weekdays:</strong> Plan for a permit or paid visitor parking through <a href="https://parkmobile.io/" target="_blank" rel="noopener">ParkMobile</a> or <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">lot kiosks</a>.</p>
-            <p class="logistics-flow__text"><strong>Weekends:</strong> Complimentary weekend parking near the Martin Y. Tang Welcome Center is available at <a href="https://www.cornell.edu/about/maps/?loc=Parking%20at%20Toboggan%20Lodge" target="_blank" rel="noopener">Toboggan Lodge</a> and <a href="https://www.cornell.edu/about/maps/?loc=Forest%20Home%20Dr.%20Parking%20Garage" target="_blank" rel="noopener">Forest Home Drive Parking Garage</a>. The <a href="https://bit.ly/2fCYPDx" target="_blank" rel="noopener">Hoy Road Parking Garage</a> on central campus is also available to weekend visitors.</p>
-            <p class="logistics-flow__text">Parking permits for these locations are not required on weekends, but please be aware of signage and restricted spaces.</p>
-            <p class="logistics-flow__text"><strong>Parking resources:</strong></p>
-            <ul class="logistics-flow__link-list">
+          <div class="logistics-detail logistics-detail--parking" aria-label="Parking details">
+            <p class="logistics-flow__text parking-detail__intro">Parking options vary by day and lot. Use the guidance below to plan ahead.</p>
+            <dl class="parking-detail__specs">
+              <dt>Weekdays</dt>
+              <dd>Plan for a permit or paid visitor parking through <a href="https://parkmobile.io/" target="_blank" rel="noopener">ParkMobile</a> or <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">lot kiosks</a>.</dd>
+              <dt>Weekends</dt>
+              <dd>
+                <p>Complimentary weekend parking near the <strong>Martin Y. Tang Welcome Center</strong> is available at <a href="https://www.cornell.edu/about/maps/?loc=Parking%20at%20Toboggan%20Lodge" target="_blank" rel="noopener">Toboggan Lodge</a> and <a href="https://www.cornell.edu/about/maps/?loc=Forest%20Home%20Dr.%20Parking%20Garage" target="_blank" rel="noopener">Forest Home Drive Parking Garage</a>. The <a href="https://bit.ly/2fCYPDx" target="_blank" rel="noopener">Hoy Road Parking Garage</a> on central campus is also available to weekend visitors.</p>
+                <p>Parking permits for these locations are not required on weekends, but please be aware of signage and restricted spaces.</p>
+              </dd>
+            </dl>
+            <p class="parking-detail__links-kicker" id="parking-links-label">Parking resources</p>
+            <ul class="logistics-flow__link-list parking-detail__links" aria-labelledby="parking-links-label">
               <li><a href="https://www.cornell.edu/visit/parking/" target="_blank" rel="noopener">Visitor parking guide</a></li>
               <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">Short-term lot map</a></li>
               <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/virtual-permits" target="_blank" rel="noopener">Virtual permits</a></li>
