@@ -867,14 +867,6 @@ body {
   box-shadow: none;
 }
 
-.register-page .register-checkout__detail {
-  margin: 0.85rem 0 0;
-  font-size: var(--type-detail);
-  color: var(--text-muted);
-  line-height: var(--type-line-snug);
-  max-width: 100%;
-}
-
 /* Program page — matches register layout (narrow column, panel head, bordered sections) */
 .program-page .program-page__wrap {
   max-width: var(--content-max);
