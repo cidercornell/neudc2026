@@ -2058,11 +2058,6 @@ button.lodging-card__book-cta {
 
 .logistics-page .section-venue .venue-links__item {
   margin: 0;
-  border-top: 1px solid var(--border-light);
-}
-
-.logistics-page .section-venue .venue-links__item:last-child {
-  border-bottom: 1px solid var(--border-light);
 }
 
 .logistics-page .section-venue .venue-links__a {
