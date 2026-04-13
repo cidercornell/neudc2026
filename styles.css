@@ -103,6 +103,8 @@
   --type-line-prose: 1.62;
   /* One max width for all main content (sections, subpages, footer, hero text block) */
   --content-max: 840px;
+  /* Match .site-header: padding + tallest logo row + border (avoids cream body strip under hero) */
+  --site-header-offset: calc(76px + 1.1rem + 2px);
 }
 
 * {
@@ -128,9 +130,11 @@ body {
 
 /* Site header */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 200;
   background: var(--white);
   padding: 0.55rem 1.5rem;
-  position: relative;
   border-bottom: 2px solid var(--cornell-red);
 }
 
@@ -2247,20 +2251,18 @@ a.scroll-to-top:hover {
   text-decoration: none;
 }
 
-/* Home: header + photo hero together fill the first viewport (no guessed header height) */
+/* Home: hero fills one viewport *below* the sticky header (header is outside this wrapper) */
 .home-viewport {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--site-header-offset));
+  min-height: calc(100svh - var(--site-header-offset));
   display: flex;
   flex-direction: column;
 }
 
-.home-viewport .site-header {
-  flex-shrink: 0;
-}
-
 .home-viewport .hero-with-photo {
-  flex: 1 1 auto;
+  flex: 1 1 0;
   min-height: 0;
+  align-self: stretch;
 }
 
 /* Hero (home only) */
@@ -3063,6 +3065,8 @@ em {
     --type-body: 1.08rem;
     --type-lead: 1.12rem;
     --type-detail: 0.98rem;
+    /* Shorter bar: .header-left min-height 56px + same header padding/border */
+    --site-header-offset: calc(56px + 1.1rem + 2px);
   }
 
   /* Header logos scale down on smaller screens */
