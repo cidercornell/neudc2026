@@ -449,8 +449,7 @@ body {
 }
 
 #agenda,
-#our-team,
-#keynotes {
+#our-team {
   scroll-margin-top: 1rem;
 }
 
@@ -485,6 +484,16 @@ body {
 .section-head .section-title,
 .section-head .subpage-title {
   margin-top: 0;
+}
+
+/* h2.subpage-title — no global h2 underline (Program section heads; home Overview / CFP / Contact) */
+.section-head h2.subpage-title,
+#section-about h2.subpage-title,
+#section-dates h2.subpage-title,
+#cfp h2.subpage-title,
+#contact h2.subpage-title {
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 /* Default section h2 — register subsection scale (logistics, etc.) */
@@ -526,6 +535,27 @@ body {
 
 .content-section .lead {
   margin-bottom: 1.25rem;
+}
+
+/* Inline links in lead paragraphs — base `a` has no underline; make them read as links */
+.content-section .lead a:not(.cta):not(.cta-primary):not(.cta-secondary):not(.contact-email) {
+  color: var(--cornell-red);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  text-decoration-color: rgba(179, 27, 27, 0.55);
+}
+
+.content-section .lead a:not(.cta):not(.cta-primary):not(.cta-secondary):not(.contact-email):hover {
+  color: var(--cornell-red-dark);
+  text-decoration-color: var(--cornell-red-dark);
+}
+
+.content-section .lead a:not(.cta):not(.cta-primary):not(.cta-secondary):not(.contact-email):focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Body copy in content sections — register list/body scale; full column width (no narrow measure) */
@@ -599,6 +629,7 @@ body {
 /* Register page — single centered column so rules, table, and copy share one width */
 .register-page .register-page__wrap {
   max-width: var(--content-max);
+  min-width: 0;
   margin-left: auto;
   margin-right: auto;
 }
@@ -644,7 +675,8 @@ body {
   margin: 0 0 1.15rem;
   width: 100%;
   max-width: 100%;
-  overflow-x: auto;
+  min-width: 0;
+  overflow-x: hidden;
   border-radius: 12px;
   border: 1px solid var(--border-light);
   box-sizing: border-box;
@@ -849,12 +881,22 @@ body {
   padding: 2.25rem 2rem 3.5rem;
 }
 
+/* Intro block (title + summary + jump links): don’t leave a huge gap before #agenda */
+.program-page > section.program-page-section:first-of-type {
+  padding-bottom: 1.25rem;
+}
+
 .program-panel {
   padding: 0;
 }
 
 .program-panel-head {
   margin-bottom: 1.25rem;
+}
+
+/* Jump links sit just above #agenda; avoid stacking this with the intro section’s bottom padding */
+.program-page .program-panel-head {
+  margin-bottom: 0;
 }
 
 .program-panel-head__summary {
@@ -1108,12 +1150,12 @@ body {
   border-bottom: none;
 }
 
-/* Travel tables: wrap on small screens; nowrap only on wide screens to avoid horizontal page scroll */
+/* Travel / program tables: no horizontal scroll — wrap text; fixed layout on small screens */
 .travel-table-wrap {
   width: 100%;
   max-width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 .airport-table {
@@ -1127,34 +1169,256 @@ body {
 .airport-table th,
 .airport-table td {
   vertical-align: top;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  hyphens: auto;
 }
 
-.lodging-table {
-  width: 100%;
-  margin-top: 0.8rem;
-  font-size: 0.96rem;
+/* Lodging: card list (not the airport-style table) */
+.lodging-list {
+  margin: 1.35rem 0 0;
+  padding: 0;
+  max-width: var(--content-max);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-@media (min-width: 769px) {
-  .airport-table th,
-  .airport-table td {
-    white-space: nowrap;
-  }
+.lodging-card {
+  margin: 0;
+  padding: 1.15rem 1.35rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
 
-  .lodging-table th {
-    white-space: nowrap;
-  }
+.lodging-card__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1.25rem;
+}
+
+.lodging-card__title {
+  margin: 0;
+  font-size: clamp(1.03rem, 2vw, 1.16rem);
+  font-weight: 650;
+  font-family: var(--font-heading);
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.28;
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.lodging-card__title-link {
+  color: var(--cornell-red);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--transition-fast);
+}
+
+.lodging-card__title-link:hover,
+.lodging-card__title-link:visited:hover {
+  color: var(--cornell-red-dark);
+}
+
+.lodging-card__title-link:visited {
+  color: var(--cornell-red);
+}
+
+.lodging-card__title-link:focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.lodging-card__rate {
+  flex-shrink: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.lodging-card__addr {
+  margin: 0.35rem 0 0;
+  font-size: calc(var(--type-detail) * 0.96);
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.lodging-card__meta-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.45rem 1rem;
+  margin: 0.35rem 0 0;
+}
+
+.lodging-card__meta-line > p,
+.lodging-card__meta-line > .lodging-card__book {
+  margin: 0;
+}
+
+.lodging-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.45rem;
+  margin: 0;
+  font-size: calc(var(--type-detail) * 0.96);
+  line-height: 1.45;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+.lodging-card__book {
+  flex-shrink: 0;
+}
+
+button.lodging-card__book-cta {
+  margin: 0;
+  padding: 0.38rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  border-radius: 7px;
+  cursor: not-allowed;
+}
+
+.lodging-card .lodging-card__book-cta:disabled {
+  background: var(--bg-subtle);
+  border-color: var(--border);
+  color: var(--text) !important;
+  opacity: 0.72;
+  pointer-events: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.lodging-card .lodging-card__book-cta:disabled:hover {
+  background: var(--bg-subtle);
+  border-color: var(--border);
+  color: var(--text) !important;
+}
+
+.lodging-card__meta-time {
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.lodging-card__meta-kind {
+  font-size: 0.92em;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  opacity: 0.72;
+}
+
+.lodging-card__tcat {
+  margin: 0.55rem 0 0;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.lodging-card__tcat-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.lodging-card__stops-label,
+.lodging-card__routes-label {
+  display: block;
+  margin: 0.45rem 0 0.3rem;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.lodging-card__tcat-label + .lodging-card__stops-label {
+  margin-top: 0.35rem;
+}
+
+.lodging-card__stops-list {
+  margin: 0 0 0.35rem;
+  padding-left: 1.15rem;
+  list-style: disc;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.lodging-card__stops-list li + li {
+  margin-top: 0.12rem;
+}
+
+.lodging-route-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0;
+}
+
+.lodging-route-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.55rem;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  line-height: 1.2;
 }
 
 @media (max-width: 768px) {
+  .travel-table-wrap .airport-table,
+  .travel-table-wrap .program-agenda-table {
+    table-layout: fixed;
+  }
+
   .logistics-page .airport-table th,
   .logistics-page .airport-table td,
-  .logistics-page .lodging-table th,
-  .logistics-page .lodging-table td,
   .program-page .program-agenda-table th,
   .program-page .program-agenda-table td {
     word-break: break-word;
+    overflow-wrap: anywhere;
     hyphens: auto;
+    white-space: normal;
+  }
+
+  .register-fee-table {
+    table-layout: fixed;
+  }
+
+  .register-fee-table th,
+  .register-fee-table td {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 }
 
@@ -1389,15 +1653,12 @@ body {
 }
 
 .airport-table th,
-.airport-table td,
-.lodging-table th,
-.lodging-table td {
+.airport-table td {
   border-left: none;
   border-right: none;
 }
 
-.airport-table th,
-.lodging-table th {
+.airport-table th {
   background: #1f1f1f;
   color: var(--white);
   border-top: none;
@@ -1407,16 +1668,7 @@ body {
   text-transform: uppercase;
 }
 
-@media (min-width: 769px) {
-  .airport-table td:nth-child(2),
-  .lodging-table td:nth-child(2),
-  .lodging-table td:nth-child(4) {
-    white-space: nowrap;
-  }
-}
-
-.airport-table tbody tr:hover,
-.lodging-table tbody tr:hover {
+.airport-table tbody tr:hover {
   background: rgba(179, 27, 27, 0.04);
 }
 
@@ -1424,27 +1676,22 @@ body {
   border-bottom: 1.5px solid #cfcfcf !important;
 }
 
-.airport-table,
-.lodging-table {
+.airport-table {
   border: 1px solid var(--border-light);
   border-radius: 12px;
   overflow: hidden;
 }
 
 .airport-table th,
-.airport-table td,
-.lodging-table th,
-.lodging-table td {
+.airport-table td {
   padding: 0.78rem 0.95rem;
 }
 
-.airport-table tbody tr:nth-child(even),
-.lodging-table tbody tr:nth-child(even) {
+.airport-table tbody tr:nth-child(even) {
   background: rgba(0, 0, 0, 0.015);
 }
 
-.airport-table td a,
-.lodging-table td a {
+.airport-table td a {
   font-weight: 500;
 }
 
@@ -2057,6 +2304,14 @@ a.scroll-to-top:hover {
   margin: 0 auto;
 }
 
+/* Equal vertical rhythm between tagline, title, year, and dates (all viewports) */
+.hero-with-photo .hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.75rem;
+}
+
 .hero-with-photo .hero-content h1,
 .hero-with-photo .hero-content .subtitle,
 .hero-with-photo .hero-content .intro {
@@ -2077,7 +2332,7 @@ a.scroll-to-top:hover {
   color: rgba(255,255,255,0.88);
   font-size: clamp(0.9rem, 1.6vw, 1.1rem);
   font-weight: 500;
-  margin: 0 auto 0.75rem;
+  margin: 0 auto;
   letter-spacing: 0.06em;
 }
 
@@ -2090,14 +2345,14 @@ a.scroll-to-top:hover {
   color: var(--white);
   font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 300;
-  margin: 0.25rem auto 1rem;
+  margin: 0 auto;
   letter-spacing: 0.15em;
 }
 
 .hero-with-photo .hero-content .meta {
   font-size: clamp(1.05rem, 1.85vw, 1.3rem);
   font-weight: 500;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto;
   letter-spacing: 0.02em;
   display: flex;
   flex-wrap: wrap;
@@ -2122,30 +2377,35 @@ a.scroll-to-top:hover {
   letter-spacing: 0.03em;
 }
 
-/* Subtle divider between dates and location (not copy — layout only) */
+/* Divider between dates and location — fades at ends so it reads lighter than body text */
 .hero-with-photo .hero-content .meta-sep {
   flex: 0 0 auto;
-  align-self: stretch;
+  align-self: center;
   width: 1px;
-  min-height: 1.15em;
-  margin: 0 0.85rem;
-  background: rgba(255, 255, 255, 0.38);
+  min-height: 1.35em;
+  margin: 0 0.9rem;
+  border-radius: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.42) 22%,
+    rgba(255, 255, 255, 0.52) 50%,
+    rgba(255, 255, 255, 0.42) 78%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.12);
 }
 
 @media (max-width: 480px) {
   .hero-with-photo .hero-content .meta {
     flex-direction: column;
     gap: 0;
-    row-gap: 0.45rem;
+    row-gap: 0.35rem;
   }
 
+  /* Stack dates and venue with no extra separator (venue line already has ·) */
   .hero-with-photo .hero-content .meta-sep {
-    width: 2.75rem;
-    height: 1px;
-    min-height: 0;
-    margin: 0.15rem 0;
-    align-self: center;
-    background: rgba(255, 255, 255, 0.35);
+    display: none;
   }
 }
 
@@ -2173,7 +2433,7 @@ a.scroll-to-top:hover {
 
 .hero-with-photo .hero-content h1 {
   font-size: clamp(1.7rem, 4vw, 2.75rem);
-  margin: 0 auto 0.5rem;
+  margin: 0 auto;
   line-height: 1.25;
   max-width: 18em;
 }
@@ -2225,7 +2485,8 @@ a.scroll-to-top:hover {
 
 .hero-with-photo .ctas {
   gap: 1.25rem;
-  margin: 2rem auto 0;
+  /* row-gap (0.75rem) + this margin = 2rem space above buttons (was meta mb + ctas mt) */
+  margin: 1.25rem auto 0;
 }
 
 /* Hero scroll hint — chevron only; label via aria-label */
@@ -2822,21 +3083,21 @@ em {
     font-weight: 700;
   }
 
-  /* Travel tables: keep headers readable on small screens */
+  /* Travel tables: compact type; headers wrap (nowrap caused horizontal scroll) */
   .airport-table th,
-  .lodging-table th,
   .program-agenda-table th {
     font-size: 0.9rem;
     letter-spacing: 0.01em;
     text-transform: none;
-    white-space: nowrap;
+    white-space: normal;
     line-height: 1.3;
     padding: 0.62rem 0.7rem;
   }
 
   .airport-table td,
-  .lodging-table td,
   .program-agenda-table td {
     padding: 0.62rem 0.7rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 }
