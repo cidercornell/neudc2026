@@ -41,7 +41,7 @@
           <div class="program-panel-head__summary">
             <p>NEUDC 2026 is at Cornell's Physical Sciences Building. Use the sections below to plan your trip.</p>
           </div>
-          <nav class="logistics-jump" aria-label="Logistics quick links">
+          <nav class="logistics-jump" aria-label="On this page">
             <a href="#venue">Conference venue</a>
             <a href="#getting-around">Local transportation</a>
             <a href="#parking">Parking at Cornell</a>
@@ -55,43 +55,44 @@
   <section id="getting-to-ithaca" class="content-section logistics-getting-there travel-zone travel-zone--arrival">
     <div class="section-wrap logistics-page__wrap">
       <h2 class="section-title">Getting to Ithaca</h2>
-      <div class="travel-table-wrap">
-      <table class="airport-table" aria-label="Airport options for reaching Cornell">
-        <thead>
-          <tr>
-            <th>Airport</th>
-            <th>Drive to Cornell</th>
-            <th>Best for</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Ithaca Tompkins (ITH)</td>
-            <td>15 min</td>
-            <td>Fastest option, but limited flights.</td>
-          </tr>
-          <tr>
-            <td>Elmira/Corning (ELM)</td>
-            <td>~45 min</td>
-            <td>Rental car recommended.</td>
-          </tr>
-          <tr>
-            <td>Syracuse (SYR)</td>
-            <td>1 hour</td>
-            <td>More flights and rental-car options.</td>
-          </tr>
-          <tr>
-            <td>Binghamton (BGM)</td>
-            <td>~1 hr 15 min</td>
-            <td>Rental car recommended.</td>
-          </tr>
-          <tr>
-            <td>New York (JFK/EWR)</td>
-            <td>4 hours</td>
-            <td>Best for international arrivals and Campus-to-Campus bus connections.</td>
-          </tr>
-        </tbody>
-      </table>
+      <p id="airport-panel-label" class="airport-fees-intro">Approximate drive times to Cornell</p>
+      <div class="register-fee-table-wrap travel-table-wrap">
+        <table class="register-fee-table" aria-labelledby="airport-panel-label">
+          <thead>
+            <tr>
+              <th scope="col">Airport</th>
+              <th scope="col">Drive</th>
+              <th scope="col">Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ithaca Tompkins (ITH)</td>
+              <td>15 min</td>
+              <td>Fastest option, but limited flights.</td>
+            </tr>
+            <tr>
+              <td>Elmira/Corning (ELM)</td>
+              <td>45 min</td>
+              <td>Rental car recommended.</td>
+            </tr>
+            <tr>
+              <td>Syracuse (SYR)</td>
+              <td>1 hr</td>
+              <td>More flights and rental-car options.</td>
+            </tr>
+            <tr>
+              <td>Binghamton (BGM)</td>
+              <td>1 hr 15 min</td>
+              <td>Rental car recommended.</td>
+            </tr>
+            <tr>
+              <td>New York (JFK/EWR)</td>
+              <td>4 hr</td>
+              <td>Best for international arrivals and Campus-to-Campus bus connections.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="logistics-flow">
         <div class="logistics-flow__item logistics-flow__item--c2c">
@@ -112,21 +113,20 @@
       <div class="logistics-flow">
         <div class="logistics-flow__item section-venue">
           <p class="logistics-flow__text">Sessions and events are held in the <strong>Physical Sciences Building</strong>.</p>
-          <div class="logistics-map-card" id="venue-photo" aria-label="Venue photo">
-            <div class="logistics-map-card__streetview">
-              <img
-                class="logistics-map-card__venue-photo"
-                src="cornell_photos/Physical_Sciences_building,_Cornell_University.jpg"
-                alt="Exterior photo of the conference venue on campus"
-                width="3000"
-                height="2000"
-                loading="lazy"
-                decoding="async">
-            </div>
-          </div>
-          <nav class="venue-links" aria-label="Venue links">
-            <a class="venue-links__btn" href="https://www.google.com/maps/dir//Physical+Sciences+Building,+245+East+Ave,+Ithaca,+NY+14853" target="_blank" rel="noopener">Directions</a>
-            <a class="venue-links__btn" href="https://accessibility.cornell.edu/campus/visitors/" target="_blank" rel="noopener">Accessibility</a>
+          <figure class="logistics-flow__figure" id="venue-photo">
+            <img
+              class="logistics-flow__img"
+              src="cornell_photos/Physical_Sciences_building,_Cornell_University.jpg"
+              alt="Exterior photo of the conference venue on campus"
+              width="3000"
+              height="2000"
+              loading="lazy"
+              decoding="async">
+          </figure>
+          <nav class="logistics-inline-links" aria-label="Venue links">
+            <a href="https://www.google.com/maps/dir//Physical+Sciences+Building,+245+East+Ave,+Ithaca,+NY+14853" target="_blank" rel="noopener">Directions</a>
+            <span class="logistics-inline-links__sep" aria-hidden="true">·</span>
+            <a href="https://accessibility.cornell.edu/campus/visitors/" target="_blank" rel="noopener">Accessibility</a>
           </nav>
         </div>
       </div>
@@ -136,38 +136,28 @@
   <section id="getting-around" class="content-section logistics-onsite">
     <div class="section-wrap logistics-page__wrap">
       <h2 class="section-title">Local transportation</h2>
-      <p class="logistics-section-lede">Local transit in Ithaca is primarily provided by TCAT buses, which connect Cornell University and downtown Ithaca.</p>
+      <p class="logistics-flow__text">Local transit in Ithaca is primarily provided by TCAT buses, which connect Cornell University and downtown Ithaca.</p>
 
       <div class="logistics-flow">
-        <div id="tcat" class="logistics-flow__item logistics-transit">
-          <figure class="logistics-flow__figure logistics-transit__figure">
+
+        <div id="tcat" class="logistics-flow__item">
+          <figure class="logistics-flow__figure">
             <img src="cornell_photos/tcat-route-10-campus.png" alt="A bright blue TCAT bus on Route 10 at Cornell." class="logistics-flow__img" width="1024" height="682" loading="lazy" decoding="async">
           </figure>
-          <div class="logistics-transit__content">
-            <h3 class="logistics-transit__title">TCAT buses</h3>
-            <div class="logistics-facts">
-              <div class="logistics-fact">
-                <span class="logistics-fact__label">Route</span>
-                <p class="logistics-fact__text"><strong>Route 10</strong> runs frequently between Cornell and downtown Ithaca and stops at Goldwin Smith Hall, directly across from the Physical Sciences Building.</p>
-              </div>
-              <div class="logistics-fact">
-                <span class="logistics-fact__label">Fares</span>
-                <p class="logistics-fact__text">Pay with the Tfare app, a Tcard, or exact cash.</p>
-              </div>
-              <div class="logistics-fact">
-                <span class="logistics-fact__label">Trip planning</span>
-                <p class="logistics-fact__text">Check live times in the links below or in Google Maps.</p>
-              </div>
-            </div>
-            <nav class="logistics-actions" aria-label="TCAT links">
-              <a class="logistics-action-chip" href="https://realtimetcatbus.availtec.com/InfoPoint/" target="_blank" rel="noopener">Live bus map</a>
-              <a class="logistics-action-chip" href="https://tcatbus.com/" target="_blank" rel="noopener">Schedules &amp; routes</a>
-              <a class="logistics-action-chip" href="https://tcatbus.com/store/" target="_blank" rel="noopener">Passes &amp; fares</a>
-              <a class="logistics-action-chip" href="https://apps.apple.com/app/tfare-ithaca-ny-tcat/id6471411363" target="_blank" rel="noopener">Tfare (iPhone)</a>
-              <a class="logistics-action-chip" href="https://play.google.com/store/apps/details?id=com.genfare.mobile2.tcat" target="_blank" rel="noopener">Tfare (Android)</a>
-            </nav>
+          <div class="logistics-detail" aria-label="TCAT Route 10 details">
+            <p class="logistics-flow__text"><strong>Route:</strong> <strong>TCAT Route 10</strong> runs frequently between Cornell University and downtown Ithaca and stops at Goldwin Smith Hall, directly across from the Physical Sciences Building.</p>
+            <p class="logistics-flow__text"><strong>Fares:</strong> You can pay with the Tfare app, a Tcard, or exact cash.</p>
+            <p class="logistics-flow__text"><strong>Trip planning:</strong> Check live bus times in the map links below or in Google Maps.</p>
+            <ul class="logistics-flow__link-list">
+              <li><a href="https://realtimetcatbus.availtec.com/InfoPoint/" target="_blank" rel="noopener">Live bus map</a></li>
+              <li><a href="https://tcatbus.com/" target="_blank" rel="noopener">Schedules and routes</a></li>
+              <li><a href="https://tcatbus.com/store/" target="_blank" rel="noopener">Passes and fares</a></li>
+              <li><a href="https://apps.apple.com/app/tfare-ithaca-ny-tcat/id6471411363" target="_blank" rel="noopener">Tfare app (iPhone)</a></li>
+              <li><a href="https://play.google.com/store/apps/details?id=com.genfare.mobile2.tcat" target="_blank" rel="noopener">Tfare app (Android)</a></li>
+            </ul>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -176,25 +166,19 @@
     <div class="section-wrap logistics-page__wrap">
       <h2 class="section-title">Parking at Cornell</h2>
       <div class="logistics-flow">
-        <div class="logistics-flow__item logistics-parking">
-          <p class="logistics-parking__intro">Options depend on the day and lot. Use the summaries below, then open official resources for maps and permits.</p>
-
-          <section class="logistics-parking__block" aria-labelledby="parking-weekdays-heading">
-            <h3 id="parking-weekdays-heading" class="logistics-parking__heading">Weekdays</h3>
-            <p class="logistics-flow__text">Plan for a permit or paid visitor parking through <a href="https://parkmobile.io/" target="_blank" rel="noopener">ParkMobile</a> or <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">lot kiosks</a>.</p>
-          </section>
-
-          <section class="logistics-parking__block" aria-labelledby="parking-weekends-heading">
-            <h3 id="parking-weekends-heading" class="logistics-parking__heading">Weekends</h3>
-            <p class="logistics-flow__text">Complimentary weekend parking near the Martin Y. Tang Welcome Center is available at <a href="https://www.cornell.edu/about/maps/?loc=Parking%20at%20Toboggan%20Lodge" target="_blank" rel="noopener">Toboggan Lodge</a> and <a href="https://www.cornell.edu/about/maps/?loc=Forest%20Home%20Dr.%20Parking%20Garage" target="_blank" rel="noopener">Forest Home Drive Parking Garage</a>. The <a href="https://bit.ly/2fCYPDx" target="_blank" rel="noopener">Hoy Road Parking Garage</a> on central campus is also open to weekend visitors.</p>
-            <p class="logistics-flow__text logistics-parking__note">Permits are not required at these weekend options. Watch for signage and restricted spaces.</p>
-          </section>
-
-          <nav class="logistics-actions logistics-actions--parking" aria-label="Cornell parking resources">
-            <a class="logistics-action-chip" href="https://www.cornell.edu/visit/parking/" target="_blank" rel="noopener">Visitor parking guide</a>
-            <a class="logistics-action-chip" href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">Short-term lot map</a>
-            <a class="logistics-action-chip" href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/virtual-permits" target="_blank" rel="noopener">Virtual permits</a>
-          </nav>
+        <div class="logistics-flow__item">
+          <div class="logistics-detail" aria-label="Parking details">
+            <p class="logistics-flow__text">Parking options vary by day and lot. Use the guidance below to plan ahead.</p>
+            <p class="logistics-flow__text"><strong>Weekdays:</strong> Plan for a permit or paid visitor parking through <a href="https://parkmobile.io/" target="_blank" rel="noopener">ParkMobile</a> or <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">lot kiosks</a>.</p>
+            <p class="logistics-flow__text"><strong>Weekends:</strong> Complimentary weekend parking near the Martin Y. Tang Welcome Center is available at <a href="https://www.cornell.edu/about/maps/?loc=Parking%20at%20Toboggan%20Lodge" target="_blank" rel="noopener">Toboggan Lodge</a> and <a href="https://www.cornell.edu/about/maps/?loc=Forest%20Home%20Dr.%20Parking%20Garage" target="_blank" rel="noopener">Forest Home Drive Parking Garage</a>. The <a href="https://bit.ly/2fCYPDx" target="_blank" rel="noopener">Hoy Road Parking Garage</a> on central campus is also available to weekend visitors.</p>
+            <p class="logistics-flow__text">Parking permits for these locations are not required on weekends, but please be aware of signage and restricted spaces.</p>
+            <p class="logistics-flow__text"><strong>Parking resources:</strong></p>
+            <ul class="logistics-flow__link-list">
+              <li><a href="https://www.cornell.edu/visit/parking/" target="_blank" rel="noopener">Visitor parking guide</a></li>
+              <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">Short-term lot map</a></li>
+              <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/virtual-permits" target="_blank" rel="noopener">Virtual permits</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -218,7 +202,7 @@
               <div class="lodging-card__meta-line">
                 <p class="lodging-card__meta"><span class="lodging-card__meta-time">~10–12 min</span> <span class="lodging-card__meta-kind">drive</span></p>
                 <div class="lodging-card__book">
-                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate. Link not yet available.">Book</button>
+                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate — link not yet available">Book</button>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -246,7 +230,7 @@
               <div class="lodging-card__meta-line">
                 <p class="lodging-card__meta"><span class="lodging-card__meta-time">~8–10 min</span> <span class="lodging-card__meta-kind">drive</span></p>
                 <div class="lodging-card__book">
-                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate. Link not yet available.">Book</button>
+                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate — link not yet available">Book</button>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -274,7 +258,7 @@
               <div class="lodging-card__meta-line">
                 <p class="lodging-card__meta"><span class="lodging-card__meta-time">~7–9 min</span> <span class="lodging-card__meta-kind">drive</span></p>
                 <div class="lodging-card__book">
-                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate. Link not yet available.">Book</button>
+                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate — link not yet available">Book</button>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -302,14 +286,14 @@
               <div class="lodging-card__meta-line">
                 <p class="lodging-card__meta"><span class="lodging-card__meta-time">~6–8 min</span> <span class="lodging-card__meta-kind">drive</span></p>
                 <div class="lodging-card__book">
-                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate. Link not yet available.">Book</button>
+                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate — link not yet available">Book</button>
                 </div>
               </div>
               <div class="lodging-card__tcat">
                 <span class="lodging-card__tcat-label">TCAT</span>
                 <span class="lodging-card__stops-label">Nearest stops</span>
                 <ul class="lodging-card__stops-list" aria-label="Nearest TCAT bus stops">
-                  <li>Hilton Garden Inn, Seneca St (curbside flag stop)</li>
+                  <li>Hilton Garden Inn — Seneca St (curbside flag stop)</li>
                   <li>Green Street Station</li>
                 </ul>
                 <span class="lodging-card__routes-label">Routes</span>
@@ -331,7 +315,7 @@
               <div class="lodging-card__meta-line">
                 <p class="lodging-card__meta"><span class="lodging-card__meta-time">~8–10 min</span> <span class="lodging-card__meta-kind">drive</span></p>
                 <div class="lodging-card__book">
-                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate. Link not yet available.">Book</button>
+                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate — link not yet available">Book</button>
                 </div>
               </div>
               <div class="lodging-card__tcat">
