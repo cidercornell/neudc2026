@@ -544,6 +544,24 @@ body {
   margin-bottom: 1.25rem;
 }
 
+.cfp-checklist-title {
+  margin: 0.3rem 0 0.45rem;
+  font-size: 1.02rem;
+}
+
+.cfp-checklist {
+  margin: 0 0 1.05rem;
+  padding-left: 1.25rem;
+  max-width: 42rem;
+  font-size: var(--type-body);
+  line-height: var(--type-line-snug);
+  color: var(--text);
+}
+
+.cfp-checklist li + li {
+  margin-top: 0.32rem;
+}
+
 /* Inline links in lead paragraphs — base `a` has no underline; make them read as links */
 .content-section .lead a:not(.cta):not(.cta-primary):not(.cta-secondary):not(.contact-email) {
   color: var(--cornell-red);
@@ -1783,14 +1801,8 @@ button.lodging-card__book-cta {
   padding-left: 0;
   list-style: none;
   display: grid;
+  grid-template-columns: 1fr;
   gap: 0.4rem 1.25rem;
-}
-
-@media (min-width: 480px) {
-  #tcat .tcat-detail__links,
-  #parking .parking-detail__links {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 #tcat .tcat-detail__links li,
@@ -2309,11 +2321,31 @@ button.lodging-card__book-cta {
   color: var(--text);
 }
 
+.person-card__role {
+  margin: 0 0 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4a4a4a;
+}
+
 .person-card__affiliation {
   font-size: var(--type-detail);
   color: var(--text-muted);
   margin: 0;
   line-height: var(--type-line-snug);
+}
+
+.person-card__contact {
+  margin: 0.55rem 0 0;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: #3f3f3f;
+}
+
+.person-card__contact strong {
+  font-weight: 600;
 }
 
 .people-loop-fade {
