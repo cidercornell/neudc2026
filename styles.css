@@ -1720,9 +1720,9 @@ button.lodging-card__book-cta {
   grid-template-columns: minmax(5.75rem, 7rem) minmax(0, 1fr);
   column-gap: 1rem;
   row-gap: 0.85rem;
+  align-items: center;
   margin: 0 0 1.1rem;
-  padding: 0 0 1rem;
-  border-bottom: 1px solid var(--border-light);
+  padding: 0;
 }
 
 #parking .parking-detail__specs {
@@ -1736,7 +1736,8 @@ button.lodging-card__book-cta {
 #tcat .tcat-detail__specs dt,
 #parking .parking-detail__specs dt {
   margin: 0;
-  padding: 0.2rem 0 0;
+  padding: 0;
+  align-self: center;
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.11em;
@@ -1798,16 +1799,27 @@ button.lodging-card__book-cta {
 #tcat .tcat-detail__links,
 #parking .parking-detail__links {
   margin-top: 0;
-  padding-left: 0;
+  padding-left: 1.2rem;
   list-style: none;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.4rem 1.25rem;
+  display: block;
 }
 
 #tcat .tcat-detail__links li,
 #parking .parking-detail__links li {
-  margin: 0;
+  margin: 0.34rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+#tcat .tcat-detail__links li::before,
+#parking .parking-detail__links li::before {
+  content: "◆";
+  position: static;
+  font-size: 0.62rem;
+  color: var(--cornell-red);
+  opacity: 0.9;
+  flex: 0 0 auto;
 }
 
 #tcat .tcat-detail__links a,
@@ -1839,14 +1851,12 @@ button.lodging-card__book-cta {
 
   #tcat .tcat-detail__specs dd,
   #parking .parking-detail__specs dd {
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding-bottom: 0;
   }
 
   #tcat .tcat-detail__specs dd:last-of-type,
   #parking .parking-detail__specs dd:last-of-type {
     padding-bottom: 0;
-    border-bottom: none;
   }
 }
 
