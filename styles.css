@@ -3395,17 +3395,17 @@ em {
     --site-header-offset: calc(56px + 1.1rem + 2px);
   }
 
-  /* Header logos scale down on smaller screens */
+  /* Header logos scale down on smaller screens (Cornell/SC Johnson lockup readable on phones) */
   .logo-link .logo-cornell {
     height: auto;
-    max-height: clamp(34px, 10vw, 44px);
-    max-width: min(120px, 40vw);
+    max-height: clamp(44px, 15vw, 58px);
+    max-width: min(200px, 72vw);
   }
 
   .logo-link .logo-neudc {
     height: auto;
-    max-height: clamp(16px, 4.5vw, 20px);
-    max-width: min(72px, 28vw);
+    max-height: clamp(18px, 5.5vw, 24px);
+    max-width: min(88px, 34vw);
   }
 
   .logo-sep {
