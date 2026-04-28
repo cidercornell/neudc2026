@@ -2442,18 +2442,18 @@ button.lodging-card__book-cta {
 /* Sponsors — logos only, no card chrome */
 .sponsors-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: 1fr;
   gap: 2.5rem;
   align-items: center;
-  justify-items: center;
-  max-width: var(--content-max);
-  margin: 0 auto;
+  justify-items: start;
+  max-width: none;
+  margin: 0;
 }
 
 .sponsor-logo {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   max-width: min(520px, 100%);
   margin: 0;
@@ -2496,8 +2496,9 @@ button.lodging-card__book-cta {
 .sponsor-logo__link {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-content: flex-start;
+  width: auto;
+  max-width: 100%;
   text-decoration: none;
   border-radius: 4px;
   transition: opacity var(--transition-fast);
@@ -3352,7 +3353,7 @@ em {
   }
 
   .sponsors-grid {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2rem;
   }
 
