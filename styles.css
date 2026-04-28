@@ -2505,7 +2505,7 @@ button.lodging-card__book-cta {
   flex-direction: column;
   gap: 0.2rem;
   padding-top: 0.85rem;
-  font-size: clamp(1rem, 2vw, 1.55rem);
+  font-size: clamp(0.86rem, 1.45vw, 1.2rem);
   line-height: 1.25;
   color: #1f1f1f;
 }
@@ -3381,7 +3381,7 @@ em {
 
   .sponsor-badge__bottom {
     padding-top: 0.75rem;
-    font-size: clamp(0.92rem, 4vw, 1.06rem);
+    font-size: clamp(0.8rem, 3.2vw, 0.95rem);
   }
 
   .photo-gallery {
