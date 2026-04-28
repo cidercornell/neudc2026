@@ -1220,7 +1220,7 @@ body {
   .logistics-getting-there .airport-drive-table {
     table-layout: fixed;
     width: 100%;
-    font-size: var(--type-body);
+    font-size: calc(var(--type-body) * 0.9);
     line-height: var(--type-line-snug);
   }
 
@@ -1268,8 +1268,6 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding-bottom: 0.45rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-size: 1.03rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1457,6 +1455,10 @@ body {
 
 .lodging-card__book {
   flex-shrink: 0;
+}
+
+.lodging-card__meta-line > .lodging-card__book:only-child {
+  margin-left: auto;
 }
 
 button.lodging-card__book-cta {
