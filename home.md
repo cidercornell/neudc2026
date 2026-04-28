@@ -2,7 +2,7 @@
 
 **Northeastern Universities Development Consortium**
 
-November 6–8, 2026 · Cornell University, Ithaca, NY
+November 7–8, 2026 · Cornell University, Ithaca, NY
 
 **CIDER** within **CoPilot** is pleased to host the 2026 convening of NEUDC at **Cornell University**—the longest-running annual conference in development economics.
 
@@ -25,7 +25,7 @@ The conference brings together researchers, faculty, policymakers, and graduate 
 | ~Jul 1, 2026 | **Registration opens** — Closes ~Oct 17, 2026 |
 | ~Aug 17, 2026 | **Paper submission deadline** |
 | ~Oct 1, 2026 | **Paper decisions released** |
-| November 6–8, 2026 | **Conference** — Physical Sciences Building, Cornell University |
+| November 7–8, 2026 | **Conference** — Physical Sciences Building, Cornell University |
 
 ---
 

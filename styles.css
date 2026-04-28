@@ -2439,78 +2439,77 @@ button.lodging-card__book-cta {
   display: none;
 }
 
-/* Sponsors — logos only, no card chrome */
+/* Sponsors */
 .sponsors-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2.5rem;
-  align-items: center;
+  gap: 1.5rem;
   justify-items: start;
   max-width: none;
   margin: 0;
 }
 
-.sponsor-logo {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  max-width: min(520px, 100%);
-  margin: 0;
-  padding: 0;
-  background: none;
-  border-radius: 0;
-  box-shadow: none;
-  overflow: visible;
-}
-
-.sponsor-logo--placeholder span {
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--text-light);
-}
-
-.sponsor-logo:first-child span {
-  color: var(--cornell-red);
-}
-
-.sponsor-logo:nth-child(2) span {
-  color: var(--text-muted);
-}
-
-.sponsor-logo img {
+.sponsor-badge {
   display: block;
   width: 100%;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
+  max-width: min(880px, 100%);
+  padding: 1.15rem 1.45rem;
+  border: 1px solid rgba(179, 27, 27, 0.22);
+  background: #f7f7f7;
+  color: #111;
+  text-decoration: none;
+  transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.sponsor-badge:hover {
+  background: #f4f4f4;
+  border-color: rgba(179, 27, 27, 0.36);
+  text-decoration: none;
+}
+
+.sponsor-badge:focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+}
+
+.sponsor-badge__top {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.sponsor-badge__seal {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 76px;
+}
+
+.sponsor-badge__colleges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-left: auto;
+  text-align: right;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  font-size: clamp(0.9rem, 1.7vw, 1.45rem);
+  line-height: 1.16;
+  color: #111;
+}
+
+.sponsor-badge__bottom {
+  padding-top: 0.85rem;
+  font-size: clamp(1rem, 2vw, 1.55rem);
+  line-height: 1.25;
+  color: #1f1f1f;
 }
 
 .section-sponsors__intro {
   margin: 0 0 1.75rem;
   max-width: 36em;
-}
-
-.sponsor-logo__link {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: auto;
-  max-width: 100%;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: opacity var(--transition-fast);
-}
-
-.sponsor-logo__link:hover {
-  opacity: 0.92;
-}
-
-.sponsor-logo__link:focus-visible {
-  outline: 2px solid var(--cornell-red);
-  outline-offset: 4px;
 }
 
 /* Typography — body and headings */
@@ -3354,11 +3353,32 @@ em {
 
   .sponsors-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1.25rem;
   }
 
-  .sponsor-logo {
-    max-width: min(380px, 100%);
+  .sponsor-badge {
+    max-width: 100%;
+    padding: 0.9rem 1rem;
+  }
+
+  .sponsor-badge__top {
+    gap: 0.85rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .sponsor-badge__seal {
+    width: 58px;
+    height: 58px;
+  }
+
+  .sponsor-badge__colleges {
+    font-size: clamp(0.8rem, 3.6vw, 1rem);
+    line-height: 1.14;
+  }
+
+  .sponsor-badge__bottom {
+    padding-top: 0.75rem;
+    font-size: clamp(0.92rem, 4vw, 1.06rem);
   }
 
   .photo-gallery {
