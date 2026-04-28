@@ -2501,6 +2501,9 @@ button.lodging-card__book-cta {
 }
 
 .sponsor-badge__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
   padding-top: 0.85rem;
   font-size: clamp(1rem, 2vw, 1.55rem);
   line-height: 1.25;
