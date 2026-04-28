@@ -2484,7 +2484,7 @@ button.lodging-card__book-cta {
 .sponsor-badge {
   display: block;
   width: 100%;
-  max-width: min(880px, 100%);
+  max-width: min(700px, 100%);
   padding: 1.15rem 1.45rem;
   border: 1px solid rgba(179, 27, 27, 0.22);
   background: #f7f7f7;
