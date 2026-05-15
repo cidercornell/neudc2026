@@ -71,39 +71,37 @@
       <div class="key-dates-groups">
         <div class="key-dates-group">
           <h3 class="key-dates-group__title">Paper timeline</h3>
-          <ul class="key-dates-list" aria-label="Paper-related key dates">
-            <li class="key-dates-list__item">
+          <ul class="key-dates-list" data-timeline="paper" aria-label="Paper-related key dates">
+            <li class="key-dates-list__item" data-phase-start="2026-05-01" data-phase-end="2026-08-15">
               <span class="key-dates-list__date">Now open</span>
               <span class="key-dates-list__event">Paper submissions</span>
             </li>
-            <li class="key-dates-list__item">
+            <li class="key-dates-list__item" data-date="2026-08-15">
               <span class="key-dates-list__date">Aug 15, 2026</span>
               <span class="key-dates-list__event">Paper submission deadline (11:59 pm ET)</span>
             </li>
-            <li class="key-dates-list__item">
+            <li class="key-dates-list__item" data-date="2026-09-15">
               <span class="key-dates-list__date">Sept 15, 2026</span>
               <span class="key-dates-list__event">Paper decisions released</span>
             </li>
           </ul>
-          <p class="key-dates-group__action"><a href="#cfp" class="key-dates-list__link">Call for Papers details</a></p>
         </div>
         <div class="key-dates-group">
           <h3 class="key-dates-group__title">Attendance timeline</h3>
-          <ul class="key-dates-list" aria-label="Registration and conference key dates">
-            <li class="key-dates-list__item">
+          <ul class="key-dates-list" data-timeline="attendance" data-registration-opens="" aria-label="Registration and conference key dates">
+            <li class="key-dates-list__item" data-awaiting-open data-phase-end="2026-10-17">
               <span class="key-dates-list__date">Opening soon</span>
               <span class="key-dates-list__event">Registration opens</span>
             </li>
-            <li class="key-dates-list__item">
+            <li class="key-dates-list__item" data-registration-period-end="2026-10-17">
               <span class="key-dates-list__date">Oct 17, 2026</span>
               <span class="key-dates-list__event">Registration closes</span>
             </li>
-            <li class="key-dates-list__item">
+            <li class="key-dates-list__item" data-date="2026-11-07" data-date-end="2026-11-08">
               <span class="key-dates-list__date">Nov 7-8, 2026</span>
               <span class="key-dates-list__event">Conference</span>
             </li>
           </ul>
-          <p class="key-dates-group__action"><a href="register.html" class="key-dates-list__link">Registration details</a> · <a href="program.html" class="key-dates-list__link">Program</a></p>
         </div>
       </div>
     </div>
@@ -120,9 +118,9 @@
           <p>By submitting a paper to this event, authors acknowledge that accepted submissions will be made publicly available as part of the conference proceedings and/or on the event website.</p>
         </aside>
 
-        <div class="cfp-section">
-          <h3 class="section-label">Before you submit</h3>
-          <p class="cfp-section__lead">Please have the following information ready:</p>
+        <div class="cfp-prep">
+          <h3 class="cfp-prep__title"><span class="section-label">Before you submit</span></h3>
+          <p class="cfp-prep__intro">Please have the following information ready:</p>
           <ul class="cfp-checklist" aria-label="Submission information checklist">
             <li>Presenter name, title, and institutional affiliation</li>
             <li>Year PhD was received (or expected)</li>
@@ -228,6 +226,96 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') closeMenu();
       });
+    })();
+    (function() {
+      function parseDay(str, endOfDay) {
+        var p = str.split('-');
+        var d = new Date(+p[0], +p[1] - 1, +p[2]);
+        if (endOfDay) d.setHours(23, 59, 59, 999);
+        else d.setHours(0, 0, 0, 0);
+        return d;
+      }
+
+      function todayNoon() {
+        var t = new Date();
+        t.setHours(12, 0, 0, 0);
+        return t;
+      }
+
+      function stateForItem(item, today, regOpens) {
+        var ps = item.getAttribute('data-phase-start');
+        var pe = item.getAttribute('data-phase-end');
+        var date = item.getAttribute('data-date');
+        var dateEnd = item.getAttribute('data-date-end');
+        var periodEnd = item.getAttribute('data-registration-period-end');
+
+        if (item.hasAttribute('data-awaiting-open')) {
+          if (regOpens && today >= regOpens) return 'past';
+          if (pe && today > parseDay(pe, true)) return 'past';
+          return regOpens ? 'future' : 'current';
+        }
+
+        if (periodEnd && regOpens) {
+          var end = parseDay(periodEnd, true);
+          if (today > end) return 'past';
+          if (today >= regOpens) return 'current';
+          return 'future';
+        }
+
+        if (ps && pe) {
+          if (today > parseDay(pe, true)) return 'past';
+          if (today >= parseDay(ps, false)) return 'current';
+          return 'future';
+        }
+
+        if (date) {
+          var start = parseDay(date, false);
+          var end = dateEnd ? parseDay(dateEnd, true) : parseDay(date, true);
+          if (today > end) return 'past';
+          if (today >= start) return 'current';
+          return 'future';
+        }
+
+        return 'future';
+      }
+
+      function applyTimeline(list) {
+        var items = Array.prototype.slice.call(list.querySelectorAll('.key-dates-list__item'));
+        var today = todayNoon();
+        var regStr = list.getAttribute('data-registration-opens');
+        var regOpens = regStr ? parseDay(regStr, false) : null;
+        var states = items.map(function(item) {
+          return stateForItem(item, today, regOpens);
+        });
+
+        if (states.indexOf('current') === -1) {
+          for (var i = 0; i < states.length - 1; i++) {
+            if (states[i] === 'past' && states[i + 1] === 'future') {
+              states[i + 1] = 'current';
+              break;
+            }
+          }
+        }
+
+        var currentIdx = [];
+        states.forEach(function(s, idx) {
+          if (s === 'current') currentIdx.push(idx);
+        });
+        if (currentIdx.length > 1) {
+          for (var j = 1; j < currentIdx.length; j++) {
+            states[currentIdx[j]] = 'past';
+          }
+        }
+
+        items.forEach(function(item, i) {
+          item.classList.remove('is-past', 'is-current', 'is-future');
+          item.classList.add('is-' + states[i]);
+          if (states[i] === 'current') item.setAttribute('aria-current', 'step');
+          else item.removeAttribute('aria-current');
+        });
+      }
+
+      document.querySelectorAll('.key-dates-list[data-timeline]').forEach(applyTimeline);
     })();
   </script>
 </body>
