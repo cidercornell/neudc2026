@@ -55,9 +55,8 @@
   <section id="getting-to-ithaca" class="content-section logistics-getting-there travel-zone travel-zone--arrival">
     <div class="section-wrap logistics-page__wrap">
       <h2 class="section-title">Getting to Ithaca</h2>
-      <p id="airport-panel-label" class="airport-fees-intro">Approximate drive times to Cornell</p>
       <div class="register-fee-table-wrap travel-table-wrap">
-        <table class="register-fee-table airport-drive-table" aria-labelledby="airport-panel-label">
+        <table class="register-fee-table airport-drive-table" aria-label="Approximate drive times from each airport to Cornell">
           <thead>
             <tr>
               <th scope="col">Airport</th>
@@ -94,20 +93,31 @@
           </tbody>
         </table>
       </div>
-      <details class="airport-taxi-fallback" aria-label="Airport-specific taxi fallback contacts">
-        <summary class="airport-taxi-fallback__title">Taxi fallback by airport (if rideshare is unavailable)</summary>
-        <dl class="airport-taxi-fallback__list">
-          <dt>Ithaca Tompkins (ITH)</dt>
-          <dd>
-            <a href="tel:+16075888888">Collegetown Cab: 607-588-8888</a><br>
-            <a href="tel:+16072777777">Ithaca Dispatch (main): 607-277-7777</a><br>
-            <a href="tel:+16072723333">Ithaca Dispatch (alternate): 607-272-3333</a>
-          </dd>
-          <dt>ELM / SYR / BGM / JFK / EWR</dt>
-          <dd>Use each airport's on-site taxi stand or ground transportation desk for local providers.</dd>
-          <dt>Official directory</dt>
-          <dd><a href="https://www.flyithaca.com/taxis" target="_blank" rel="noopener">Ithaca airport taxi directory</a></dd>
-        </dl>
+      <details class="airport-taxi-fallback" aria-label="Taxi phone numbers">
+        <summary class="airport-taxi-fallback__title">
+          <span class="airport-taxi-fallback__summary-main">
+            <span class="airport-taxi-fallback__summary-text">
+              <span class="airport-taxi-fallback__summary-lead">Taxi phone numbers</span>
+            </span>
+          </span>
+          <span class="airport-taxi-fallback__summary-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="airport-taxi-fallback__body">
+          <dl class="airport-taxi-fallback__list">
+            <dt>Ithaca Tompkins (ITH)</dt>
+            <dd>
+              <ul class="airport-taxi-fallback__phones">
+                <li><a href="tel:+16075888888">Collegetown Cab · 607-588-8888</a></li>
+                <li><a href="tel:+16072777777">Ithaca Dispatch (main) · 607-277-7777</a></li>
+                <li><a href="tel:+16072723333">Ithaca Dispatch (alternate) · 607-272-3333</a></li>
+              </ul>
+            </dd>
+            <dt>ELM / SYR / BGM / JFK / EWR</dt>
+            <dd>Use each airport’s on-site taxi stand or ground transportation desk for local providers.</dd>
+            <dt>Official directory</dt>
+            <dd><a href="https://www.flyithaca.com/taxis" target="_blank" rel="noopener">Ithaca airport taxi directory</a></dd>
+          </dl>
+        </div>
       </details>
       <div class="logistics-flow">
         <div class="logistics-flow__item logistics-flow__item--c2c">
