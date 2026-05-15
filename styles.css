@@ -103,8 +103,14 @@
   --type-detail: 1.06rem;
   --type-line-snug: 1.55;
   --type-line-prose: 1.62;
-  /* One max width for all main content (sections, subpages, footer, hero text block) */
-  --content-max: 840px;
+  /* Register page: .register-page__wrap = content-max; .register-column = register-column-max (same site column everywhere) */
+  --register-column-max: 38em;
+  --content-max: min(var(--register-column-max), 100%);
+  /* Header + footer bar: wider than reading column so nav / 3-col footer don’t crush */
+  --header-wrap-max: min(1200px, 100%);
+  --footer-wrap-max: var(--header-wrap-max);
+  /* Match .content-section horizontal padding so the column lines up with the nav */
+  --site-gutter: 2rem;
   /* Match .site-header: padding + tallest logo row + border (avoids cream body strip under hero) */
   --site-header-offset: calc(76px + 1.1rem + 2px);
 }
@@ -136,17 +142,17 @@ body {
   top: 0;
   z-index: 200;
   background: var(--white);
-  padding: 0.55rem 1.5rem;
+  padding: 0.55rem var(--site-gutter);
   border-bottom: 2px solid var(--cornell-red);
 }
 
 .site-header .wrap {
-  max-width: 1320px;
+  max-width: var(--header-wrap-max);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 1rem;
   position: relative;
 }
@@ -155,6 +161,8 @@ body {
   display: flex;
   align-items: center;
   gap: 1rem;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 /* Hamburger — hidden on large screens, shown on small */
@@ -246,8 +254,13 @@ body {
   color: var(--cornell-red);
 }
 
+.nav-wrapper {
+  flex-shrink: 0;
+}
+
 .nav {
   display: flex;
+  flex-wrap: nowrap;
   gap: 0.5rem;
   list-style: none;
   margin: 0;
@@ -262,6 +275,7 @@ body {
   font-weight: 500;
   border-radius: 6px;
   transition: color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
 }
 
 .nav a:hover {
@@ -410,7 +424,7 @@ body {
 
 /* Content sections — single background, thin line between */
 .content-section {
-  padding: 3.5rem 2rem;
+  padding: 3.5rem var(--site-gutter);
   background: var(--bg-alt);
   border-top: 1px solid var(--border-light);
 }
@@ -546,12 +560,67 @@ body {
   margin-bottom: 1.25rem;
 }
 
+.cfp-intro-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0 0 1.5rem;
+}
+
+.cfp-intro-stack .lead {
+  margin: 0;
+}
+
+.cfp-deadlines {
+  margin: 0;
+  padding: 1rem 0 0;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.cfp-deadlines__item {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, 10.5rem) minmax(0, 1fr);
+  align-items: baseline;
+  column-gap: 1.15rem;
+  row-gap: 0.25rem;
+}
+
+.cfp-deadlines dt {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--cornell-red-dark);
+  line-height: 1.35;
+}
+
+.cfp-deadlines dd {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: var(--type-line-prose);
+  color: var(--text);
+}
+
+@media (max-width: 520px) {
+  .cfp-deadlines__item {
+    grid-template-columns: 1fr;
+  }
+
+  .cfp-deadlines dt {
+    margin-bottom: 0.1rem;
+  }
+}
+
 .cfp-body {
-  max-width: 44rem;
+  max-width: 100%;
 }
 
 .cfp-intro {
-  margin: 0 0 1.35rem;
+  margin: 0;
 }
 
 .cfp-intro strong {
@@ -735,7 +804,7 @@ body {
 }
 
 .register-page .register-column {
-  max-width: 38em;
+  max-width: var(--register-column-max);
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -967,10 +1036,12 @@ body {
 .program-page .program-page__wrap {
   max-width: var(--content-max);
   min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .program-page .program-page-section {
-  padding: 2.25rem 2rem 3.5rem;
+  padding: 2.25rem var(--site-gutter) 3.5rem;
 }
 
 /* Intro block (title + summary + jump links): don’t leave a huge gap before #agenda */
@@ -993,7 +1064,7 @@ body {
 
 .program-panel-head__summary {
   margin: 0;
-  max-width: 38em;
+  max-width: none;
   font-size: var(--type-lead);
   line-height: var(--type-line-prose);
   color: var(--text-muted);
@@ -1026,7 +1097,7 @@ body {
 
 .program-section p {
   margin: 0 0 1rem;
-  max-width: 38em;
+  max-width: none;
   font-size: var(--type-body);
   line-height: var(--type-line-snug);
   color: var(--text-muted);
@@ -1047,7 +1118,7 @@ body {
 }
 
 .program-page .program-page-section .section-title {
-  max-width: 38em;
+  max-width: none;
   font-size: clamp(1.18rem, 2vw, 1.34rem);
   font-weight: 600;
   letter-spacing: 0;
@@ -1059,7 +1130,7 @@ body {
 }
 
 .program-page .program-page-section .lead {
-  max-width: 38em;
+  max-width: none;
 }
 
 /* Subpage intro — anchored section links (Program, Travel & Venue) */
@@ -1072,7 +1143,7 @@ body {
 
 .program-jump {
   margin-top: 0.95rem;
-  max-width: var(--content-max);
+  max-width: none;
 }
 
 .logistics-jump {
@@ -1165,7 +1236,7 @@ body {
   position: relative;
   list-style: none;
   margin: 0;
-  max-width: 44rem;
+  max-width: 100%;
   border-left: 2px solid rgba(179, 27, 27, 0.24);
   padding: 0.25rem 1.25rem 1.15rem 1.1rem;
 }
@@ -2465,6 +2536,7 @@ button.lodging-card__book-cta {
 /* People loop — aligned with section text column */
 .people-loop-outer {
   max-width: var(--content-max);
+  min-width: 0;
   margin: 0 auto;
   padding: 0;
   position: relative;
@@ -2734,7 +2806,7 @@ a.scroll-to-top:hover {
 /* Hero (home only) */
 .hero {
   text-align: center;
-  padding: 2.5rem 1.5rem 3rem;
+  padding: 2.5rem var(--site-gutter) 3rem;
   background: linear-gradient(180deg, var(--white) 0%, var(--bg) 100%);
   border-bottom: 1px solid var(--border);
 }
@@ -2747,7 +2819,7 @@ a.scroll-to-top:hover {
   margin: 0;
   /* No bottom border: light line reads as a gap next to white sections */
   border-bottom: none;
-  padding: 4rem 2rem;
+  padding: 4rem var(--site-gutter);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -3137,14 +3209,14 @@ tbody tr:hover {
   gap: 0.5rem;
   margin: 0.75rem 0 0;
   padding: 0 0 0 1.1rem;
-  max-width: 44rem;
+  max-width: 100%;
   border-left: 2px solid rgba(179, 27, 27, 0.24);
 }
 
 .key-dates-groups {
   display: grid;
   gap: 1.25rem;
-  max-width: 44rem;
+  max-width: 100%;
 }
 
 .key-dates-group {
@@ -3329,7 +3401,7 @@ em {
 /* Footer */
 .site-footer {
   margin-top: auto;
-  padding: 2.5rem 1.5rem 2.5rem;
+  padding: 2.5rem var(--site-gutter) 2.5rem;
   background: #1a1a1a;
   border-top: 3px solid var(--cornell-red);
   color: rgba(255,255,255,0.9);
@@ -3337,31 +3409,32 @@ em {
 }
 
 .site-footer__wrap {
-  max-width: var(--content-max);
+  max-width: var(--footer-wrap-max);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
-  gap: 2rem 2.5rem;
+  column-gap: clamp(1.75rem, 4vw, 3rem);
+  row-gap: 2rem;
 }
 
 .site-footer__brand {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.5rem;
 }
 
 .site-footer__col-title {
-  margin: 0 0 0.5rem;
-  padding: 0 0 0.4rem;
+  margin: 0 0 0.65rem;
+  padding: 0 0 0.45rem;
   border-bottom: 2px solid var(--cornell-red);
   font-family: var(--font-body);
-  font-size: 1.02rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--white);
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .site-footer__name {
@@ -3377,10 +3450,10 @@ em {
 }
 
 .site-footer__address {
-  margin-top: 0.35rem;
+  margin-top: 0.15rem;
   font-size: 0.98rem;
   color: rgba(255,255,255,0.75);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .site-footer__link {
@@ -3401,14 +3474,14 @@ em {
 .site-footer__links {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0.6rem;
   align-content: start;
 }
 
 .site-footer__link-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.4rem 1.25rem;
+  gap: 0.45rem 1.5rem;
 }
 
 .site-footer__link-grid a {
@@ -3427,7 +3500,7 @@ em {
 .site-footer__contact {
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.55rem;
 }
 
 .site-footer__contact-line {
@@ -3474,6 +3547,15 @@ em {
   transform: translateY(0);
 }
 
+@media (max-width: 880px) {
+  .site-footer__wrap {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 1.85rem;
+    max-width: var(--content-max);
+  }
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .nav {
@@ -3504,6 +3586,15 @@ em {
     padding: 2.5rem 1.25rem;
   }
 
+  .site-header {
+    padding: 0.55rem 1.25rem;
+  }
+
+  .site-footer {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
   .section-wrap {
     max-width: 100%;
   }
@@ -3520,7 +3611,8 @@ em {
   .site-footer__wrap {
     grid-template-columns: 1fr;
     text-align: left;
-    gap: 1.2rem;
+    row-gap: 1.65rem;
+    column-gap: 0;
   }
 
   .site-footer__link-grid {
