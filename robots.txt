@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cidercornell.github.io/neudc2026/sitemap.xml
