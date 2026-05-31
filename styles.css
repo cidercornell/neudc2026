@@ -634,12 +634,15 @@ body {
 }
 
 .cfp-epistle__opening::first-letter {
-  float: left;
-  margin: 0.03em 0.14em 0 0;
-  font-size: 3.15em;
-  line-height: 0.86;
+  display: inline-block;
+  font-size: 2.15em;
+  line-height: 1;
   font-weight: 600;
   color: var(--cornell-red-dark);
+  vertical-align: baseline;
+  margin: 0 0.05em 0 0;
+  padding: 0;
+  float: none;
 }
 
 @media (max-width: 640px) {
@@ -648,12 +651,7 @@ body {
   }
 
   .cfp-epistle__opening::first-letter {
-    float: none;
-    margin: 0;
-    font-size: inherit;
-    line-height: inherit;
-    font-weight: inherit;
-    color: inherit;
+    font-size: 1.9em;
   }
 }
 
@@ -695,7 +693,6 @@ body {
   box-shadow: 0 6px 24px rgba(179, 27, 27, 0.2);
 }
 
-.section-cfp .cfp-notice,
 .register-status-notice {
   padding: 0.9rem 1rem 0.95rem;
   border: 1px solid rgba(179, 27, 27, 0.1);
@@ -710,8 +707,18 @@ body {
   box-shadow: 0 8px 32px rgba(10, 10, 10, 0.04);
 }
 
+.cfp-epistle .cfp-notice {
+  margin: 1.25rem 0 0;
+  padding: 1.1rem 0 0;
+  border: none;
+  border-top: 1px solid rgba(179, 27, 27, 0.14);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
 .section-cfp .cfp-notice {
-  margin: 1.65rem 0 0;
+  margin: 0;
 }
 
 .register-page .register-status-notice {
@@ -1289,58 +1296,60 @@ body {
   background: var(--bg-alt);
   border: 1px solid var(--border-light);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
 }
 
 .program-agenda-day-block__head {
-  padding: 1.1rem 1.25rem 1rem;
-  border-bottom: 1px solid var(--border-light);
+  padding: 1rem 1.25rem;
+  border-bottom: 2px solid rgba(179, 27, 27, 0.1);
+  background: linear-gradient(180deg, rgba(179, 27, 27, 0.07) 0%, rgba(179, 27, 27, 0.02) 100%);
 }
 
 .program-agenda-day-block__title {
   display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
   margin: 0;
   line-height: 1.2;
 }
 
 .program-agenda-day-block__weekday {
-  font-size: 0.72rem;
-  font-weight: 600;
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  background: var(--cornell-red);
+  color: var(--white);
+  font-size: 0.68rem;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--text);
-  opacity: 0.72;
 }
 
 .program-agenda-day-block__dateline {
   font-family: var(--font-heading);
-  font-size: clamp(1.12rem, 2.4vw, 1.35rem);
-  font-weight: 500;
+  font-size: clamp(1.14rem, 2.4vw, 1.38rem);
+  font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--text);
 }
 
-/* Agenda rail — same as homepage .key-dates-list (border + dots) */
 .program-agenda-list {
-  position: relative;
   list-style: none;
   margin: 0;
   max-width: 100%;
-  border-left: 2px solid rgba(179, 27, 27, 0.24);
-  padding: 0.25rem 1.25rem 1.15rem 1.1rem;
+  padding: 0.25rem 1.25rem 1.15rem;
 }
 
 .program-agenda-item {
-  position: relative;
   display: grid;
   grid-template-columns: minmax(5.5rem, 7.25rem) minmax(0, 1fr);
   align-items: start;
-  gap: 0.5rem 1.15rem;
-  padding: 0.85rem 0 0.85rem 0.2rem;
+  gap: 0.35rem 1.15rem;
+  padding: 0.85rem 0;
   border-bottom: 1px solid var(--border-light);
   font-size: var(--type-body);
-  line-height: var(--type-line-prose);
+  line-height: var(--type-line-snug);
 }
 
 .program-agenda-item:last-child {
@@ -1348,38 +1357,45 @@ body {
   padding-bottom: 0.35rem;
 }
 
-.program-agenda-item::before {
-  content: "";
-  position: absolute;
-  left: -1.47rem;
-  top: 1.05rem;
-  width: 0.52rem;
-  height: 0.52rem;
-  border-radius: 50%;
-  background: var(--cornell-red);
-  box-shadow: 0 0 0 4px var(--bg-alt);
-}
-
 .program-agenda-item__time {
   display: block;
   color: var(--cornell-red-dark);
-  font-size: 0.92rem;
+  font-size: inherit;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  line-height: 1.35;
-  padding-top: 0.05rem;
-  font-variant-numeric: tabular-nums;
+  line-height: inherit;
   text-transform: capitalize;
 }
 
-.program-agenda-item__detail {
+.program-agenda-item__sessions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   min-width: 0;
   color: var(--text);
+  font-size: inherit;
+  line-height: inherit;
 }
 
-.program-agenda-item__detail em {
-  font-style: italic;
-  font-weight: 500;
+.program-agenda-item__sessions li {
+  position: relative;
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.program-agenda-item__sessions li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-heading);
+  font-size: 0.72em;
+  line-height: 1;
+  color: var(--cornell-red-dark);
+}
+
+.program-agenda-item__sessions li + li {
+  margin-top: 0.2rem;
 }
 
 /* Logistics page — matches Program / Register (panel head, content-max, divider blocks) */
@@ -1466,7 +1482,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--cornell-red-dark);
+  color: var(--text);
   line-height: 1.35;
 }
 
@@ -2156,26 +2172,17 @@ button.lodging-card__book-cta {
 
 @media (max-width: 768px) {
   .program-agenda-day-block__head {
-    padding: 1.05rem 1.1rem 0.95rem;
+    padding: 0.95rem 1.05rem;
   }
 
   .program-agenda-list {
-    padding-left: 0.95rem;
+    padding: 0.25rem 1.05rem 1rem;
   }
 
   .program-agenda-item {
     grid-template-columns: 1fr;
-    gap: 0.2rem;
-    padding: 0.62rem 0 0.62rem 0.1rem;
-  }
-
-  .program-agenda-item::before {
-    left: -1.32rem;
-    top: 0.95rem;
-  }
-
-  .program-agenda-item__time {
-    font-size: 0.88rem;
+    gap: 0.25rem;
+    padding: 0.62rem 0;
   }
 
   .register-fee-table {
@@ -2512,7 +2519,7 @@ button.lodging-card__book-cta {
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #3d3d3d;
+  color: var(--text);
   margin-right: 0.75rem;
   flex-shrink: 0;
 }
@@ -2573,19 +2580,12 @@ button.lodging-card__book-cta {
   max-width: none;
   width: 100%;
   margin: 0;
-  padding: 1.35rem 1.35rem 1.4rem;
-  border: 1px solid rgba(179, 27, 27, 0.18);
-  border-left: 4px solid var(--cornell-red);
-  border-radius: 12px;
-  background: linear-gradient(
-    155deg,
-    rgba(179, 27, 27, 0.07) 0%,
-    #faf9f8 36%,
-    #ffffff 100%
-  );
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 12px 36px rgba(10, 10, 10, 0.07);
+  padding: 0;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  background: var(--bg-alt);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
 }
 
 .travel-callout .logistics-flow__text {
@@ -2596,62 +2596,37 @@ button.lodging-card__book-cta {
   margin: 0;
 }
 
-.travel-callout > .logistics-flow__text + .logistics-flow__text {
-  margin-top: 0;
-}
-
-/* Lead: NYC / Campus-to-Campus intro */
 .travel-callout > .logistics-flow__text:first-child {
-  font-size: calc(var(--type-body) * 1.06);
+  padding: 1rem 1.25rem;
+  background: linear-gradient(180deg, rgba(179, 27, 27, 0.07) 0%, rgba(179, 27, 27, 0.02) 100%);
+  border-bottom: 2px solid rgba(179, 27, 27, 0.1);
+  font-family: var(--font-heading);
+  font-size: calc(var(--type-body) * 1.02);
   line-height: var(--type-line-prose);
-  padding-bottom: 1rem;
-  margin-bottom: 0.85rem;
-  border-bottom: 1px solid rgba(179, 27, 27, 0.14);
 }
 
 .travel-callout > .logistics-flow__text:first-child strong {
   color: var(--cornell-red-dark);
-  font-weight: 700;
+  font-weight: 600;
 }
 
-/* Schedules + contact: lifted rows */
 .travel-callout > .logistics-flow__text:not(:first-child) {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.35rem 0.75rem;
-  padding: 0.72rem 0.9rem;
-  margin-top: 0.65rem;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(179, 27, 27, 0.14);
-  border-radius: 8px;
-  box-shadow: 0 1px 2px rgba(179, 27, 27, 0.06);
+  padding: 0.8rem 1.25rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.travel-callout > .logistics-flow__text:last-child {
+  border-bottom: none;
+  padding-bottom: 1rem;
+}
+
+.travel-callout > .logistics-flow__text + .logistics-flow__text {
+  margin-top: 0;
 }
 
 .travel-callout > .logistics-flow__text:not(:first-child) strong {
-  flex: 0 0 auto;
-  min-width: 5.5rem;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cornell-red-dark);
-}
-
-@media (max-width: 520px) {
-  .travel-callout {
-    padding: 1.15rem 1.1rem 1.2rem;
-  }
-
-  .travel-callout > .logistics-flow__text:not(:first-child) {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
-  }
-
-  .travel-callout > .logistics-flow__text:not(:first-child) strong {
-    min-width: 0;
-  }
+  font-weight: 600;
+  color: var(--text);
 }
 
 .logistics-flow__text--muted {
