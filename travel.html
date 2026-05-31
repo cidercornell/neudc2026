@@ -56,6 +56,7 @@
   <section id="getting-to-ithaca" class="content-section logistics-getting-there">
     <div class="section-wrap logistics-page__wrap">
       <h2 class="section-title">Getting to Ithaca</h2>
+      <div class="logistics-airport-panel">
       <div class="register-fee-table-wrap travel-table-wrap">
         <table class="register-fee-table airport-drive-table" aria-label="Approximate drive times from each airport to Cornell">
           <thead>
@@ -94,16 +95,19 @@
           </tbody>
         </table>
       </div>
-      <details class="airport-taxi-fallback" aria-label="Taxi phone numbers">
-        <summary class="airport-taxi-fallback__title">
-          <span class="airport-taxi-fallback__summary-main">
-            <span class="airport-taxi-fallback__summary-text">
-              <span class="airport-taxi-fallback__summary-lead">Taxi phone numbers</span>
+      <div class="logistics-accordion-group" aria-label="Getting to campus from the airport">
+      <p class="logistics-accordion-group__heading">Getting to campus from the airport</p>
+      <details class="logistics-accordion airport-taxi-fallback" aria-label="Taxi from the airport">
+        <summary class="logistics-accordion__title airport-taxi-fallback__title">
+          <span class="logistics-accordion__summary-main airport-taxi-fallback__summary-main">
+            <span class="logistics-accordion__summary-text airport-taxi-fallback__summary-text">
+              <span class="logistics-accordion__summary-lead airport-taxi-fallback__summary-lead">By taxi</span>
+              <span class="logistics-accordion__summary-hint airport-taxi-fallback__summary-hint">Local cab numbers for Ithaca (ITH)</span>
             </span>
           </span>
-          <span class="airport-taxi-fallback__summary-chevron" aria-hidden="true"></span>
+          <span class="logistics-accordion__summary-chevron airport-taxi-fallback__summary-chevron" aria-hidden="true"></span>
         </summary>
-        <div class="airport-taxi-fallback__body">
+        <div class="logistics-accordion__body airport-taxi-fallback__body">
           <dl class="airport-taxi-fallback__list">
             <dt>Ithaca Tompkins (ITH)</dt>
             <dd>
@@ -116,16 +120,27 @@
             </dd>
             <dt>ELM / SYR / BGM / JFK / EWR</dt>
             <dd>Use each airport’s on-site taxi stand or ground transportation desk for local providers.</dd>
-            <dt>Official directory</dt>
-            <dd><a href="https://www.flyithaca.com/taxis" target="_blank" rel="noopener">Ithaca airport taxi directory</a></dd>
           </dl>
         </div>
       </details>
-      <div class="travel-callout">
-        <p class="logistics-flow__text"><strong>Flying through NYC airports?</strong> Cornell's Campus-to-Campus coach runs daily between Ithaca and New York City.</p>
-        <p class="logistics-flow__text"><strong>Schedules:</strong> <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/campus-campus-bus-service" target="_blank" rel="noopener">Book and view schedules</a></p>
-        <p class="logistics-flow__text"><strong>Contact:</strong> <a href="tel:+16072548747">607-254-8747</a> or <a href="mailto:c2cbus@cornell.edu">c2cbus@cornell.edu</a></p>
-        <p class="logistics-flow__text"><strong>Other intercity bus options:</strong> FlixBus, OurBus, and Greyhound also serve the Ithaca area.</p>
+      <details class="logistics-accordion travel-callout" aria-label="Bus from New York City">
+        <summary class="logistics-accordion__title travel-callout__title">
+          <span class="logistics-accordion__summary-main travel-callout__summary-main">
+            <span class="logistics-accordion__summary-text travel-callout__summary-text">
+              <span class="logistics-accordion__summary-lead travel-callout__summary-lead">By bus from New York City</span>
+              <span class="logistics-accordion__summary-hint travel-callout__summary-hint">Campus-to-Campus coach and other intercity buses</span>
+            </span>
+          </span>
+          <span class="logistics-accordion__summary-chevron travel-callout__summary-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="logistics-accordion__body travel-callout__body">
+          <p class="logistics-flow__text">Cornell's Campus-to-Campus coach runs daily between Ithaca and New York City.</p>
+          <p class="logistics-flow__text"><strong>Schedules:</strong> <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/campus-campus-bus-service" target="_blank" rel="noopener">Book and view schedules</a></p>
+          <p class="logistics-flow__text"><strong>Contact:</strong> <a href="tel:+16072548747">607-254-8747</a> or <a href="mailto:c2cbus@cornell.edu">c2cbus@cornell.edu</a></p>
+          <p class="logistics-flow__text"><strong>Other intercity bus options:</strong> FlixBus, OurBus, and Greyhound also serve the Ithaca area.</p>
+        </div>
+      </details>
+      </div>
       </div>
     </div>
   </section>
@@ -209,16 +224,16 @@
       <p class="logistics-flow__text">All listed hotels are within a 10-15 minute drive of the conference venue.</p>
       <p class="logistics-flow__text">The links below include discounted group rates negotiated for NEUDC attendees. Rooms are limited and offered on a first-come, first-served basis.</p>
 
-      <div class="lodging-list" role="list">
-            <article class="lodging-card" role="listitem">
+      <div class="lodging-list">
+            <a class="lodging-card" href="https://www.bestwestern.com/en_US/book/hotels-in-ithaca/best-western-university-inn/propertyCode.33065.html" target="_blank" rel="noopener" aria-label="Best Western University Inn — view hotel (conference rate link coming soon)">
               <div class="lodging-card__row">
-                <h3 class="lodging-card__title"><a class="lodging-card__title-link" href="https://www.bestwestern.com/en_US/book/hotels-in-ithaca/best-western-university-inn/propertyCode.33065.html" target="_blank" rel="noopener">Best Western University Inn</a></h3>
+                <h3 class="lodging-card__title">Best Western University Inn</h3>
                 <span class="lodging-card__rate">Conference rate</span>
               </div>
               <p class="lodging-card__addr">1020 Ellis Hollow Rd</p>
               <div class="lodging-card__meta-line">
                 <div class="lodging-card__book">
-                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate — link not yet available">Book</button>
+                  <span class="cta cta-secondary lodging-card__book-cta lodging-card__book-cta--pending">Book</span>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -235,16 +250,16 @@
                   <span class="lodging-route-chip">83</span>
                 </span>
               </div>
-            </article>
+            </a>
 
-            <article class="lodging-card" role="listitem">
+            <a class="lodging-card" href="https://www.marriott.com/en-us/hotels/ithfi-fairfield-inn-and-suites-ithaca/overview/" target="_blank" rel="noopener" aria-label="Fairfield Inn &amp; Suites — book on Marriott">
               <div class="lodging-card__row">
-                <h3 class="lodging-card__title"><a class="lodging-card__title-link" href="https://www.marriott.com/en-us/hotels/ithfi-fairfield-inn-and-suites-ithaca/overview/" target="_blank" rel="noopener">Fairfield Inn &amp; Suites</a></h3>
+                <h3 class="lodging-card__title">Fairfield Inn &amp; Suites</h3>
               </div>
               <p class="lodging-card__addr">359 Elmira Rd</p>
               <div class="lodging-card__meta-line">
                 <div class="lodging-card__book">
-                  <a class="cta cta-secondary lodging-card__book-cta" href="https://www.marriott.com/en-us/hotels/ithfi-fairfield-inn-and-suites-ithaca/overview/" target="_blank" rel="noopener" aria-label="Book Fairfield Inn &amp; Suites">Book</a>
+                  <span class="cta cta-secondary lodging-card__book-cta">Book</span>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -261,17 +276,17 @@
                   <span class="lodging-route-chip">67</span>
                 </span>
               </div>
-            </article>
+            </a>
 
-            <article class="lodging-card" role="listitem">
+            <a class="lodging-card" href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=ITHNYHX&amp;groupCode=CHHNEU&amp;arrivaldate=2026-11-06&amp;departuredate=2026-11-08&amp;cid=OM,WW,HILTONLINK,EN,DirectLink&amp;fromId=HILTONLINKDIRECT" target="_blank" rel="noopener" aria-label="Hampton Inn — book with NEUDC group rate">
               <div class="lodging-card__row">
-                <h3 class="lodging-card__title"><a class="lodging-card__title-link" href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=ITHNYHX&groupCode=CHHNEU&arrivaldate=2026-11-06&departuredate=2026-11-08&cid=OM,WW,HILTONLINK,EN,DirectLink&fromId=HILTONLINKDIRECT" target="_blank" rel="noopener">Hampton Inn</a></h3>
+                <h3 class="lodging-card__title">Hampton Inn</h3>
                 <span class="lodging-card__rate">Conference rate</span>
               </div>
               <p class="lodging-card__addr">337 Elmira Rd</p>
               <div class="lodging-card__meta-line">
                 <div class="lodging-card__book">
-                  <a class="cta cta-secondary lodging-card__book-cta" href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=ITHNYHX&groupCode=CHHNEU&arrivaldate=2026-11-06&departuredate=2026-11-08&cid=OM,WW,HILTONLINK,EN,DirectLink&fromId=HILTONLINKDIRECT" target="_blank" rel="noopener" aria-label="Book Hampton Inn with NEUDC group rate">Book</a>
+                  <span class="cta cta-secondary lodging-card__book-cta">Book</span>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -288,17 +303,17 @@
                   <span class="lodging-route-chip">67</span>
                 </span>
               </div>
-            </article>
+            </a>
 
-            <article class="lodging-card" role="listitem">
+            <a class="lodging-card" href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=ITHSSPY&amp;groupCode=NEUDC&amp;arrivaldate=2026-11-06&amp;departuredate=2026-11-08&amp;cid=OM,WW,HILTONLINK,EN,DirectLink&amp;fromId=HILTONLINKDIRECT" target="_blank" rel="noopener" aria-label="Canopy by Hilton Ithaca Downtown — book with NEUDC group rate">
               <div class="lodging-card__row">
-                <h3 class="lodging-card__title"><a class="lodging-card__title-link" href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=ITHSSPY&groupCode=NEUDC&arrivaldate=2026-11-06&departuredate=2026-11-08&cid=OM,WW,HILTONLINK,EN,DirectLink&fromId=HILTONLINKDIRECT" target="_blank" rel="noopener">Canopy by Hilton Ithaca Downtown</a></h3>
+                <h3 class="lodging-card__title">Canopy by Hilton Ithaca Downtown</h3>
                 <span class="lodging-card__rate">Conference rate</span>
               </div>
               <p class="lodging-card__addr">324 E State St</p>
               <div class="lodging-card__meta-line">
                 <div class="lodging-card__book">
-                  <a class="cta cta-secondary lodging-card__book-cta" href="https://www.hilton.com/en/book/reservation/deeplink/?ctyhocn=ITHSSPY&groupCode=NEUDC&arrivaldate=2026-11-06&departuredate=2026-11-08&cid=OM,WW,HILTONLINK,EN,DirectLink&fromId=HILTONLINKDIRECT" target="_blank" rel="noopener" aria-label="Book Canopy by Hilton with NEUDC group rate">Book</a>
+                  <span class="cta cta-secondary lodging-card__book-cta">Book</span>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -316,17 +331,17 @@
                   <span class="lodging-route-chip">43</span>
                 </span>
               </div>
-            </article>
+            </a>
 
-            <article class="lodging-card" role="listitem">
+            <a class="lodging-card" href="https://www.ihg.com/holidayinnexpress/hotels/us/en/ithaca/ithnp/hoteldetail" target="_blank" rel="noopener" aria-label="Holiday Inn Express &amp; Suites — view hotel (conference rate link coming soon)">
               <div class="lodging-card__row">
-                <h3 class="lodging-card__title"><a class="lodging-card__title-link" href="https://www.ihg.com/holidayinnexpress/hotels/us/en/ithaca/ithnp/hoteldetail" target="_blank" rel="noopener">Holiday Inn Express &amp; Suites</a></h3>
+                <h3 class="lodging-card__title">Holiday Inn Express &amp; Suites</h3>
                 <span class="lodging-card__rate">Conference rate</span>
               </div>
               <p class="lodging-card__addr">371 Elmira Rd</p>
               <div class="lodging-card__meta-line">
                 <div class="lodging-card__book">
-                  <button type="button" class="cta cta-secondary lodging-card__book-cta" disabled aria-label="Book with NEUDC group rate — link not yet available">Book</button>
+                  <span class="cta cta-secondary lodging-card__book-cta lodging-card__book-cta--pending">Book</span>
                 </div>
               </div>
               <div class="lodging-card__tcat">
@@ -343,7 +358,7 @@
                   <span class="lodging-route-chip">67</span>
                 </span>
               </div>
-            </article>
+            </a>
           </div>
     </div>
   </section>
