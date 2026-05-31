@@ -2964,48 +2964,34 @@ a.lodging-card:focus-visible {
 }
 
 #our-team .team-roster__grid {
-  grid-template-columns: repeat(auto-fill, minmax(10.75rem, 1fr));
-  gap: 1.75rem 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem 1.35rem;
+}
+
+@media (max-width: 820px) {
+  #our-team .team-roster__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  #our-team .team-roster__grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 #our-team .person-card__image {
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
 }
 
 #our-team .person-card__image--photo {
-  padding: 3px;
-  background: linear-gradient(
-    145deg,
-    rgba(179, 27, 27, 0.42) 0%,
-    rgba(179, 27, 27, 0.12) 55%,
-    rgba(179, 27, 27, 0.22) 100%
-  );
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.5) inset,
-    0 6px 18px rgba(10, 10, 10, 0.1);
-  transition:
-    box-shadow 0.28s ease,
-    transform 0.28s ease;
-}
-
-#our-team .person-card:hover .person-card__image--photo {
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.55) inset,
-    0 10px 26px rgba(179, 27, 27, 0.18);
-}
-
-#our-team .person-card__image--photo img {
-  border: 2px solid var(--white);
-  transition: transform 0.35s cubic-bezier(0.33, 1.1, 0.48, 1);
+  padding: 0;
+  background: #e8e6e3;
 }
 
 #our-team .person-card__image--photo img[src*="carey-manwa"] {
   object-position: center 38%;
-}
-
-#our-team .person-card:hover .person-card__image--photo img {
-  transform: scale(1.04);
 }
 
 #our-team .person-card__name {
@@ -3017,17 +3003,11 @@ a.lodging-card:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #our-team .person-card__image--photo,
-  #our-team .person-card__image--photo img,
   #our-team .person-card__name,
   #our-team .person-card__title,
   #our-team .person-card__unit {
     transition: none;
     animation: none;
-  }
-
-  #our-team .person-card:hover .person-card__image--photo img {
-    transform: none;
   }
 }
 
@@ -3085,7 +3065,7 @@ a.lodging-card:focus-visible {
   display: flex;
   flex-direction: column;
   gap: 0.18rem;
-  max-width: 13rem;
+  max-width: 15rem;
   margin: 0 auto;
   text-wrap: pretty;
 }
@@ -3101,6 +3081,12 @@ a.lodging-card:focus-visible {
   color: rgba(10, 10, 10, 0.88);
   font-weight: 500;
   transition: color 0.22s ease;
+}
+
+#our-team .person-card__rank {
+  font-size: calc(var(--type-detail) * 0.9);
+  line-height: 1.42;
+  font-weight: 400;
 }
 
 #our-team .person-card:hover .person-card__title {
@@ -4373,8 +4359,8 @@ em {
   }
 
   #our-team .person-card__image {
-    width: 132px;
-    height: 132px;
+    width: 168px;
+    height: 168px;
   }
 
   .people-loop-wrap {
