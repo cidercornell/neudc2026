@@ -1,6 +1,6 @@
 # NEUDC 2026
 
-**Northeastern Universities Development Consortium**
+**The Northeast Universities Development Consortium**
 
 November 7–8, 2026 · Cornell University, Ithaca, NY
 
