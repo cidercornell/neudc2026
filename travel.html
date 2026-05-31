@@ -38,7 +38,7 @@
       <div class="program-panel">
         <div class="program-panel-head">
           <h1 id="logistics-page-heading" class="subpage-title">Travel & Venue</h1>
-          <p class="logistics-page-lead">NEUDC 2026 is at Cornell&rsquo;s Physical Sciences Building in Ithaca, NY.</p>
+          <p class="logistics-page-lead">NEUDC 2026 is at Cornell&rsquo;s <a href="https://www.google.com/maps/dir//Physical+Sciences+Building,+245+East+Ave,+Ithaca,+NY+14853" target="_blank" rel="noopener noreferrer">Physical Sciences Building</a> in Ithaca, NY.</p>
           <nav class="logistics-page-nav" aria-label="On this page">
             <ul class="logistics-page-nav__list">
               <li><a href="#getting-to-ithaca">Getting here</a></li>
@@ -144,11 +144,21 @@
           loading="lazy"
           decoding="async">
       </figure>
-      <p class="parking-detail__links-kicker" id="venue-links-heading">Venue links</p>
-      <ul class="logistics-flow__link-list parking-detail__links" aria-labelledby="venue-links-heading">
-        <li><a href="https://www.google.com/maps/dir//Physical+Sciences+Building,+245+East+Ave,+Ithaca,+NY+14853" target="_blank" rel="noopener noreferrer">Google Maps directions (Physical Sciences Building, 245 East Ave)</a></li>
-        <li><a href="https://accessibility.cornell.edu/campus/visitors/" target="_blank" rel="noopener noreferrer">Cornell visitor accessibility guide (parking, mobility, campus access)</a></li>
-      </ul>
+      <div class="venue-links logistics-link-strip" aria-labelledby="venue-links-heading">
+        <p class="venue-links__heading logistics-link-strip__label" id="venue-links-heading">Venue links</p>
+        <ul class="venue-links__list">
+          <li class="venue-links__item">
+            <a class="venue-links__a" href="https://www.google.com/maps/dir//Physical+Sciences+Building,+245+East+Ave,+Ithaca,+NY+14853" target="_blank" rel="noopener noreferrer">
+              <span class="venue-links__label">Google Maps directions</span>
+            </a>
+          </li>
+          <li class="venue-links__item">
+            <a class="venue-links__a" href="https://accessibility.cornell.edu/campus/visitors/" target="_blank" rel="noopener noreferrer">
+              <span class="venue-links__label">Visitor accessibility guide</span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -161,12 +171,14 @@
       <figure class="logistics-flow__figure" id="tcat-photo">
         <img src="cornell_photos/tcat-route-10-campus.png" alt="A bright blue TCAT bus on Route 10 at Cornell." class="logistics-flow__img" width="1024" height="682" loading="lazy" decoding="async">
       </figure>
-      <p class="tcat-detail__links-kicker" id="tcat-links-label">Quick links</p>
-      <ul class="logistics-flow__link-list tcat-detail__links" aria-labelledby="tcat-links-label">
-        <li><a href="https://realtimetcatbus.availtec.com/InfoPoint/" target="_blank" rel="noopener">Live bus map</a></li>
-        <li><a href="https://tcatbus.com/" target="_blank" rel="noopener">Schedules and routes</a></li>
-        <li><a href="https://tcatbus.com/store/" target="_blank" rel="noopener">Passes and fares</a></li>
-      </ul>
+      <div class="logistics-link-strip">
+        <p class="logistics-link-strip__label" id="tcat-links-label">Quick links</p>
+        <ul class="logistics-link-strip__list" aria-labelledby="tcat-links-label">
+          <li><a href="https://realtimetcatbus.availtec.com/InfoPoint/" target="_blank" rel="noopener">Live bus map</a></li>
+          <li><a href="https://tcatbus.com/" target="_blank" rel="noopener">Schedules and routes</a></li>
+          <li><a href="https://tcatbus.com/store/" target="_blank" rel="noopener">Passes and fares</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -179,12 +191,14 @@
           <li>On weekdays, plan for a permit or paid visitor parking through <a href="https://parkmobile.io/" target="_blank" rel="noopener">ParkMobile</a> or nearby <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">lot kiosks</a>.</li>
           <li>On weekends, complimentary visitor parking is available at <a href="https://www.cornell.edu/about/maps/?loc=Parking%20at%20Toboggan%20Lodge" target="_blank" rel="noopener">Toboggan Lodge</a>, <a href="https://www.cornell.edu/about/maps/?loc=Forest%20Home%20Dr.%20Parking%20Garage" target="_blank" rel="noopener">Forest Home Drive Garage</a>, and <a href="https://bit.ly/2fCYPDx" target="_blank" rel="noopener">Hoy Road Garage</a>. Follow posted signage and restricted-space rules.</li>
         </ul>
-        <p class="parking-detail__links-kicker" id="parking-links-label">Parking resources</p>
-        <ul class="logistics-flow__link-list parking-detail__links" aria-labelledby="parking-links-label">
-          <li><a href="https://www.cornell.edu/visit/parking/" target="_blank" rel="noopener">Visitor parking guide</a></li>
-          <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">Short-term lot map</a></li>
-          <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/virtual-permits" target="_blank" rel="noopener">Virtual permits</a></li>
-        </ul>
+        <div class="logistics-link-strip">
+          <p class="logistics-link-strip__label" id="parking-links-label">Parking resources</p>
+          <ul class="logistics-link-strip__list" aria-labelledby="parking-links-label">
+            <li><a href="https://www.cornell.edu/visit/parking/" target="_blank" rel="noopener">Visitor parking guide</a></li>
+            <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/short-term-parking-options" target="_blank" rel="noopener">Short-term lot map</a></li>
+            <li><a href="https://fcs.cornell.edu/departments/transportation-delivery-services/parking/virtual-permits" target="_blank" rel="noopener">Virtual permits</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
