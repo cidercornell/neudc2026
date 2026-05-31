@@ -1826,16 +1826,85 @@ body {
 
 .logistics-accordion-group__heading {
   margin: 0;
-  padding: 0.85rem 1rem 0.75rem;
+  padding: 1rem 1.05rem 0.85rem;
   border-bottom: 1px solid var(--border-light);
-  background: var(--bg-subtle);
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  background: var(--white);
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 2.1vw, 1.08rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: none;
   color: var(--text);
-  line-height: 1.35;
+  line-height: 1.3;
+}
+
+.logistics-accordion-group .airport-taxi-fallback__title,
+.logistics-accordion-group .travel-callout__title {
+  padding: 0.95rem 1.05rem 1rem;
+  background: var(--white);
+}
+
+.logistics-accordion-group .airport-taxi-fallback__title:hover,
+.logistics-accordion-group .travel-callout__title:hover {
+  background: rgba(179, 27, 27, 0.03);
+}
+
+.logistics-accordion-group .airport-taxi-fallback[open] .airport-taxi-fallback__title,
+.logistics-accordion-group .travel-callout[open] .travel-callout__title {
+  background: var(--bg-subtle);
+}
+
+.logistics-accordion-group .logistics-accordion__summary-text,
+.logistics-accordion-group .airport-taxi-fallback__summary-text,
+.logistics-accordion-group .travel-callout__summary-text {
+  gap: 0.22rem;
+}
+
+.logistics-accordion-group .logistics-accordion__summary-lead,
+.logistics-accordion-group .airport-taxi-fallback__summary-lead,
+.logistics-accordion-group .travel-callout__summary-lead {
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
+  font-weight: 650;
+}
+
+.logistics-accordion-group .logistics-accordion__summary-hint,
+.logistics-accordion-group .airport-taxi-fallback__summary-hint,
+.logistics-accordion-group .travel-callout__summary-hint {
+  font-size: calc(var(--type-detail) * 0.9);
+  font-weight: 400;
+  color: rgba(10, 10, 10, 0.58);
+}
+
+.logistics-accordion-group .logistics-accordion__summary-chevron,
+.logistics-accordion-group .airport-taxi-fallback__summary-chevron,
+.logistics-accordion-group .travel-callout__summary-chevron {
+  width: 2.15rem;
+  height: 2.15rem;
+  margin: 0 0 0 0.75rem;
+}
+
+.logistics-accordion-group .logistics-accordion__body,
+.logistics-accordion-group .airport-taxi-fallback__body,
+.logistics-accordion-group .travel-callout__body {
+  padding: 0.9rem 1.05rem 1.05rem;
+  background: var(--white);
+}
+
+.logistics-accordion-group .travel-callout__body .logistics-flow__text {
+  max-width: none;
+  margin: 0 0 0.5rem;
+  padding: 0;
+  border: none;
+}
+
+.logistics-accordion-group .travel-callout__body .logistics-flow__text:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.logistics-accordion-group .travel-callout__body .logistics-flow__text strong {
+  font-weight: 600;
+  color: var(--text);
 }
 
 .airport-taxi-fallback,
@@ -1955,6 +2024,10 @@ body {
 
 .airport-taxi-fallback__body {
   padding: 0.85rem 1rem 1.05rem;
+}
+
+.logistics-accordion-group .airport-taxi-fallback__body {
+  padding: 0.9rem 1.05rem 1.05rem;
 }
 
 .airport-taxi-fallback__list {
