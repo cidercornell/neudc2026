@@ -7,8 +7,9 @@
   <link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48">
   <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <title>NEUDC 2026 · The Northeast Universities Development Consortium · Cornell University</title>
+  <title>NEUDC 2026 | Cornell University</title>
   <meta name="description" content="NEUDC 2026 at Cornell University, Ithaca, NY — November 7–8, 2026. Call for papers, registration, program, and travel information for The Northeast Universities Development Consortium.">
+  <meta name="application-name" content="NEUDC 2026">
   <link rel="canonical" href="https://cidercornell.github.io/neudc2026/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="NEUDC 2026">
@@ -25,15 +26,58 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "NEUDC 2026",
-    "url": "https://cidercornell.github.io/neudc2026/",
-    "logo": "https://cidercornell.github.io/neudc2026/cornell-seal-512.png",
-    "parentOrganization": {
-      "@type": "Organization",
-      "name": "Cornell University",
-      "url": "https://www.cornell.edu/"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://cidercornell.github.io/neudc2026/#website",
+        "name": "NEUDC 2026",
+        "alternateName": [
+          "NEUDC",
+          "Northeast Universities Development Consortium 2026"
+        ],
+        "url": "https://cidercornell.github.io/neudc2026/",
+        "description": "The Northeast Universities Development Consortium annual conference at Cornell University, November 7–8, 2026.",
+        "publisher": {
+          "@id": "https://cidercornell.github.io/neudc2026/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://cidercornell.github.io/neudc2026/#organization",
+        "name": "NEUDC 2026",
+        "url": "https://cidercornell.github.io/neudc2026/",
+        "logo": "https://cidercornell.github.io/neudc2026/cornell-seal-512.png",
+        "parentOrganization": {
+          "@type": "Organization",
+          "name": "Cornell University",
+          "url": "https://www.cornell.edu/"
+        }
+      },
+      {
+        "@type": "Event",
+        "@id": "https://cidercornell.github.io/neudc2026/#event",
+        "name": "NEUDC 2026",
+        "description": "The Northeast Universities Development Consortium annual conference at Cornell University.",
+        "startDate": "2026-11-07",
+        "endDate": "2026-11-08",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+          "@type": "Place",
+          "name": "Cornell University",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ithaca",
+            "addressRegion": "NY",
+            "addressCountry": "US"
+          }
+        },
+        "organizer": {
+          "@id": "https://cidercornell.github.io/neudc2026/#organization"
+        },
+        "url": "https://cidercornell.github.io/neudc2026/"
+      }
+    ]
   }
   </script>
   <link rel="stylesheet" href="styles.css">
