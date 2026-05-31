@@ -111,6 +111,8 @@
   --footer-wrap-max: var(--header-wrap-max);
   /* Match .content-section horizontal padding so the column lines up with the nav */
   --site-gutter: 2rem;
+  --title-rule-strong: rgba(74, 58, 40, 0.28);
+  --title-rule-soft: rgba(74, 58, 40, 0.14);
   /* Match .site-header: padding + tallest logo row + border (avoids cream body strip under hero) */
   --site-header-offset: calc(76px + 1.1rem + 2px);
 }
@@ -429,39 +431,24 @@ body {
   border-top: 1px solid var(--border-light);
 }
 
-/* Travel page — soft vertical bands between major sections */
+/* Travel & Program pages — plain white sections */
 .logistics-page .content-section,
 .program-page .content-section {
   background: var(--white);
 }
 
 .logistics-page .logistics-getting-there {
-  background: linear-gradient(180deg, #f9f8f6 0%, #ffffff 28%);
-}
-
-.logistics-page .logistics-onsite.travel-zone--local {
-  background: linear-gradient(180deg, #ffffff 0%, #fafaf8 100%);
-}
-
-.logistics-page #lodging.travel-zone--lodging {
-  background: linear-gradient(180deg, #fafaf8 0%, #ffffff 40%);
+  border-top: none;
 }
 
 /* Travel — in-page anchors clear sticky header */
 #getting-to-ithaca,
 #venue,
 #getting-around,
+#tcat,
 #parking,
 #lodging {
   scroll-margin-top: 1.25rem;
-}
-
-.logistics-page #getting-around.logistics-onsite {
-  background: linear-gradient(180deg, #ffffff 0%, #f9f8f6 42%, #ffffff 100%);
-}
-
-.logistics-page #parking.travel-zone--parking {
-  background: linear-gradient(180deg, #fafaf8 0%, #ffffff 55%);
 }
 
 .content-section:first-of-type {
@@ -471,7 +458,7 @@ body {
 #section-dates,
 #cfp,
 #sponsors,
-#contact {
+#faq {
   scroll-margin-top: 1rem;
 }
 
@@ -543,7 +530,8 @@ body {
 #section-dates h2.subpage-title,
 #cfp h2.subpage-title,
 #sponsors h2.subpage-title,
-#contact h2.subpage-title {
+#faq h2.subpage-title,
+#our-team h2.subpage-title {
   border-bottom: none;
   padding-bottom: 0;
 }
@@ -552,10 +540,12 @@ body {
 .section-title {
   font-size: 1.16rem;
   font-weight: 600;
-  margin: 0 0 0.65rem;
+  margin: 0 0 1.1rem;
   color: var(--text);
   letter-spacing: 0;
   line-height: 1.35;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .content-section .section-title {
@@ -612,91 +602,164 @@ body {
   font-weight: 700;
 }
 
-.cfp-body {
-  max-width: 100%;
+.cfp-epistle {
+  position: relative;
+  margin-top: 0.15rem;
+  padding: 1.2rem 1.15rem 1.35rem 1.4rem;
+  border: 1px solid rgba(179, 27, 27, 0.1);
+  border-left: 2px solid rgba(179, 27, 27, 0.32);
+  border-radius: 14px;
+  background: linear-gradient(145deg, rgba(255, 251, 245, 0.96) 0%, rgba(255, 255, 255, 0.98) 100%);
+  box-shadow: 0 10px 40px rgba(10, 10, 10, 0.045);
+  font-family: var(--font-heading);
+  font-size: calc(var(--type-body) * 0.99);
+  line-height: 1.72;
+  letter-spacing: 0.008em;
+  color: var(--text);
 }
 
-.cfp-intro {
-  margin: 0;
+.cfp-epistle p {
+  margin: 0 0 1.05rem;
+  text-wrap: pretty;
 }
 
-.cfp-intro strong {
+.cfp-epistle p:last-child {
+  margin-bottom: 0;
+}
+
+.cfp-epistle__salutation {
+  margin-bottom: 0.55rem;
+  letter-spacing: 0.04em;
+  color: rgba(10, 10, 10, 0.92);
+}
+
+.cfp-epistle__opening::first-letter {
+  float: left;
+  margin: 0.03em 0.14em 0 0;
+  font-size: 3.15em;
+  line-height: 0.86;
+  font-weight: 600;
   color: var(--cornell-red-dark);
-  font-weight: 700;
 }
 
-.cfp-notice {
-  margin: 0 0 1.35rem;
-  padding: 1.15rem 1.25rem 1.2rem;
-  border: 1px solid rgba(179, 27, 27, 0.16);
-  border-left: 4px solid var(--cornell-red);
-  border-radius: 10px;
+@media (max-width: 640px) {
+  .cfp-epistle {
+    padding: 1rem 0.95rem 1.15rem 1.1rem;
+  }
+
+  .cfp-epistle__opening::first-letter {
+    float: none;
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+}
+
+.cfp-epistle a:not(.cta):not(.cta-primary):not(.cta-secondary) {
+  color: var(--cornell-red);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  text-decoration-color: rgba(179, 27, 27, 0.38);
+  transition: color 0.18s ease, text-decoration-color 0.18s ease;
+}
+
+.cfp-epistle a:not(.cta):not(.cta-primary):not(.cta-secondary):hover {
+  color: var(--cornell-red-dark);
+  text-decoration-color: var(--cornell-red-dark);
+}
+
+.cfp-epistle__signoff {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: none;
+  background:
+    linear-gradient(rgba(179, 27, 27, 0.42), rgba(179, 27, 27, 0.42)) 0 0 / 4.5rem 1px no-repeat,
+    linear-gradient(rgba(179, 27, 27, 0.16), rgba(179, 27, 27, 0.16)) 0 2px / 4.5rem 1px no-repeat;
+  color: var(--text);
+}
+
+.section-cfp .cfp-actions {
+  margin: 0.45rem 0 1.25rem;
+  text-align: center;
+}
+
+.section-cfp .cfp-actions .cta-primary {
+  box-shadow: 0 4px 18px rgba(179, 27, 27, 0.16);
+}
+
+.section-cfp .cfp-actions .cta-primary:hover {
+  box-shadow: 0 6px 24px rgba(179, 27, 27, 0.2);
+}
+
+.section-cfp .cfp-notice,
+.register-status-notice {
+  padding: 0.9rem 1rem 0.95rem;
+  border: 1px solid rgba(179, 27, 27, 0.1);
+  border-left: 2px solid rgba(179, 27, 27, 0.32);
+  border-radius: 12px;
   background: linear-gradient(
     155deg,
-    rgba(179, 27, 27, 0.05) 0%,
-    #faf9f8 42%,
+    rgba(179, 27, 27, 0.04) 0%,
+    rgba(255, 252, 248, 0.95) 38%,
     #ffffff 100%
   );
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.85) inset,
-    0 10px 28px rgba(10, 10, 10, 0.08);
+  box-shadow: 0 8px 32px rgba(10, 10, 10, 0.04);
 }
 
-.cfp-notice p {
+.section-cfp .cfp-notice {
+  margin: 1.65rem 0 0;
+}
+
+.register-page .register-status-notice {
+  margin: 0 0 0.85rem;
+}
+
+.section-cfp .cfp-notice p,
+.register-status-notice p {
   margin: 0;
-  font-size: var(--type-body);
-  line-height: var(--type-line-prose);
-  color: var(--text);
+  font-family: var(--font-body);
+  font-size: calc(var(--type-detail) * 0.96);
+  font-style: normal;
+  line-height: 1.6;
+  color: rgba(10, 10, 10, 0.86);
 }
 
-.cfp-prep {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-  margin-top: 1.35rem;
+.section-cfp .cfp-notice__label,
+.register-status-notice__label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-variant: small-caps;
+  letter-spacing: 0.07em;
+  color: var(--cornell-red-dark);
 }
 
-.cfp-prep__title {
-  margin: 0;
-  font-size: inherit;
-  font-weight: inherit;
-  line-height: inherit;
+.section-cfp .cfp-notice a {
+  color: var(--cornell-red);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-color: rgba(179, 27, 27, 0.38);
 }
 
-.cfp-prep__title .section-label {
-  display: block;
-  margin: 0;
+.section-cfp .cfp-notice a:hover {
+  color: var(--cornell-red-dark);
+  text-decoration-color: var(--cornell-red-dark);
 }
 
-.cfp-prep__intro {
-  margin: 0;
-  font-size: var(--type-body);
-  line-height: var(--type-line-prose);
-  color: var(--text);
+@media (prefers-reduced-motion: reduce) {
+  .section-cfp .cfp-actions .cta-primary,
+  .section-cfp .cfp-actions .cta-primary:hover {
+    box-shadow: none;
+  }
 }
 
-.cfp-checklist {
-  margin: 0;
-  padding-left: 1.25rem;
-  list-style: disc;
-  list-style-position: outside;
-  font-size: var(--type-body);
-  line-height: 1.5;
-  color: var(--text);
-}
-
-.cfp-checklist li {
-  margin: 0;
-  padding-left: 0.2rem;
-}
-
-.cfp-checklist li + li {
-  margin-top: 0.45rem;
-}
-
-.cfp-actions {
-  margin: 2rem 0 0;
-  padding-top: 0;
+.cfp-intro-stack p:not(.lead) strong {
+  color: var(--cornell-red-dark);
+  font-weight: 700;
 }
 
 /* Inline links in lead paragraphs — base `a` has no underline; make them read as links */
@@ -759,9 +822,22 @@ body {
   font-size: var(--type-page-title);
   font-weight: 600;
   letter-spacing: -0.03em;
-  margin: 0 0 0.5rem;
+  margin: 0 0 1.25rem;
   color: var(--text);
   line-height: 1.2;
+}
+
+.subpage-title::after,
+.section-title::after,
+.content-section .section-title::after {
+  content: "";
+  display: block;
+  width: min(11rem, 55%);
+  height: 3px;
+  margin-top: 0.65rem;
+  background:
+    linear-gradient(var(--title-rule-strong), var(--title-rule-strong)) 0 0 / 100% 1px no-repeat,
+    linear-gradient(var(--title-rule-soft), var(--title-rule-soft)) 0 2px / 100% 1px no-repeat;
 }
 
 .subpage-meta {
@@ -817,18 +893,6 @@ body {
   margin-bottom: 0.65rem;
 }
 
-.register-status-banner {
-  margin: 0 0 0.75rem;
-  padding: 0.6rem 0.75rem;
-  border: 1px solid #e8c98e;
-  border-left: 4px solid #b37a1b;
-  border-radius: 8px;
-  background: #fff7e8;
-  color: #5f3b00;
-  font-size: var(--type-body);
-  line-height: var(--type-line-snug);
-}
-
 .register-page .register-fees-panel {
   padding: 0;
 }
@@ -839,8 +903,8 @@ body {
   max-width: 100%;
   min-width: 0;
   overflow-x: hidden;
-  border-radius: 12px;
-  border: 1px solid var(--border-light);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
   box-sizing: border-box;
 }
 
@@ -881,7 +945,7 @@ body {
 .register-reduced-eligibility__title {
   font-size: var(--type-section);
   font-weight: 600;
-  margin: 0 0 0.65rem;
+  margin: 0 0 1rem;
   padding-bottom: 0;
   border-bottom: none;
   color: var(--text);
@@ -954,7 +1018,7 @@ body {
   letter-spacing: 0;
   text-transform: none;
   color: var(--text);
-  margin: 0 0 0.65rem;
+  margin: 0 0 1rem;
   padding-bottom: 0;
   border-bottom: none;
 }
@@ -1064,6 +1128,79 @@ body {
   margin-bottom: 0;
 }
 
+.program-page-lead {
+  margin: 0;
+  max-width: 38em;
+  font-size: var(--type-body);
+  line-height: var(--type-line-prose);
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.program-page-lead a {
+  color: var(--cornell-red-dark);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-color: rgba(179, 27, 27, 0.35);
+}
+
+.program-page-lead a:hover {
+  color: var(--cornell-red);
+  text-decoration-color: rgba(179, 27, 27, 0.55);
+}
+
+.program-page .program-intro,
+.logistics-page .program-intro {
+  max-width: 42em;
+}
+
+.program-page .program-intro__venue,
+.logistics-page .program-intro__venue {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: var(--type-line-prose);
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.program-page .program-intro__venue a,
+.logistics-page .program-intro__venue a {
+  color: var(--cornell-red-dark);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-color: rgba(179, 27, 27, 0.35);
+}
+
+.program-page .program-intro__venue a:hover,
+.logistics-page .program-intro__venue a:hover {
+  color: var(--cornell-red);
+  text-decoration-color: rgba(179, 27, 27, 0.55);
+}
+
+.program-page .program-intro__status,
+.logistics-page .program-intro__status {
+  margin: 0.5rem 0 0;
+  font-size: calc(var(--type-detail) * 0.98);
+  line-height: 1.55;
+  color: var(--text-muted);
+  text-wrap: pretty;
+}
+
+.logistics-page .program-intro__status a {
+  color: var(--cornell-red-dark);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-color: rgba(179, 27, 27, 0.35);
+}
+
+.logistics-page .program-intro__status a:hover {
+  color: var(--cornell-red);
+  text-decoration-color: rgba(179, 27, 27, 0.55);
+}
+
 .program-panel-head__summary {
   margin: 0;
   max-width: none;
@@ -1125,7 +1262,7 @@ body {
   font-weight: 600;
   letter-spacing: 0;
   line-height: 1.35;
-  margin-bottom: 0.65rem;
+  margin-bottom: 1.1rem;
   color: var(--text);
   padding-bottom: 0;
   border-bottom: none;
@@ -1133,55 +1270,6 @@ body {
 
 .program-page .program-page-section .lead {
   max-width: none;
-}
-
-/* Subpage intro — anchored section links (Program, Travel & Venue) */
-.program-jump,
-.logistics-jump {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-}
-
-.program-jump {
-  margin-top: 0.95rem;
-  max-width: none;
-}
-
-.logistics-jump {
-  margin-top: 1.05rem;
-  padding-top: 0.95rem;
-  border-top: 1px solid var(--border-light);
-  max-width: var(--content-max);
-}
-
-.program-jump a,
-.logistics-jump a {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.38rem 0.7rem;
-  border: 1px solid var(--border-light);
-  border-radius: 999px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--cornell-red);
-  background: var(--white);
-  cursor: pointer;
-  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
-}
-
-.program-jump a:hover,
-.logistics-jump a:hover {
-  color: var(--cornell-red-dark);
-  border-color: rgba(179, 27, 27, 0.28);
-  background: rgba(179, 27, 27, 0.05);
-}
-
-.program-jump a:focus-visible,
-.logistics-jump a:focus-visible {
-  outline: 2px solid var(--cornell-red);
-  outline-offset: 2px;
 }
 
 /* Program agenda — day sheets + light timeline (kept restrained) */
@@ -1297,6 +1385,112 @@ body {
 /* Logistics page — matches Program / Register (panel head, content-max, divider blocks) */
 .logistics-page .logistics-page__wrap {
   max-width: var(--content-max);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logistics-page-lead {
+  margin: 0;
+  max-width: none;
+  width: 100%;
+  font-size: var(--type-body);
+  line-height: var(--type-line-prose);
+  color: var(--text);
+  text-wrap: pretty;
+}
+
+.logistics-page-nav {
+  margin-top: 0.85rem;
+}
+
+.logistics-page-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.logistics-page-nav__list li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logistics-page-nav__list li + li::before {
+  content: "·";
+  margin: 0 0.6rem;
+  color: rgba(10, 10, 10, 0.32);
+  font-weight: 400;
+  pointer-events: none;
+}
+
+.logistics-page-nav__list a {
+  color: var(--text-muted);
+  font-size: calc(var(--type-detail) * 0.98);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.logistics-page-nav__list a:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  text-decoration-color: rgba(10, 10, 10, 0.35);
+}
+
+/* One column: drop nested max-width caps that caused ragged left/right edges */
+.logistics-page .logistics-page__wrap > .section-title,
+.logistics-page .logistics-page__wrap > .logistics-flow__text,
+.logistics-page .logistics-page__wrap > .logistics-flow__figure,
+.logistics-page .logistics-page__wrap > .logistics-detail,
+.logistics-page .logistics-page__wrap > .register-fee-table-wrap,
+.logistics-page .logistics-page__wrap > .airport-taxi-fallback,
+.logistics-page .logistics-page__wrap > .travel-callout,
+.logistics-page .logistics-page__wrap > .lodging-list,
+.logistics-page .logistics-page__wrap > .parking-detail__links-kicker,
+.logistics-page .logistics-page__wrap > .tcat-detail__links-kicker,
+.logistics-page .logistics-page__wrap > .logistics-flow__link-list {
+  max-width: none;
+  width: 100%;
+}
+
+.logistics-page .logistics-page__wrap .logistics-flow__text,
+.logistics-page .logistics-page__wrap .logistics-flow__link-list,
+.logistics-page .logistics-page__wrap .logistics-flow__caption,
+.logistics-page .logistics-page__wrap .logistics-flow__figure,
+.logistics-page .logistics-page__wrap .logistics-detail,
+.logistics-page .logistics-page__wrap .lodging-list {
+  max-width: none;
+  width: 100%;
+}
+
+.logistics-page .logistics-page__wrap .logistics-flow__link-list,
+.logistics-page .logistics-page__wrap .tcat-detail__links,
+.logistics-page .logistics-page__wrap .parking-detail__links {
+  padding-left: 0;
+}
+
+.logistics-page .logistics-detail > .logistics-flow__link-list:not(.tcat-detail__links):not(.parking-detail__links) {
+  padding-left: 1.15rem;
+  list-style-position: outside;
+}
+
+.logistics-page .logistics-page__wrap > .travel-callout {
+  margin-top: 1.35rem;
+}
+
+.logistics-getting-there .airport-taxi-fallback + .travel-callout {
+  margin-top: 1.35rem;
+}
+
+.logistics-page .logistics-onsite .section-title::after {
+  display: none;
+}
+
+.logistics-page .logistics-getting-there .section-title::after {
+  display: none;
 }
 
 /* Prevent wide children (tables) from forcing horizontal page scroll on narrow viewports */
@@ -1307,16 +1501,11 @@ body {
 
 /* Tighter vertical rhythm than default content-section (3.5rem) */
 .logistics-page .logistics-page-section {
-  padding: 2.25rem var(--site-gutter) 0.55rem;
+  padding: 2.25rem var(--site-gutter) 1.25rem;
 }
 
-.logistics-page .logistics-page-section .logistics-jump {
-  max-width: none;
-  gap: 0.6rem;
-}
-
-.logistics-page .program-panel-head__summary {
-  max-width: var(--content-max);
+.logistics-page .program-panel-head {
+  margin-bottom: 0;
 }
 
 .logistics-page .logistics-getting-there {
@@ -1337,10 +1526,9 @@ body {
   font-family: var(--font-heading);
   letter-spacing: -0.02em;
   line-height: 1.25;
-  margin: 0 0 0.85rem;
-  padding: 0 0 0.65rem 1rem;
+  margin: 0 0 1.1rem;
+  padding: 0;
   border-bottom: none;
-  border-left: 4px solid var(--cornell-red);
   color: var(--text);
 }
 
@@ -1354,14 +1542,17 @@ body {
 
 /* Getting to Ithaca — same table chrome as Register (register-fee-table-wrap / register-fee-table) */
 .logistics-getting-there .travel-table-wrap {
-  border-radius: 12px;
-  border: 1px solid var(--border-light);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
   overflow: hidden;
-  box-shadow: 0 2px 14px rgba(10, 10, 10, 0.06);
-  background: var(--white);
+  background: transparent;
 }
 
-.logistics-getting-there .register-fee-table-wrap + .logistics-flow {
+.logistics-getting-there .register-fee-table-wrap + .travel-callout {
+  margin-top: 1.35rem;
+}
+
+.logistics-getting-there .airport-taxi-fallback + .travel-callout {
   margin-top: 1.35rem;
 }
 
@@ -1403,11 +1594,12 @@ body {
   }
 }
 
-/* Campus-to-Campus callout: align to airport table width (full content column, not 44rem cap) */
+/* Campus-to-Campus callout: full content column width */
 .logistics-getting-there .travel-callout {
   max-width: none;
   width: 100%;
   box-sizing: border-box;
+  margin-top: 1.35rem;
 }
 
 .airport-taxi-fallback {
@@ -1545,6 +1737,12 @@ body {
   margin-top: 0.35rem;
 }
 
+.airport-taxi-fallback__note {
+  font-weight: 400;
+  color: rgba(10, 10, 10, 0.62);
+  font-size: calc(var(--type-detail) * 0.98);
+}
+
 .airport-taxi-fallback__list a {
   font-weight: 600;
   color: var(--link);
@@ -1579,7 +1777,6 @@ body {
 .lodging-list {
   margin: 1.35rem 0 0;
   padding: 0;
-  max-width: var(--content-max);
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -1588,7 +1785,7 @@ body {
 .lodging-card {
   margin: 0;
   padding: 1.15rem 1.35rem 1.2rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-light);
   border-radius: 14px;
   background: var(--white);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
@@ -1915,19 +2112,39 @@ button.lodging-card__book-cta {
   padding-top: 1.6rem;
 }
 
-.logistics-onsite .section-title {
+.logistics-page .logistics-onsite .section-title {
   font-size: clamp(1.22rem, 2.1vw, 1.42rem);
   font-weight: 600;
   font-family: var(--font-heading);
   letter-spacing: -0.02em;
   line-height: 1.25;
-  margin: 0 0 0.85rem;
+  margin: 0 0 1.1rem;
   max-width: none;
-  padding: 0 0 0.65rem 1rem;
-  border-left: 4px solid var(--cornell-red);
+  padding: 0;
   color: var(--text);
-  padding-bottom: 0;
   border-bottom: none;
+}
+
+.logistics-page .logistics-onsite > .section-wrap > .logistics-flow__text + .logistics-flow__text {
+  margin-top: 0.45rem;
+}
+
+.logistics-page .logistics-onsite > .section-wrap > .logistics-flow__figure {
+  margin-top: 0.65rem;
+}
+
+.logistics-page .logistics-onsite > .section-wrap > .parking-detail__links-kicker,
+.logistics-page .logistics-onsite > .section-wrap > .tcat-detail__links-kicker,
+.logistics-page .logistics-detail .parking-detail__links-kicker {
+  margin-top: 0.85rem;
+}
+
+.logistics-page .logistics-onsite > .section-wrap > .logistics-detail {
+  margin-top: 0;
+}
+
+.logistics-page .logistics-onsite > .section-wrap > .lodging-list {
+  margin-top: 1.1rem;
 }
 
 .logistics-flow {
@@ -2143,7 +2360,7 @@ button.lodging-card__book-cta {
 
 #tcat .tcat-detail__links-kicker,
 #parking .parking-detail__links-kicker,
-.section-venue .parking-detail__links-kicker {
+#venue .parking-detail__links-kicker {
   margin: 0 0 0.45rem;
   font-size: 0.76rem;
   font-weight: 700;
@@ -2154,7 +2371,7 @@ button.lodging-card__book-cta {
 
 #tcat .tcat-detail__links,
 #parking .parking-detail__links,
-.section-venue .parking-detail__links {
+#venue .parking-detail__links {
   margin-top: 0;
   padding-left: 1.2rem;
   list-style: none;
@@ -2163,7 +2380,7 @@ button.lodging-card__book-cta {
 
 #tcat .tcat-detail__links li,
 #parking .parking-detail__links li,
-.section-venue .parking-detail__links li {
+#venue .parking-detail__links li {
   margin: 0.34rem 0;
   display: flex;
   align-items: center;
@@ -2172,7 +2389,7 @@ button.lodging-card__book-cta {
 
 #tcat .tcat-detail__links li::before,
 #parking .parking-detail__links li::before,
-.section-venue .parking-detail__links li::before {
+#venue .parking-detail__links li::before {
   content: "◆";
   position: static;
   font-size: 0.62rem;
@@ -2183,7 +2400,7 @@ button.lodging-card__book-cta {
 
 #tcat .tcat-detail__links a,
 #parking .parking-detail__links a,
-.section-venue .parking-detail__links a {
+#venue .parking-detail__links a {
   display: inline;
   font-weight: 600;
   color: var(--link);
@@ -2195,12 +2412,12 @@ button.lodging-card__book-cta {
 
 #tcat .tcat-detail__links a:hover,
 #parking .parking-detail__links a:hover,
-.section-venue .parking-detail__links a:hover {
+#venue .parking-detail__links a:hover {
   color: var(--link-hover);
   text-decoration: underline;
 }
 
-#getting-around #tcat .logistics-flow__figure {
+#getting-around .logistics-flow__figure {
   margin-bottom: 0.75rem;
 }
 
@@ -2232,23 +2449,10 @@ button.lodging-card__book-cta {
   }
 }
 
-/* Getting around intro should not wrap early */
-#getting-around > .section-wrap > .logistics-flow__text {
-  max-width: none;
-}
-
-.travel-zone {
-  border-top: none;
-}
-
-.travel-zone--arrival,
-.travel-zone--parking {
-  background: transparent;
-}
-
 .travel-callout {
-  max-width: 44rem;
-  margin: 1.5rem 0 0;
+  max-width: none;
+  width: 100%;
+  margin: 0;
   padding: 1.35rem 1.35rem 1.4rem;
   border: 1px solid rgba(179, 27, 27, 0.18);
   border-left: 4px solid var(--cornell-red);
@@ -2349,7 +2553,6 @@ button.lodging-card__book-cta {
 
 /* Travel page — venue / transit photos: framed mat + soft depth */
 .logistics-page .logistics-flow__figure {
-  max-width: 38em;
   margin: 0.5rem 0 0.75rem;
   padding: 0.55rem;
   box-sizing: border-box;
@@ -2521,11 +2724,12 @@ button.lodging-card__book-cta {
 }
 
 .transport-card {
-  background: var(--white);
-  border: 1px solid var(--border-light);
-  border-radius: 12px;
-  padding: 1.4rem 1.35rem;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  background: transparent;
+  border: none;
+  border-top: 1px solid var(--border-light);
+  border-radius: 0;
+  padding: 1.25rem 0;
+  box-shadow: none;
 }
 
 .transport-card--wide {
@@ -2579,12 +2783,12 @@ button.lodging-card__book-cta {
   column-gap: 0.65rem;
   row-gap: 0.2rem;
   align-items: start;
-  padding: 0.75rem 0.85rem 0.8rem 0.65rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-light);
-  border-left: 3px solid var(--cornell-red);
+  padding: 0.85rem 0 0.9rem;
+  border: none;
+  border-top: 1px solid var(--border-light);
+  border-radius: 0;
   box-shadow: none;
-  background: var(--white);
+  background: transparent;
 }
 
 .logistics-page .transport-card__icon {
@@ -2628,8 +2832,7 @@ button.lodging-card__book-cta {
 
 @media (hover: hover) {
   .logistics-page .transport-card:hover {
-    background: rgba(179, 27, 27, 0.04);
-    border-color: rgba(179, 27, 27, 0.2);
+    background: transparent;
   }
 }
 
@@ -2675,10 +2878,78 @@ button.lodging-card__book-cta {
 
 .people-loop {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(11.5rem, 1fr));
+  gap: 1.35rem 1.15rem;
   overflow: visible;
   padding-bottom: 0;
+}
+
+#our-team .team-roster__grid {
+  grid-template-columns: repeat(auto-fill, minmax(10.75rem, 1fr));
+  gap: 1.75rem 1.25rem;
+}
+
+#our-team .person-card__image {
+  width: 160px;
+  height: 160px;
+}
+
+#our-team .person-card__image--photo {
+  padding: 3px;
+  background: linear-gradient(
+    145deg,
+    rgba(179, 27, 27, 0.42) 0%,
+    rgba(179, 27, 27, 0.12) 55%,
+    rgba(179, 27, 27, 0.22) 100%
+  );
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.5) inset,
+    0 6px 18px rgba(10, 10, 10, 0.1);
+  transition:
+    box-shadow 0.28s ease,
+    transform 0.28s ease;
+}
+
+#our-team .person-card:hover .person-card__image--photo {
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 10px 26px rgba(179, 27, 27, 0.18);
+}
+
+#our-team .person-card__image--photo img {
+  border: 2px solid var(--white);
+  transition: transform 0.35s cubic-bezier(0.33, 1.1, 0.48, 1);
+}
+
+#our-team .person-card__image--photo img[src*="carey-manwa"] {
+  object-position: center 38%;
+}
+
+#our-team .person-card:hover .person-card__image--photo img {
+  transform: scale(1.04);
+}
+
+#our-team .person-card__name {
+  transition: color 0.22s ease;
+}
+
+#our-team .person-card:hover .person-card__name {
+  color: var(--cornell-red-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #our-team .person-card__image--photo,
+  #our-team .person-card__image--photo img,
+  #our-team .person-card__name,
+  #our-team .person-card__title,
+  #our-team .person-card__unit {
+    transition: none;
+    animation: none;
+  }
+
+  #our-team .person-card:hover .person-card__image--photo img {
+    transform: none;
+  }
 }
 
 .person-card {
@@ -2688,13 +2959,13 @@ button.lodging-card__book-cta {
 }
 
 .person-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
 }
 
 .person-card__image {
-  width: 140px;
-  height: 140px;
-  margin: 0 auto 1rem;
+  width: 128px;
+  height: 128px;
+  margin: 0 auto 0.85rem;
   border-radius: 50%;
   background: linear-gradient(145deg, #e8e6e3 0%, #d4d2ce 100%);
   display: flex;
@@ -2705,29 +2976,124 @@ button.lodging-card__book-cta {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
+  overflow: hidden;
+}
+
+.person-card__image--photo {
+  padding: 0;
+  background: #e8e6e3;
+}
+
+.person-card__image--photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .person-card__name {
-  font-size: var(--type-body);
+  font-size: clamp(0.98rem, 2vw, 1.05rem);
   font-weight: 600;
-  margin: 0 0 0.25rem;
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4rem;
   color: var(--text);
+  line-height: 1.28;
+}
+
+#our-team .person-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  max-width: 12.5rem;
+  margin: 0 auto;
+  text-wrap: pretty;
+}
+
+#our-team .person-card__title,
+#our-team .person-card__unit {
+  margin: 0;
+  font-size: calc(var(--type-detail) * 0.97);
+  line-height: 1.48;
+}
+
+#our-team .person-card__title {
+  color: rgba(10, 10, 10, 0.88);
+  font-weight: 500;
+  transition: color 0.22s ease;
+}
+
+#our-team .person-card:hover .person-card__title {
+  color: var(--cornell-red-dark);
+}
+
+#our-team .person-card__unit {
+  color: rgba(10, 10, 10, 0.52);
+  font-weight: 400;
+  font-style: italic;
+  transition: color 0.22s ease;
+}
+
+#our-team .person-card:hover .person-card__unit {
+  color: rgba(10, 10, 10, 0.62);
+}
+
+@keyframes team-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  #our-team .person-card {
+    animation: team-card-in 0.55s cubic-bezier(0.33, 1, 0.68, 1) both;
+    animation-timeline: view();
+    animation-range: entry 5% entry 42%;
+  }
+}
+
+.person-card__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  max-width: 13.5rem;
+  margin: 0 auto;
+}
+
+.person-card__lines p {
+  margin: 0;
+  font-size: calc(var(--type-detail) * 0.98);
+  line-height: 1.42;
+  color: var(--text-muted);
+}
+
+.person-card__lines p:first-child {
+  color: var(--text);
+  font-weight: 500;
 }
 
 .person-card__role {
-  margin: 0 0 0.45rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #4a4a4a;
+  margin: 0 0 0.15rem;
+  font-size: calc(var(--type-detail) * 1.02);
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+  line-height: 1.35;
 }
 
 .person-card__affiliation {
-  font-size: var(--type-detail);
+  font-size: calc(var(--type-detail) * 0.96);
   color: var(--text-muted);
   margin: 0;
-  line-height: var(--type-line-snug);
+  line-height: 1.4;
 }
 
 .person-card__contact {
@@ -2759,16 +3125,15 @@ button.lodging-card__book-cta {
   display: block;
   width: 100%;
   max-width: min(700px, 100%);
-  padding: 1.15rem 1.45rem;
-  border: 1px solid rgba(179, 27, 27, 0.22);
-  background: #f7f7f7;
+  padding: 1.05rem 1.25rem;
+  border: 1px solid var(--border-light);
+  background: var(--white);
   color: #111;
-  transition: border-color var(--transition-fast), background var(--transition-fast);
+  transition: border-color var(--transition-fast);
 }
 
 .sponsor-badge:hover {
-  background: #f4f4f4;
-  border-color: rgba(179, 27, 27, 0.36);
+  border-color: rgba(179, 27, 27, 0.16);
 }
 
 .sponsor-badge:focus-within {
@@ -2780,14 +3145,14 @@ button.lodging-card__book-cta {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding-bottom: 0.95rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-light);
 }
 
 .sponsor-badge__seal {
   flex: 0 0 auto;
-  width: 102px;
-  height: 102px;
+  width: 92px;
+  height: 92px;
 }
 
 .sponsor-badge__colleges {
@@ -2798,11 +3163,11 @@ button.lodging-card__book-cta {
   padding-left: 0.75rem;
   text-align: left;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 650;
   letter-spacing: 0.01em;
-  font-size: clamp(0.9rem, 1.7vw, 1.45rem);
-  line-height: 1.16;
-  color: var(--cornell-red);
+  font-size: clamp(0.88rem, 1.55vw, 1.28rem);
+  line-height: 1.18;
+  color: rgba(179, 27, 27, 0.88);
 }
 
 .sponsor-badge__colleges::before {
@@ -2813,17 +3178,17 @@ button.lodging-card__book-cta {
   transform: translateY(-50%);
   width: 1px;
   height: 72%;
-  background: rgba(179, 27, 27, 0.6);
+  background: rgba(179, 27, 27, 0.28);
 }
 
 .sponsor-badge__bottom {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  padding-top: 0.85rem;
-  font-size: clamp(0.86rem, 1.45vw, 1.2rem);
-  line-height: 1.25;
-  color: #1f1f1f;
+  padding-top: 0.75rem;
+  font-size: clamp(0.86rem, 1.4vw, 1.05rem);
+  line-height: 1.3;
+  color: rgba(10, 10, 10, 0.82);
 }
 
 .sponsor-badge__bottom-link {
@@ -2844,8 +3209,175 @@ button.lodging-card__book-cta {
 }
 
 .section-sponsors__intro {
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.5rem;
   max-width: 36em;
+  color: var(--text-muted);
+}
+
+.weiss-prize {
+  display: block;
+  width: 100%;
+  max-width: min(700px, 100%);
+  border: 1px solid var(--border-light);
+  background: var(--white);
+  transition: border-color var(--transition-fast);
+}
+
+.weiss-prize:hover {
+  border-color: rgba(179, 27, 27, 0.16);
+}
+
+.weiss-prize:focus-within {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+}
+
+.weiss-prize__brand {
+  display: block;
+  padding: 1.05rem 1.25rem 0.95rem;
+  border-bottom: 1px solid var(--border-light);
+  text-decoration: none;
+}
+
+.weiss-prize__brand:hover {
+  text-decoration: none;
+}
+
+.weiss-prize__logo {
+  display: block;
+  width: auto;
+  max-width: min(100%, 380px);
+  height: auto;
+  max-height: 2.85rem;
+}
+
+.weiss-prize__body {
+  padding: 0.95rem 1.25rem 1.05rem;
+}
+
+.weiss-prize__title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-heading);
+  font-size: clamp(0.9rem, 1.45vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: rgba(10, 10, 10, 0.88);
+}
+
+.weiss-prize__text {
+  margin: 0;
+  max-width: 38em;
+  font-size: clamp(0.86rem, 1.4vw, 0.98rem);
+  line-height: 1.55;
+  color: rgba(10, 10, 10, 0.78);
+}
+
+.weiss-prize__brand:focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: -2px;
+}
+
+.section-faq__intro {
+  margin: 0 0 1.65rem;
+  max-width: 36em;
+}
+
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 44em;
+  border-top: 1px solid var(--border-light);
+}
+
+.faq-item {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.faq-item[open] {
+  border-color: var(--border-light);
+  box-shadow: none;
+}
+
+.faq-item__question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  font-family: var(--font-heading);
+  font-size: clamp(0.94rem, 1.55vw, 1.04rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--transition-fast);
+}
+
+.faq-item__question-text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.faq-item__question:hover {
+  color: var(--cornell-red-dark);
+}
+
+.faq-item[open] .faq-item__question {
+  color: var(--cornell-red-dark);
+  background: transparent;
+  border-bottom: none;
+}
+
+.faq-item__question::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item__chevron {
+  flex: 0 0 auto;
+  display: block;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-right: 0.15rem;
+  border-right: 2px solid var(--cornell-red);
+  border-bottom: 2px solid var(--cornell-red);
+  background: none;
+  transform: rotate(45deg);
+  transform-origin: 50% 50%;
+  transition: transform var(--transition-fast);
+}
+
+.faq-item[open] .faq-item__chevron {
+  transform: rotate(225deg);
+}
+
+.faq-item__question:focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.faq-item__answer {
+  padding: 0 0 1rem;
+  background: transparent;
+}
+
+.faq-item__answer p {
+  margin: 0;
+  font-size: var(--type-body);
+  line-height: var(--type-line-prose);
+  color: rgba(10, 10, 10, 0.86);
+}
+
+.faq-item__placeholder {
+  font-style: italic;
+  color: rgba(10, 10, 10, 0.58);
 }
 
 /* Typography — body and headings */
@@ -3360,7 +3892,7 @@ tbody tr:hover {
 }
 
 .key-dates-group__title {
-  margin: 0;
+  margin: 0 0 0.65rem;
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--text);
@@ -3761,6 +4293,11 @@ em {
     font-size: 0.6rem;
   }
 
+  #our-team .person-card__image {
+    width: 132px;
+    height: 132px;
+  }
+
   .people-loop-wrap {
     margin: 0;
     padding: 0 0 1rem;
@@ -3794,6 +4331,22 @@ em {
   .sponsor-badge__bottom {
     padding-top: 0.75rem;
     font-size: clamp(0.8rem, 3.2vw, 0.95rem);
+  }
+
+  .weiss-prize {
+    max-width: 100%;
+  }
+
+  .weiss-prize__brand {
+    padding: 0.9rem 1rem 0.85rem;
+  }
+
+  .weiss-prize__body {
+    padding: 0.85rem 1rem 1rem;
+  }
+
+  .weiss-prize__logo {
+    max-height: 2.5rem;
   }
 
   .photo-gallery {
