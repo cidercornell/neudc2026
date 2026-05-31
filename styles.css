@@ -1641,8 +1641,6 @@ body {
 .logistics-page .logistics-page__wrap > .register-fee-table-wrap,
 .logistics-page .logistics-page__wrap > .logistics-airport-panel,
 .logistics-page .logistics-page__wrap > .logistics-accordion-group,
-.logistics-page .logistics-page__wrap > .airport-taxi-fallback,
-.logistics-page .logistics-page__wrap > .travel-callout,
 .logistics-page .logistics-page__wrap > .lodging-list,
 .logistics-page .logistics-page__wrap > .logistics-link-strip,
 .logistics-page .logistics-page__wrap > .logistics-flow__link-list {
@@ -1671,19 +1669,9 @@ body {
   list-style-position: outside;
 }
 
-.logistics-page .logistics-page__wrap > .travel-callout,
 .logistics-page .logistics-page__wrap > .logistics-accordion-group,
 .logistics-page .logistics-page__wrap > .logistics-airport-panel {
   margin-top: 1.35rem;
-}
-
-.logistics-getting-there .register-fee-table-wrap + .logistics-accordion-group,
-.logistics-getting-there .register-fee-table-wrap + .travel-callout {
-  margin-top: 1.35rem;
-}
-
-.logistics-getting-there .airport-taxi-fallback + .travel-callout {
-  margin-top: 0;
 }
 
 .logistics-page .logistics-onsite .section-title::after {
@@ -1826,279 +1814,172 @@ body {
 
 /* Integrated airport accordions — taxi + Campus-to-Campus */
 .logistics-accordion-group {
-  margin: 1rem 0 0;
-  max-width: 100%;
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  background: var(--white);
-  overflow: hidden;
-}
-
-.logistics-getting-there .logistics-accordion-group {
-  margin-top: 1.35rem;
-  max-width: none;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.logistics-accordion-group .airport-taxi-fallback,
-.logistics-accordion-group .travel-callout {
   margin: 0;
+  max-width: 100%;
   border: none;
   border-radius: 0;
   background: transparent;
-}
-
-.logistics-accordion-group .airport-taxi-fallback + .travel-callout {
-  border-top: 1px solid var(--border-light);
+  overflow: hidden;
 }
 
 .logistics-accordion-group__heading {
   margin: 0;
-  padding: 1rem 1.05rem 0.85rem;
+  padding: 0.9rem 1.05rem 0.6rem;
   border-bottom: 1px solid var(--border-light);
-  background: var(--white);
-  font-family: var(--font-heading);
-  font-size: clamp(1rem, 2.1vw, 1.08rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  text-transform: none;
-  color: var(--text);
-  line-height: 1.3;
+  background: linear-gradient(180deg, rgba(179, 27, 27, 0.05) 0%, rgba(179, 27, 27, 0.01) 100%);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.88);
+  line-height: 1.35;
 }
 
-.logistics-accordion-group .airport-taxi-fallback__title,
-.logistics-accordion-group .travel-callout__title {
-  padding: 0.95rem 1.05rem 1rem;
-  background: var(--white);
+.logistics-accordion {
+  border-top: 1px solid var(--border-light);
 }
 
-.logistics-accordion-group .airport-taxi-fallback__title:hover,
-.logistics-accordion-group .travel-callout__title:hover {
-  background: rgba(179, 27, 27, 0.03);
+.logistics-accordion:first-of-type {
+  border-top: none;
 }
 
-.logistics-accordion-group .airport-taxi-fallback[open] .airport-taxi-fallback__title,
-.logistics-accordion-group .travel-callout[open] .travel-callout__title {
-  background: var(--bg-subtle);
-}
-
-.logistics-accordion-group .logistics-accordion__summary-text,
-.logistics-accordion-group .airport-taxi-fallback__summary-text,
-.logistics-accordion-group .travel-callout__summary-text {
-  gap: 0.22rem;
-}
-
-.logistics-accordion-group .logistics-accordion__summary-lead,
-.logistics-accordion-group .airport-taxi-fallback__summary-lead,
-.logistics-accordion-group .travel-callout__summary-lead {
-  font-size: clamp(0.98rem, 2vw, 1.05rem);
-  font-weight: 650;
-}
-
-.logistics-accordion-group .logistics-accordion__summary-hint,
-.logistics-accordion-group .airport-taxi-fallback__summary-hint,
-.logistics-accordion-group .travel-callout__summary-hint {
-  font-size: calc(var(--type-detail) * 0.9);
-  font-weight: 400;
-  color: rgba(10, 10, 10, 0.58);
-}
-
-.logistics-accordion-group .logistics-accordion__summary-chevron,
-.logistics-accordion-group .airport-taxi-fallback__summary-chevron,
-.logistics-accordion-group .travel-callout__summary-chevron {
-  width: 2.15rem;
-  height: 2.15rem;
-  margin: 0 0 0 0.75rem;
-}
-
-.logistics-accordion-group .logistics-accordion__body,
-.logistics-accordion-group .airport-taxi-fallback__body,
-.logistics-accordion-group .travel-callout__body {
-  padding: 0.9rem 1.05rem 1.05rem;
-  background: var(--white);
-}
-
-.logistics-accordion-group .travel-callout__body .logistics-flow__text {
-  max-width: none;
-  margin: 0 0 0.5rem;
-  padding: 0;
-  border: none;
-}
-
-.logistics-accordion-group .travel-callout__body .logistics-flow__text:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
-}
-
-.logistics-accordion-group .travel-callout__body .logistics-flow__text strong {
-  font-weight: 600;
-  color: var(--text);
-}
-
-.airport-taxi-fallback,
-.travel-callout {
-  margin: 1rem 0 0;
-  max-width: 100%;
-  border: 1px solid var(--border-light);
-  border-radius: 10px;
-  background: var(--white);
-  overflow: hidden;
-}
-
-.airport-taxi-fallback__title,
-.travel-callout__title {
-  margin: 0;
-  list-style: none;
-  cursor: pointer;
+.logistics-accordion__title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.85rem 1rem;
-  padding: 0.9rem 1rem 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--text);
-  background: var(--bg-alt);
-  border-bottom: 1px solid transparent;
-  transition: background var(--transition-fast), border-color var(--transition-fast);
+  gap: 1rem;
+  margin: 0;
+  padding: 0.88rem 1.05rem;
+  list-style: none;
+  cursor: pointer;
+  background: var(--white);
+  transition: background var(--transition-fast);
 }
 
-.airport-taxi-fallback__title:hover,
-.travel-callout__title:hover {
-  background: rgba(10, 10, 10, 0.03);
+.logistics-accordion__title:hover {
+  background: rgba(10, 10, 10, 0.02);
 }
 
-.airport-taxi-fallback[open] .airport-taxi-fallback__title,
-.travel-callout[open] .travel-callout__title {
-  border-bottom-color: var(--border-light);
+.logistics-accordion[open] .logistics-accordion__title {
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-light);
 }
 
-.airport-taxi-fallback__summary-main,
-.travel-callout__summary-main {
-  display: flex;
-  align-items: center;
-  min-width: 0;
-  flex: 1 1 auto;
+.logistics-accordion__title::-webkit-details-marker {
+  display: none;
 }
 
-.airport-taxi-fallback__title:focus-visible,
-.travel-callout__title:focus-visible {
+.logistics-accordion__title:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: -2px;
 }
 
-.airport-taxi-fallback__title::-webkit-details-marker,
-.travel-callout__title::-webkit-details-marker {
-  display: none;
+.logistics-accordion__label {
+  font-family: var(--font-heading);
+  font-size: clamp(0.98rem, 2vw, 1.04rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--text);
 }
 
-.airport-taxi-fallback__summary-chevron,
-.travel-callout__summary-chevron {
-  flex: 0 0 auto;
-  display: block;
-  width: 2.75rem;
-  height: 2.75rem;
-  margin: 0 0.05rem 0 0.65rem;
+.logistics-accordion__chevron {
   flex-shrink: 0;
-  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2040%2040'%3E%3Ccircle%20cx%3D'20'%20cy%3D'20'%20r%3D'17.5'%20fill%3D'rgba(10%2C10%2C10%2C0.06)'%20stroke%3D'rgba(10%2C10%2C10%2C0.18)'%20stroke-width%3D'1'%2F%3E%3Cpath%20d%3D'M12.5%2016.5%20L20%2025.5%20L27.5%2016.5'%20stroke%3D'%230a0a0a'%20stroke-width%3D'2.6'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%20fill%3D'none'%2F%3E%3C%2Fsvg%3E")
-    center / 100% no-repeat;
-  filter: drop-shadow(0 2px 4px rgba(10, 10, 10, 0.08));
-  transform: rotate(0deg);
-  transform-origin: 50% 50%;
-  transition:
-    transform 0.38s cubic-bezier(0.33, 1.15, 0.48, 1),
-    filter 0.22s ease;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 1.5px solid var(--text);
+  border-bottom: 1.5px solid var(--text);
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.22s ease;
+  opacity: 0.72;
 }
 
-.airport-taxi-fallback__title:hover .airport-taxi-fallback__summary-chevron,
-.travel-callout__title:hover .travel-callout__summary-chevron {
-  filter: drop-shadow(0 2px 6px rgba(10, 10, 10, 0.14));
+.logistics-accordion[open] .logistics-accordion__chevron {
+  transform: rotate(-135deg) translateY(2px);
 }
 
-.airport-taxi-fallback[open] .airport-taxi-fallback__summary-chevron,
-.travel-callout[open] .travel-callout__summary-chevron {
-  transform: rotate(180deg);
+.logistics-accordion__body {
+  padding: 0.95rem 1.05rem 1.1rem;
+  background: var(--white);
+  font-size: calc(var(--type-body) * 0.98);
+  line-height: 1.55;
 }
 
-.airport-taxi-fallback__summary-text,
-.travel-callout__summary-text {
+.logistics-accordion__detail-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 0.15rem;
-  min-width: 0;
+  gap: 0.55rem;
 }
 
-.airport-taxi-fallback__summary-lead,
-.travel-callout__summary-lead {
-  font-size: clamp(0.95rem, 2.1vw, 1.05rem);
-  font-weight: 650;
-  font-family: var(--font-heading);
-  letter-spacing: -0.02em;
-  line-height: 1.28;
+.logistics-accordion__detail-list li {
+  margin: 0;
+}
+
+.logistics-accordion__detail-label {
+  font-weight: 600;
   color: var(--text);
 }
 
-.airport-taxi-fallback__summary-hint,
-.travel-callout__summary-hint,
-.logistics-accordion__summary-hint {
-  font-family: var(--font-body);
-  font-size: calc(var(--type-detail) * 0.93);
-  font-weight: 400;
-  line-height: 1.35;
-  color: var(--text);
+.logistics-accordion__detail-label::after {
+  content: ":";
 }
 
-.airport-taxi-fallback__body {
-  padding: 0.85rem 1rem 1.05rem;
+.logistics-accordion__detail-list a {
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 0.14em;
+  text-decoration-thickness: 1px;
 }
 
-.logistics-accordion-group .airport-taxi-fallback__body {
-  padding: 0.9rem 1.05rem 1.05rem;
+.logistics-accordion__detail-list a:hover {
+  color: var(--link-hover);
 }
 
 .airport-taxi-fallback__list {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: minmax(10rem, 13rem) minmax(0, 1fr);
+  grid-template-columns: minmax(9.5rem, 12rem) minmax(0, 1fr);
   column-gap: 1rem;
-  row-gap: 0.75rem;
+  row-gap: 0.85rem;
 }
 
 .airport-taxi-fallback__list dt {
   margin: 0;
-  padding-top: 0.12rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--cornell-red-dark);
+  padding-top: 0.1rem;
+  font-size: calc(var(--type-detail) * 0.98);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
 }
 
 .airport-taxi-fallback__list dd {
   margin: 0;
-  font-size: var(--type-body);
-  line-height: var(--type-line-prose);
+  font-size: calc(var(--type-body) * 0.98);
+  line-height: 1.55;
   color: var(--text);
 }
 
 .airport-taxi-fallback__phones {
   margin: 0;
-  padding-left: 1.15rem;
+  padding-left: 1.1rem;
   list-style: disc;
   list-style-position: outside;
 }
 
 .airport-taxi-fallback__phones li + li {
-  margin-top: 0.35rem;
+  margin-top: 0.3rem;
 }
 
 .airport-taxi-fallback__note {
   font-weight: 400;
-  color: rgba(10, 10, 10, 0.62);
-  font-size: calc(var(--type-detail) * 0.98);
+  color: rgba(10, 10, 10, 0.58);
+  font-size: calc(var(--type-detail) * 0.96);
 }
 
 .airport-taxi-fallback__list a {
@@ -2117,16 +1998,17 @@ body {
 @media (max-width: 700px) {
   .airport-taxi-fallback__list {
     grid-template-columns: 1fr;
-    row-gap: 0.5rem;
+    row-gap: 0.45rem;
   }
 
   .airport-taxi-fallback__list dd {
-    margin-bottom: 0.55rem;
+    margin-bottom: 0;
+    padding-left: 0;
   }
 
   .airport-taxi-fallback__list dt:not(:first-child) {
     margin-top: 0.35rem;
-    padding-top: 0.5rem;
+    padding-top: 0.55rem;
     border-top: 1px solid var(--border-light);
   }
 }
@@ -2780,27 +2662,6 @@ a.lodging-card:focus-visible {
   #parking .parking-detail__specs dd:last-of-type {
     padding-bottom: 0;
   }
-}
-
-.travel-callout__body {
-  padding: 0;
-}
-
-.travel-callout__body .logistics-flow__text {
-  max-width: none;
-  margin: 0;
-  padding: 0.8rem 1.25rem;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.travel-callout__body .logistics-flow__text:last-child {
-  border-bottom: none;
-  padding-bottom: 1rem;
-}
-
-.travel-callout__body .logistics-flow__text strong {
-  font-weight: 600;
-  color: var(--text);
 }
 
 .logistics-flow__text--muted {

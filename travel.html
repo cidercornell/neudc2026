@@ -190,51 +190,43 @@
           </tbody>
         </table>
       </div>
-      <div class="logistics-accordion-group" aria-label="Getting to campus from the airport">
-      <h3 class="logistics-accordion-group__heading">Getting to campus from the airport</h3>
-      <details class="logistics-accordion airport-taxi-fallback" aria-label="Taxi from the airport">
-        <summary class="logistics-accordion__title airport-taxi-fallback__title">
-          <span class="logistics-accordion__summary-main airport-taxi-fallback__summary-main">
-            <span class="logistics-accordion__summary-text airport-taxi-fallback__summary-text">
-              <span class="logistics-accordion__summary-lead airport-taxi-fallback__summary-lead">By taxi</span>
-              <span class="logistics-accordion__summary-hint airport-taxi-fallback__summary-hint">ITH cab numbers; taxi stands at other airports</span>
-            </span>
-          </span>
-          <span class="logistics-accordion__summary-chevron airport-taxi-fallback__summary-chevron" aria-hidden="true"></span>
-        </summary>
-        <div class="logistics-accordion__body airport-taxi-fallback__body">
-          <dl class="airport-taxi-fallback__list">
-            <dt>Ithaca Tompkins (ITH)</dt>
-            <dd>
-              <ul class="airport-taxi-fallback__phones">
-                <li><a href="tel:+16072529052">Ithaca Airport Cab · 607-252-9052</a> <span class="airport-taxi-fallback__note">(most reliable in the area; also serves BGM, ELM, and SYR)</span></li>
-                <li><a href="tel:+16075888888">Collegetown Cab · 607-588-8888</a></li>
-                <li><a href="tel:+16072777777">Ithaca Dispatch (main) · 607-277-7777</a></li>
-                <li><a href="tel:+16072723333">Ithaca Dispatch (alternate) · 607-272-3333</a></li>
-              </ul>
-            </dd>
-            <dt>ELM / SYR / BGM / JFK / EWR</dt>
-            <dd>Use each airport’s on-site taxi stand or ground transportation desk for local providers.</dd>
-          </dl>
-        </div>
-      </details>
-      <details class="logistics-accordion travel-callout" aria-label="Bus from New York City">
-        <summary class="logistics-accordion__title travel-callout__title">
-          <span class="logistics-accordion__summary-main travel-callout__summary-main">
-            <span class="logistics-accordion__summary-text travel-callout__summary-text">
-              <span class="logistics-accordion__summary-lead travel-callout__summary-lead">By bus from New York City</span>
-              <span class="logistics-accordion__summary-hint travel-callout__summary-hint">Campus-to-Campus coach and other intercity buses</span>
-            </span>
-          </span>
-          <span class="logistics-accordion__summary-chevron travel-callout__summary-chevron" aria-hidden="true"></span>
-        </summary>
-        <div class="logistics-accordion__body travel-callout__body">
-          <p class="logistics-flow__text">Cornell's Campus-to-Campus coach runs daily between Ithaca and New York City.</p>
-          <p class="logistics-flow__text"><strong>Schedules:</strong> <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/campus-campus-bus-service" target="_blank" rel="noopener">Book and view schedules</a></p>
-          <p class="logistics-flow__text"><strong>Contact:</strong> <a href="tel:+16072548747">607-254-8747</a> or <a href="mailto:c2cbus@cornell.edu">c2cbus@cornell.edu</a></p>
-          <p class="logistics-flow__text"><strong>Other intercity bus options:</strong> FlixBus, OurBus, and Greyhound also serve the Ithaca area.</p>
-        </div>
-      </details>
+      <div class="logistics-accordion-group" aria-labelledby="airport-ground-heading">
+        <p class="logistics-accordion-group__heading" id="airport-ground-heading">Getting to campus from the airport</p>
+        <details class="logistics-accordion" aria-label="Taxi from the airport">
+          <summary class="logistics-accordion__title">
+            <span class="logistics-accordion__label">By taxi</span>
+            <span class="logistics-accordion__chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="logistics-accordion__body">
+            <dl class="airport-taxi-fallback__list">
+              <dt>Ithaca Tompkins (ITH)</dt>
+              <dd>
+                <ul class="airport-taxi-fallback__phones">
+                  <li><a href="tel:+16072529052">Ithaca Airport Cab · 607-252-9052</a> <span class="airport-taxi-fallback__note">Most reliable in the area; also serves BGM, ELM, and SYR.</span></li>
+                  <li><a href="tel:+16075888888">Collegetown Cab · 607-588-8888</a></li>
+                  <li><a href="tel:+16072777777">Ithaca Dispatch (main) · 607-277-7777</a></li>
+                  <li><a href="tel:+16072723333">Ithaca Dispatch (alternate) · 607-272-3333</a></li>
+                </ul>
+              </dd>
+              <dt>ELM / SYR / BGM / JFK / EWR</dt>
+              <dd>Use each airport&rsquo;s on-site taxi stand or ground transportation desk for local providers.</dd>
+            </dl>
+          </div>
+        </details>
+        <details class="logistics-accordion" aria-label="Bus from New York City">
+          <summary class="logistics-accordion__title">
+            <span class="logistics-accordion__label">By bus from New York City</span>
+            <span class="logistics-accordion__chevron" aria-hidden="true"></span>
+          </summary>
+          <div class="logistics-accordion__body">
+            <ul class="logistics-accordion__detail-list">
+              <li>Cornell&rsquo;s Campus-to-Campus coach runs daily between Ithaca and New York City.</li>
+              <li><span class="logistics-accordion__detail-label">Schedules</span> <a href="https://fcs.cornell.edu/departments/transportation-delivery-services/campus-campus-bus-service" target="_blank" rel="noopener">Book and view schedules</a></li>
+              <li><span class="logistics-accordion__detail-label">Contact</span> <a href="tel:+16072548747">607-254-8747</a> or <a href="mailto:c2cbus@cornell.edu">c2cbus@cornell.edu</a></li>
+              <li><span class="logistics-accordion__detail-label">Other options</span> FlixBus, OurBus, and Greyhound also serve the Ithaca area.</li>
+            </ul>
+          </div>
+        </details>
       </div>
       </div>
     </div>
