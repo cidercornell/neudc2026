@@ -3191,17 +3191,18 @@ a.lodging-card:focus-visible {
 /* Sponsors */
 .sponsors-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
-  justify-items: start;
-  max-width: none;
+  align-items: stretch;
+  width: 100%;
   margin: 0;
 }
 
 .sponsor-badge {
   display: block;
   width: 100%;
-  max-width: min(700px, 100%);
+  max-width: none;
+  height: 100%;
   padding: 1.05rem 1.25rem;
   border: 1px solid var(--border-light);
   background: var(--white);
@@ -3332,6 +3333,10 @@ a.lodging-card:focus-visible {
   opacity: 0.9;
 }
 
+.section-sponsors .section-wrap {
+  max-width: var(--footer-wrap-max);
+}
+
 .section-sponsors__intro {
   margin: 0 0 1.5rem;
   max-width: 36em;
@@ -3339,9 +3344,11 @@ a.lodging-card:focus-visible {
 }
 
 .weiss-prize {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: min(700px, 100%);
+  max-width: none;
+  height: 100%;
   border: 1px solid var(--border-light);
   background: var(--white);
   transition: border-color var(--transition-fast);
@@ -3381,6 +3388,7 @@ a.lodging-card:focus-visible {
 }
 
 .weiss-prize__body {
+  flex: 1;
   padding: 0.95rem 1.25rem 1.05rem;
 }
 
