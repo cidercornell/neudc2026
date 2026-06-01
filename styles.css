@@ -3234,6 +3234,19 @@ a.lodging-card:focus-visible {
   background: rgba(179, 27, 27, 0.28);
 }
 
+.sponsor-badge__colleges-link {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(179, 27, 27, 0.42);
+  text-decoration-skip-ink: auto;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+}
+
 .sponsor-badge__bottom {
   display: flex;
   flex-direction: column;
@@ -3244,21 +3257,55 @@ a.lodging-card:focus-visible {
   color: rgba(10, 10, 10, 0.82);
 }
 
-.sponsor-badge__bottom-link {
-  color: inherit;
-  text-decoration: none;
-}
-
-.sponsor-badge__bottom-link:hover {
-  color: var(--cornell-red);
+.sponsor-badge__bottom-link,
+.weiss-prize__text-link {
+  color: var(--link);
+  font-weight: 600;
   text-decoration: underline;
-  text-underline-offset: 0.14em;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(179, 27, 27, 0.4);
+  text-decoration-skip-ink: auto;
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
 }
 
-.sponsor-badge__bottom-link:focus-visible {
+.sponsor-badge__bottom-link:hover,
+.sponsor-badge__colleges-link:hover,
+.weiss-prize__text-link:hover {
+  color: var(--link-hover);
+  text-decoration-color: var(--link-hover);
+}
+
+.sponsor-badge__bottom-link:focus-visible,
+.sponsor-badge__colleges-link:focus-visible,
+.weiss-prize__text-link:focus-visible {
   outline: 2px solid var(--cornell-red);
   outline-offset: 2px;
   border-radius: 2px;
+}
+
+/* External sponsor links — subtle opens-new-tab cue */
+.section-sponsors a[target="_blank"]:not(.weiss-prize__brand)::after {
+  content: "";
+  display: inline-block;
+  width: 0.72em;
+  height: 0.72em;
+  margin-left: 0.22em;
+  vertical-align: 0.08em;
+  opacity: 0.65;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.25' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.section-sponsors a[target="_blank"]:not(.weiss-prize__brand):hover::after {
+  opacity: 0.9;
 }
 
 .section-sponsors__intro {
@@ -3296,12 +3343,17 @@ a.lodging-card:focus-visible {
   text-decoration: none;
 }
 
+.weiss-prize__brand:hover .weiss-prize__logo {
+  opacity: 0.82;
+}
+
 .weiss-prize__logo {
   display: block;
   width: auto;
   max-width: min(100%, 380px);
   height: auto;
   max-height: 2.85rem;
+  transition: opacity var(--transition-fast);
 }
 
 .weiss-prize__body {
