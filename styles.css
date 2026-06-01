@@ -3093,7 +3093,7 @@ a.lodging-card:focus-visible {
 }
 
 #our-team .person-card__name-link {
-  color: inherit;
+  color: var(--link);
   font: inherit;
   letter-spacing: inherit;
   cursor: pointer;
@@ -3101,12 +3101,13 @@ a.lodging-card:focus-visible {
   text-decoration-style: dotted;
   text-underline-offset: 0.16em;
   text-decoration-thickness: 1px;
-  text-decoration-color: rgba(10, 10, 10, 0.22);
-  transition: text-decoration-color var(--transition-fast);
+  text-decoration-color: rgba(179, 27, 27, 0.38);
+  transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
 }
 
 #our-team .person-card__name-link:hover {
-  text-decoration-color: rgba(179, 27, 27, 0.48);
+  color: var(--link-hover);
+  text-decoration-color: var(--link-hover);
 }
 
 #our-team .person-card__name-link:focus-visible {
