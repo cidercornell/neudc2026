@@ -3092,6 +3092,29 @@ a.lodging-card:focus-visible {
   color: rgba(10, 10, 10, 0.54);
 }
 
+#our-team .person-card__name-link {
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 0.16em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(10, 10, 10, 0.22);
+  transition: text-decoration-color var(--transition-fast);
+}
+
+#our-team .person-card__name-link:hover {
+  text-decoration-color: rgba(179, 27, 27, 0.48);
+}
+
+#our-team .person-card__name-link:focus-visible {
+  outline: 2px solid var(--cornell-red);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 @keyframes team-card-in {
   from {
     opacity: 0;
