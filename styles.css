@@ -123,6 +123,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--site-header-offset);
   height: 100%;
 }
 
@@ -441,25 +442,25 @@ body {
   border-top: none;
 }
 
-/* Travel — in-page anchors clear sticky header */
+/* In-page anchors — clear sticky header; html scroll-padding handles header height */
 #getting-to-ithaca,
 #venue,
 #getting-around,
 #tcat,
 #parking,
-#lodging {
-  scroll-margin-top: 1.25rem;
-}
-
-.content-section:first-of-type {
-  border-top: none;
-}
-
+#lodging,
+#agenda,
+#our-team,
+#section-about,
 #section-dates,
 #cfp,
 #sponsors,
 #faq {
   scroll-margin-top: 1rem;
+}
+
+.content-section:first-of-type {
+  border-top: none;
 }
 
 .contact-block {
@@ -483,12 +484,6 @@ body {
   outline: 2px solid var(--cornell-red);
   outline-offset: 3px;
   border-radius: 2px;
-}
-
-#agenda,
-#keynotes,
-#our-team {
-  scroll-margin-top: 1rem;
 }
 
 .section-wrap {
@@ -1054,7 +1049,7 @@ body {
   border-top: 1px solid var(--border-light);
   background: transparent;
   border-radius: 0;
-  scroll-margin-top: 1.25rem;
+  scroll-margin-top: 1rem;
 }
 
 .register-page .register-checkout__intro {
