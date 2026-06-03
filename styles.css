@@ -212,12 +212,19 @@ body {
   gap: 1.25rem;
   min-width: 0;
   max-width: 100%;
+}
+
+.logo-link__brand {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 1;
   text-decoration: none;
   color: var(--text);
   transition: opacity var(--transition-fast);
 }
 
-.logo-link:hover {
+.logo-link__brand:hover {
   opacity: 0.85;
 }
 
