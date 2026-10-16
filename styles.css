@@ -4581,3 +4581,764 @@ em {
     font-weight: 700;
   }
 }
+
+/* ==========================================================================
+   Program page: conference schedule
+   ========================================================================== */
+.sched {
+  --sched-red-wash: rgba(179, 27, 27, 0.06);
+  --sched-red-line: rgba(179, 27, 27, 0.22);
+  --sched-ink-soft: #55514c;
+  --sched-panel: #f6f5f2;
+  --sched-radius: 12px;
+  --sched-time-col: 9.5rem;
+  --sched-room-col: 4.5rem;
+  --sched-sticky-h: 5.25rem;
+  --sched-gutter: var(--site-gutter);
+}
+
+/* One column for the whole Program page so the intro, schedule and team line up */
+.program-page .program-page__wrap {
+  max-width: min(66rem, 100%);
+}
+
+.sched .visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Toolbar: day tabs + search, one row ---------------------------------------- */
+.sched-toolbar {
+  position: sticky;
+  top: var(--site-header-offset);
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem 1rem;
+  margin: 0 0 1.5rem;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border-light);
+  border-radius: 14px;
+  background: var(--sched-panel);
+  box-shadow: 0 -0.8rem 0 0 var(--white), 0 6px 18px -12px rgba(74, 58, 40, 0.35);
+}
+
+.sched-toolbar[hidden] { display: none; }
+
+.sched-tabs {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.sched-tab {
+  min-height: 2.6rem;
+  padding: 0.4rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.1;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.sched-tab__short { display: none; }
+
+.sched-tab:hover { border-color: var(--cornell-red); }
+
+.sched-tab[aria-selected="true"] {
+  background: var(--cornell-red);
+  border-color: var(--cornell-red);
+  color: var(--white);
+}
+
+.sched.is-filtering .sched-tab {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.sched-tools {
+  display: flex;
+  flex: 1 1 22rem;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.sched-search {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 24rem;
+}
+
+.sched-search svg {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sched-ink-soft);
+  pointer-events: none;
+}
+
+.sched-search input {
+  width: 100%;
+  height: 2.6rem;
+  padding: 0 2.3rem 0 2.4rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text);
+  font: inherit;
+  font-size: 1rem;
+}
+
+.sched-search input::placeholder { color: #75716c; }
+
+.sched-search__kbd {
+  display: none;
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 1.4rem;
+  padding: 0.05rem 0.35rem;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  background: var(--bg-subtle);
+  color: var(--sched-ink-soft);
+  font: inherit;
+  font-size: 0.8rem;
+  text-align: center;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sched-search input:placeholder-shown:not(:focus) + .sched-search__kbd { display: block; }
+}
+
+.sched-expand {
+  flex: 0 0 auto;
+  min-height: 2.6rem;
+  padding: 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sched-expand:hover { border-color: var(--cornell-red); }
+
+.sched-search input:focus-visible,
+.sched-tab:focus-visible,
+.sched-expand:focus-visible,
+.sched-copy:focus-visible,
+.sched-session__summary:focus-visible {
+  outline: 2px solid var(--cornell-blue);
+  outline-offset: 2px;
+}
+
+.sched-status {
+  flex: 1 0 100%;
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--sched-ink-soft);
+}
+
+.sched-status:empty { display: none; }
+
+/* "Now" / "Up next" during the conference --------------------------------- */
+.sched-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: 0.6rem;
+  padding: 0.16rem 0.55rem;
+  border-radius: 999px;
+  background: var(--cornell-red);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.sched-live[hidden] { display: none; }
+
+.sched-live.is-now::before {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: currentColor;
+  animation: sched-pulse 1.6s ease-in-out infinite;
+}
+
+.sched-live.is-next {
+  background: transparent;
+  color: var(--cornell-red-dark);
+  box-shadow: inset 0 0 0 1.5px var(--cornell-red);
+}
+
+@keyframes sched-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* Days and timeline -------------------------------------------------------- */
+.sched-day + .sched-day { margin-top: 2.5rem; }
+
+.sched-day[hidden] { display: none; }
+
+.sched-day,
+.sched-list { scroll-margin-top: calc(var(--site-header-offset) + var(--sched-sticky-h)); }
+
+.sched-day__title {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.3rem, 2.6vw, 1.55rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--cornell-red);
+}
+
+/* With the day tabs active, the selected tab already names the day */
+.sched.has-js:not(.is-filtering) .sched-day__title { display: none; }
+
+.sched-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sched-break {
+  display: grid;
+  grid-template-columns: var(--sched-time-col) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.65rem 0;
+  border-top: 1px dashed var(--border);
+  font-size: 1rem;
+}
+
+.sched-timeline > li:first-child { border-top: 0; padding-top: 0; }
+
+.sched-break__time {
+  color: var(--sched-ink-soft);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sched-break__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.7rem;
+  row-gap: 0.1rem;
+}
+
+.sched-break__label { font-weight: 700; }
+
+.sched-break__loc { color: var(--sched-ink-soft); }
+
+.sched-break .sched-live { margin-left: 0; }
+
+.sched-break.is-now {
+  margin: 0 -0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: 10px;
+  background: var(--sched-red-wash);
+}
+
+.sched-slot {
+  padding: 1rem 0 1.5rem;
+  border-top: 1px dashed var(--border);
+  scroll-margin-top: calc(var(--site-header-offset) + var(--sched-sticky-h));
+}
+
+.sched-timeline > li.sched-slot:first-child { padding-top: 0; }
+
+.sched-slot__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.85rem;
+  margin: 0 0 0.75rem;
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.sched-slot__time {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.sched-slot__name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cornell-red);
+}
+
+.sched-slot__sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sched-slot.is-now .sched-session { border-color: var(--sched-red-line); }
+
+/* Session ------------------------------------------------------------------- */
+.sched-session {
+  border: 1px solid var(--border-light);
+  border-radius: var(--sched-radius);
+  background: var(--bg-alt);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  scroll-margin-top: calc(var(--site-header-offset) + var(--sched-sticky-h) + 0.5rem);
+}
+
+.sched-session:hover { border-color: var(--sched-red-line); }
+
+.sched-session[open] {
+  border-color: var(--sched-red-line);
+  box-shadow: 0 4px 18px rgba(74, 58, 40, 0.08);
+}
+
+.sched-session.is-target { animation: sched-flash 1.8s var(--ease-out); }
+
+@keyframes sched-flash {
+  0%, 35% { box-shadow: 0 0 0 3px rgba(179, 27, 27, 0.35); }
+  100% { box-shadow: 0 4px 18px rgba(74, 58, 40, 0.08); }
+}
+
+.sched-session__summary {
+  display: grid;
+  grid-template-columns: var(--sched-room-col) minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+  padding: 0.85rem 1rem 0.85rem 0.85rem;
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--sched-radius);
+}
+
+.sched-session__summary::-webkit-details-marker { display: none; }
+.sched-session__summary::marker { content: ""; }
+
+.sched-room {
+  display: block;
+  padding: 0.45rem 0.3rem;
+  border-radius: 8px;
+  background: var(--sched-red-wash);
+  color: var(--cornell-red-dark);
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.sched-session__main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.sched-session__track {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cornell-red);
+}
+
+.sched-session__title {
+  font-family: var(--font-heading);
+  font-size: 1.12rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.sched-session__people {
+  margin-top: 0.15rem;
+  font-size: 0.97rem;
+  line-height: 1.45;
+  color: var(--sched-ink-soft);
+}
+
+.sched-session[open] .sched-session__people { display: none; }
+
+.sched-session__toggle {
+  position: relative;
+  width: 1.9rem;
+  height: 1.9rem;
+  margin-top: 0.1rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  transition: transform var(--transition-medium), background var(--transition-fast);
+}
+
+.sched-session__toggle::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 44%;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 1.8px solid var(--text);
+  border-bottom: 1.8px solid var(--text);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.sched-session__summary:hover .sched-session__toggle { background: var(--bg-subtle); }
+
+.sched-session[open] .sched-session__toggle { transform: rotate(180deg); }
+
+.sched-session__body {
+  padding: 0 1rem 0.85rem calc(0.85rem + var(--sched-room-col) + 1rem);
+}
+
+.sched-session__chair {
+  margin: 0 0 0.4rem;
+  font-size: 0.97rem;
+  color: var(--sched-ink-soft);
+}
+
+/* Papers table: column labels appear once per session */
+.sched-papers {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.sched-papers th {
+  padding: 0.4rem 0.9rem 0.4rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: none;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--sched-ink-soft);
+}
+
+.sched-papers td {
+  padding: 0.6rem 0.9rem 0.6rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: top;
+}
+
+.sched-papers tbody tr:last-child td { border-bottom: 0; }
+
+.sched-papers tbody tr,
+.sched-papers tbody tr:nth-child(even),
+.sched-papers tbody tr:hover { background: none; }
+
+@media (hover: hover) {
+  .sched-papers tbody tr:hover td { background: rgba(179, 27, 27, 0.03); }
+}
+
+.sched-papers th:last-child,
+.sched-papers td:last-child { padding-right: 0; }
+
+.sched-papers__time { width: 3.4rem; }
+
+.sched-papers__presenter,
+.sched-papers__disc { width: 11.5rem; }
+
+.sched-paper__time {
+  color: var(--cornell-red-dark);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sched-paper__title { color: var(--text); }
+
+.sched-paper__presenter { font-weight: 600; }
+
+.sched-paper__disc { color: var(--sched-ink-soft); }
+
+.sched-paper.is-match td { background: rgba(253, 233, 166, 0.3); }
+
+.sched mark {
+  padding: 0 0.1em;
+  border-radius: 3px;
+  background: #fde9a6;
+  color: inherit;
+}
+
+.sched-copy {
+  display: block;
+  margin: 0.45rem 0 0 auto;
+  padding: 0.2rem 0;
+  border: 0;
+  background: none;
+  color: var(--sched-ink-soft);
+  font: inherit;
+  font-size: 0.88rem;
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.sched-copy:hover { color: var(--cornell-red-dark); text-decoration-color: currentColor; }
+
+.sched-copy[hidden] { display: none; }
+
+.sched-empty {
+  padding: 1.75rem 1.5rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--sched-radius);
+  text-align: center;
+  font-size: var(--type-body);
+}
+
+.sched-empty p { margin: 0 0 0.9rem; }
+
+.sched-empty[hidden],
+.sched-session[hidden],
+.sched-slot[hidden],
+.sched-break[hidden] { display: none; }
+
+/* Phones --------------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .sched {
+    --sched-sticky-h: 3.9rem;
+  }
+
+  /* Only the day switcher stays pinned; search scrolls away with the page */
+  .sched-toolbar:not([hidden]) {
+    display: contents;
+  }
+
+  .sched-tabs {
+    position: sticky;
+    top: var(--site-header-offset);
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem;
+    margin: 0 calc(-1 * var(--sched-gutter));
+    padding: 0.55rem var(--sched-gutter);
+    background: var(--white);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .sched-tab { min-height: 2.4rem; padding: 0.35rem 0.5rem; font-size: 0.95rem; }
+  .sched-tab__long { display: none; }
+  .sched-tab__short { display: inline; }
+
+  .sched-tools { margin-top: 0.75rem; }
+
+  .sched-search { max-width: none; }
+
+  .sched-search input { height: 2.5rem; font-size: 0.98rem; }
+
+  .sched-expand[data-sched-expand] { display: none; }
+
+  .sched-status { margin-top: 0.5rem; }
+
+  .sched-list { margin-top: 1rem; }
+
+  /* Breaks: time beside the label, place underneath */
+  .sched-break {
+    grid-template-columns: 6.4rem minmax(0, 1fr);
+    gap: 0.6rem;
+    padding: 0.55rem 0;
+    font-size: 0.93rem;
+  }
+
+  .sched-break__body {
+    flex-direction: column;
+    row-gap: 0.05rem;
+  }
+
+  .sched-break__loc { font-size: 0.87rem; line-height: 1.35; }
+
+  .sched-break.is-now { margin: 0 -0.6rem; padding-left: 0.6rem; padding-right: 0.6rem; }
+
+  .sched-slot { padding: 0.9rem 0 1.2rem; }
+
+  .sched-slot__head { margin-bottom: 0.6rem; }
+
+  .sched-slot__time { font-size: 1.12rem; }
+
+  .sched-slot__sessions { gap: 0.45rem; }
+
+  /* Session card: room and track share the top line so the title gets the full width */
+  .sched-session__summary {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "room track toggle"
+      "title title title"
+      "people people people";
+    align-items: center;
+    gap: 0.3rem 0.55rem;
+    padding: 0.75rem 0.8rem 0.8rem;
+  }
+
+  .sched-session__main { display: contents; }
+
+  .sched-room {
+    grid-area: room;
+    padding: 0.2rem 0.45rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+  }
+
+  .sched-session__track { grid-area: track; font-size: 0.72rem; }
+
+  .sched-session__title {
+    grid-area: title;
+    margin-top: 0.1rem;
+    font-size: 1.03rem;
+    line-height: 1.3;
+  }
+
+  .sched-session__people {
+    grid-area: people;
+    margin-top: 0;
+    font-size: 0.89rem;
+    line-height: 1.4;
+  }
+
+  .sched-session__toggle {
+    grid-area: toggle;
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-top: 0;
+  }
+
+  .sched-session__body { padding: 0 0.8rem 0.7rem; }
+
+  .sched-session__chair { font-size: 0.9rem; }
+
+  /* Papers: time above the title, presenter and discussant side by side underneath */
+  .sched-papers,
+  .sched-papers thead,
+  .sched-papers tbody { display: block; }
+
+  .sched-papers tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 0.75rem;
+  }
+
+  .sched-papers th,
+  .sched-papers td {
+    width: auto;
+    padding: 0;
+    border: 0;
+  }
+
+  .sched-papers thead tr {
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sched-papers__time,
+  .sched-papers__paper { display: none; }
+
+  .sched-papers__presenter { grid-column: 1; }
+  .sched-papers__disc { grid-column: 2; }
+
+  .sched-papers tbody tr {
+    row-gap: 0.2rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .sched-papers tbody tr:last-child { border-bottom: 0; }
+
+  .sched-paper__time { grid-column: 1 / -1; font-size: 0.8rem; }
+
+  .sched-paper__title {
+    grid-column: 1 / -1;
+    font-size: 0.95rem;
+    line-height: 1.38;
+  }
+
+  .sched-paper__presenter { grid-column: 1; font-size: 0.88rem; }
+  .sched-paper__disc { grid-column: 2; font-size: 0.88rem; }
+
+  .sched-paper.is-match td { background: none; }
+  .sched-paper.is-match { background: rgba(253, 233, 166, 0.3); }
+
+  .sched-copy { margin-left: 0; font-size: 0.85rem; }
+}
+
+/* Phones: use the site's narrower page margins so the schedule gets more width */
+@media (max-width: 640px) {
+  .program-page .program-page-section {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .sched { --sched-gutter: 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sched-session,
+  .sched-session__toggle,
+  .sched-tab { transition: none; }
+  .sched-session.is-target,
+  .sched-live.is-now::before { animation: none; }
+}
+
+@media print {
+  .sched-toolbar,
+  .sched-session__toggle,
+  .sched-copy,
+  .sched-live,
+  .scroll-to-top { display: none !important; }
+  .sched-day[hidden] { display: block !important; }
+  .sched .sched-day__title { display: block !important; }
+  .sched-session { break-inside: avoid; box-shadow: none; }
+  .sched-session__people { display: none; }
+}
+
+/* Team page (organizing committee moved off the Program page) */
+#our-team h1.subpage-title {
+  margin-bottom: 1.75rem;
+}
+
+.team-page > section.program-page-section:first-of-type {
+  padding-bottom: 3.5rem;
+}
