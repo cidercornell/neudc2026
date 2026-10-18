@@ -4811,7 +4811,7 @@ em {
 .sched-day[hidden] { display: none; }
 
 .sched-day,
-.sched-list { scroll-margin-top: calc(var(--site-header-offset) + var(--sched-sticky-h)); }
+.sched-list { scroll-margin-top: calc(var(--site-header-offset) + var(--sched-toolbar-h, var(--sched-sticky-h))); }
 
 .sched-day__title {
   margin: 0 0 0.75rem;
@@ -4897,18 +4897,27 @@ em {
 }
 
 .sched-slot {
-  padding: 0.25rem 0 1.75rem;
-  scroll-margin-top: calc(var(--site-header-offset) + var(--sched-sticky-h));
+  padding: 0 0 1.75rem;
+  scroll-margin-top: calc(var(--site-header-offset) + var(--sched-toolbar-h, var(--sched-sticky-h)));
 }
 
 .sched-timeline > li.sched-slot:first-child { padding-top: 0; }
 
+/* Time heading pins under the toolbar while you scroll through its block */
 .sched-slot__head {
+  position: sticky;
+  top: calc(var(--site-header-offset) + var(--sched-toolbar-h, var(--sched-sticky-h)));
+  z-index: 15;
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.2rem 0.85rem;
-  margin: 0 0 0.75rem;
+  margin: 0 0 0.85rem;
+  padding: 0.7rem 0 0.6rem;
+  border-top: 2px solid var(--text);
+  border-bottom: 1px solid var(--border-light);
+  background: var(--white);
+  box-shadow: 0 -0.8rem 0 0 var(--white);
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.25;
@@ -4945,7 +4954,7 @@ em {
   background: var(--bg-alt);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-  scroll-margin-top: calc(var(--site-header-offset) + var(--sched-sticky-h) + 0.5rem);
+  scroll-margin-top: calc(var(--site-header-offset) + var(--sched-toolbar-h, var(--sched-sticky-h)) + 3.6rem);
 }
 
 .sched-session:hover { border-color: var(--sched-red-line); }
@@ -5233,9 +5242,13 @@ em {
     line-height: 1.35;
   }
 
-  .sched-slot { padding: 0.25rem 0 1.5rem; }
+  .sched-slot { padding: 0 0 1.5rem; }
 
-  .sched-slot__head { margin-bottom: 0.6rem; }
+  .sched-slot__head {
+    margin: 0 calc(-1 * var(--sched-gutter)) 0.7rem;
+    padding: 0.6rem var(--sched-gutter) 0.5rem;
+    box-shadow: none;
+  }
 
   .sched-slot__time { font-size: 1.12rem; }
 

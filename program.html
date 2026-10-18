@@ -511,6 +511,13 @@
 
       root.classList.add('has-js');
       toolbar.hidden = false;
+
+      /* Time headings pin just below the toolbar, so track its height */
+      function syncToolbarHeight() { root.style.setProperty('--sched-toolbar-h', toolbar.offsetHeight + 'px'); }
+      syncToolbarHeight();
+      if (window.ResizeObserver) new ResizeObserver(syncToolbarHeight).observe(toolbar);
+      else window.addEventListener('resize', syncToolbarHeight);
+
       render();
       if (location.hash) goTo(location.hash.slice(1));
     })();
