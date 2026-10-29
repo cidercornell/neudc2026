@@ -5604,6 +5604,16 @@ em {
 
 .program-eve__nowrap { white-space: nowrap; }
 
+/* The date tile shows the day; screen readers get it from this hidden text */
+.program-eve__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 .program-eve a {
   color: var(--cornell-red-dark);
   text-decoration: underline;
