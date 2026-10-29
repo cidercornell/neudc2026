@@ -4636,18 +4636,22 @@ em {
 
 .sched-toolbar[hidden] { display: none; }
 
+/* Day picker: one switch, so it reads as "this day or that day" */
 .sched-tabs {
   display: inline-flex;
-  gap: 0.35rem;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: #e9e5de;
 }
 
 .sched-tab {
-  min-height: 2.6rem;
-  padding: 0.4rem 1.1rem;
-  border: 1px solid var(--border);
+  min-height: 2.4rem;
+  padding: 0.35rem 1.15rem;
+  border: 0;
   border-radius: 999px;
-  background: var(--white);
-  color: var(--text);
+  background: transparent;
+  color: #5c5752;
   font: inherit;
   font-size: 1rem;
   font-weight: 600;
@@ -4658,12 +4662,12 @@ em {
 
 .sched-tab__short { display: none; }
 
-.sched-tab:hover { border-color: var(--cornell-red); }
+.sched-tab:hover { background: rgba(255, 255, 255, 0.7); color: var(--text); }
 
 .sched-tab[aria-selected="true"] {
   background: var(--cornell-red);
-  border-color: var(--cornell-red);
   color: var(--white);
+  box-shadow: 0 1px 3px rgba(139, 21, 21, 0.35);
 }
 
 .sched.is-filtering .sched-tab {
@@ -4914,47 +4918,52 @@ em {
   padding: 0;
 }
 
-/* Meals and breaks: a soft band with an icon, so they read as their own items */
+/* Meals and breaks: a centered pill on a hairline, read as a pause between time blocks */
 .sched-break {
   display: grid;
-  grid-template-columns: 2.1rem minmax(0, 1fr);
+  grid-template-columns: minmax(1rem, 1fr) auto minmax(1rem, 1fr);
   align-items: center;
-  gap: 0.8rem;
-  margin: 0 0 1.5rem;
-  padding: 0.7rem 1rem 0.7rem 0.8rem;
-  border: 1px solid #ebe7e0;
-  border-radius: 12px;
-  background: #f7f5f1;
-  font-size: 1rem;
-  line-height: 1.4;
+  column-gap: 0.9rem;
+  row-gap: 0.3rem;
+  margin: 0.25rem 0 1.75rem;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-align: center;
   scroll-margin-top: calc(var(--sched-toolbar-h, var(--sched-sticky-h)) + 1rem);
 }
 
-.sched-break__icon {
-  display: grid;
-  place-items: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  border-radius: 50%;
-  background: var(--white);
-  color: var(--cornell-red-dark);
-  box-shadow: inset 0 0 0 1px #e6e1d9;
+.sched-break::before,
+.sched-break::after {
+  content: "";
+  grid-row: 1;
+  height: 1px;
+  background: #e2ddd5;
 }
 
-.sched-break__body {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.1rem 1rem;
-  min-width: 0;
-}
+.sched-break::before { grid-column: 1; }
 
-.sched-break__line {
+.sched-break::after { grid-column: 3; }
+
+.sched-break__pill {
+  grid-column: 2;
+  grid-row: 1;
   display: inline-flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.1rem 0.6rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem 0.55rem;
+  padding: 0.42rem 1rem 0.42rem 0.8rem;
+  border-radius: 999px;
+  background: #f3f0eb;
 }
+
+.sched-break__icon {
+  display: inline-grid;
+  place-items: center;
+  color: var(--cornell-red-dark);
+}
+
+.sched-break__label { font-weight: 700; color: var(--text); }
 
 .sched-break__time {
   color: var(--sched-ink-soft);
@@ -4963,22 +4972,21 @@ em {
   white-space: nowrap;
 }
 
-.sched-break__label { font-weight: 700; color: var(--text); }
-
-.sched-break__loc { color: var(--sched-ink-soft); }
+.sched-break__loc {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  color: var(--sched-ink-soft);
+  font-size: 0.88rem;
+}
 
 .sched-break .sched-live { margin-left: 0.1rem; }
 
-.sched-break.is-now {
-  border-color: rgba(179, 27, 27, 0.25);
+.sched-break.is-now .sched-break__pill {
   background: var(--sched-red-wash);
+  box-shadow: inset 0 0 0 1px rgba(179, 27, 27, 0.35);
 }
 
-.sched-break.is-now .sched-break__icon {
-  background: var(--cornell-red);
-  color: var(--white);
-  box-shadow: none;
-}
+.sched-break.is-now .sched-break__label { color: var(--cornell-red-dark); }
 
 .sched-slot {
   padding: 0 0 1.75rem;
@@ -5005,6 +5013,16 @@ em {
   font-family: var(--font-body);
   font-weight: 400;
   line-height: 1.25;
+}
+
+/* Day label in every pinned time heading, in the selected day's red */
+.sched-slot__day {
+  flex: 0 0 100%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cornell-red-dark);
 }
 
 .sched-slot__time {
@@ -5038,7 +5056,7 @@ em {
   background: var(--bg-alt);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
-  scroll-margin-top: calc(var(--sched-toolbar-h, var(--sched-sticky-h)) + 3.6rem);
+  scroll-margin-top: calc(var(--sched-toolbar-h, var(--sched-sticky-h)) + 4.6rem);
 }
 
 .sched-session:hover { border-color: var(--sched-red-line); }
@@ -5288,10 +5306,12 @@ em {
   .sched-tabs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.4rem;
+    gap: 4px;
   }
 
-  .sched-tab { min-height: 2.2rem; padding: 0.3rem 0.5rem; font-size: 0.95rem; }
+  .sched-tab { min-height: 2.15rem; padding: 0.3rem 0.5rem; font-size: 0.95rem; }
+
+  .sched-slot__day { font-size: 0.68rem; }
   .sched-tab__long { display: none; }
   .sched-tab__short { display: inline; }
 
@@ -5324,25 +5344,20 @@ em {
 
   .sched-list { margin-top: 0; }
 
-  /* Meals and breaks: time and name on the first line, place underneath */
+  /* Meals and breaks: same divider, tighter */
   .sched-break {
-    grid-template-columns: 1.9rem minmax(0, 1fr);
-    gap: 0.7rem;
-    margin-bottom: 1.25rem;
-    padding: 0.65rem 0.85rem 0.65rem 0.7rem;
-    font-size: 0.95rem;
+    grid-template-columns: minmax(0.5rem, 1fr) auto minmax(0.5rem, 1fr);
+    column-gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.92rem;
   }
 
-  .sched-break__icon { width: 1.9rem; height: 1.9rem; }
-
-  .sched-break__body { display: block; }
-
-  .sched-break__loc {
-    display: block;
-    margin-top: 0.1rem;
-    font-size: 0.88rem;
-    line-height: 1.35;
+  .sched-break__pill {
+    padding: 0.38rem 0.85rem 0.38rem 0.7rem;
+    border-radius: 16px;
   }
+
+  .sched-break__loc { font-size: 0.85rem; }
 
   .sched-slot { padding: 0 0 1.5rem; }
 
@@ -5510,4 +5525,114 @@ em {
 
 .team-page > section.program-page-section:first-of-type {
   padding-bottom: 3.5rem;
+}
+
+/* Friday evening gathering: a small event card in the page intro */
+.program-eve {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  align-items: center;
+  gap: 1.1rem;
+  margin: 1.6rem 0 0;
+  padding: 1rem 1.25rem 1.05rem 1rem;
+  border: 1px solid #e7e3dd;
+  border-radius: 14px;
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.program-eve__date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem 0 0.55rem;
+  border-radius: 10px;
+  background: rgba(179, 27, 27, 0.06);
+  color: var(--cornell-red-dark);
+  line-height: 1;
+}
+
+.program-eve__date span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.program-eve__date strong {
+  margin: 0.18rem 0 0.14rem;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-variant-numeric: lining-nums;
+}
+
+.program-eve__body p { margin: 0; }
+
+.program-eve__body p + p { margin-top: 0.2rem; }
+
+.program-eve__kicker {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #77716b;
+}
+
+.program-eve__title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.program-eve__meta {
+  font-size: 1rem;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+.program-eve__note { color: #5c5752; }
+
+.program-eve__note::before { content: "· "; }
+
+.program-eve__where,
+.program-eve__park { font-size: 0.95rem; color: #5c5752; }
+
+.program-eve__body .program-eve__park { margin-top: 0; }
+
+.program-eve__nowrap { white-space: nowrap; }
+
+.program-eve a {
+  color: var(--cornell-red-dark);
+  text-decoration: underline;
+  text-decoration-color: rgba(179, 27, 27, 0.35);
+  text-underline-offset: 0.16em;
+}
+
+.program-eve__title a { color: inherit; text-decoration-color: rgba(179, 27, 27, 0.5); }
+
+.program-eve a:hover { color: var(--cornell-red); text-decoration-color: currentColor; }
+
+@media (max-width: 760px) {
+  .program-eve {
+    grid-template-columns: 3.3rem minmax(0, 1fr);
+    gap: 0.85rem;
+    margin-top: 1.3rem;
+    padding: 0.9rem 0.95rem 0.95rem 0.85rem;
+  }
+
+  .program-eve__date strong { font-size: 1.45rem; }
+
+  .program-eve__title { font-size: 1.08rem; }
+
+  .program-eve__meta { font-size: 0.95rem; }
+
+  .program-eve__where,
+  .program-eve__park { font-size: 0.9rem; }
+
+  .program-eve__note { display: block; }
+
+  .program-eve__note::before { content: none; }
 }
