@@ -5005,7 +5005,8 @@ em {
   align-items: baseline;
   gap: 0.2rem 0.85rem;
   margin: 0 0 0.85rem;
-  padding: 0.7rem 0 0.6rem;
+  /* Inset so the text lines up with the day buttons in the toolbar above */
+  padding: 0.7rem 1.125rem 0.6rem;
   border-top: 2px solid var(--text);
   border-bottom: 1px solid var(--border-light);
   background: var(--white);
@@ -5363,7 +5364,7 @@ em {
 
   .sched-slot__head {
     margin: 0 calc(-1 * var(--sched-gutter)) 0.7rem;
-    padding: 0.6rem var(--sched-gutter) 0.5rem;
+    padding: 0.6rem calc(var(--sched-gutter) + 4px) 0.5rem;
     box-shadow: none;
   }
 
