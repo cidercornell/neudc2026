@@ -1162,6 +1162,15 @@ body {
   text-decoration-color: rgba(179, 27, 27, 0.55);
 }
 
+/* Phones: lines run edge to edge, with hyphenation to keep word gaps even */
+@media (max-width: 640px) {
+  .program-page-lead {
+    text-align: justify;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+}
+
 .program-page .program-intro,
 .logistics-page .program-intro {
   max-width: 42em;
