@@ -5710,6 +5710,9 @@ em {
   font-variant-numeric: lining-nums;
 }
 
+/* Stacked event cards (Friday gathering, Saturday party) */
+.program-eve + .program-eve { margin-top: 0.75rem; }
+
 .program-eve__body p { margin: 0; }
 
 .program-eve__body p + p { margin-top: 0.2rem; }
