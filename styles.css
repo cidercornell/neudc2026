@@ -5285,6 +5285,24 @@ em {
 
 .sched-cal:hover { color: var(--cornell-red); text-decoration-color: currentColor; }
 
+/* Room on the venue map: first in the row, set apart on the left */
+.sched-maplink {
+  display: inline-flex;
+  align-items: center;
+  margin-right: auto;
+  padding: 0.2rem 0;
+  color: var(--cornell-red-dark);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(179, 27, 27, 0.35);
+  text-underline-offset: 0.2em;
+}
+
+.sched-maplink::after { content: " \2192"; }
+
+.sched-maplink:hover { color: var(--cornell-red); text-decoration-color: currentColor; }
+
 .sched-cal:focus-visible {
   outline: 2px solid var(--cornell-blue);
   outline-offset: 2px;
@@ -5604,7 +5622,10 @@ em {
   .sched-actions { justify-content: flex-start; }
 
   .sched-copy,
-  .sched-cal { font-size: 0.85rem; }
+  .sched-cal,
+  .sched-maplink { font-size: 0.85rem; }
+
+  .sched-maplink { flex-basis: 100%; margin-right: 0; }
 }
 
 /* Phones: use the site's narrower page margins so the schedule gets more width */
@@ -5767,4 +5788,55 @@ em {
   .program-eve__note { display: block; }
 
   .program-eve__note::before { content: none; }
+}
+
+/* Travel page: building map, bus stop and step-free route */
+#arrive .vm-map {
+  margin: 0.75rem 0 0.5rem;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+#arrive .vm-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  margin: 0 auto;
+  font-family: Arial, Calibri, sans-serif;
+}
+
+#arrive .vm-key {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  font-size: 1.02rem;
+  line-height: 1.45;
+}
+
+#arrive .vm-key li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+#arrive .vm-key li::before { content: none; }
+
+#arrive .vm-k {
+  flex: 0 0 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #333;
+  color: var(--white);
+  font-family: Arial, Calibri, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
 }

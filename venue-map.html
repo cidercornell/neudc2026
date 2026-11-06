@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-48.png" type="image/png" sizes="48x48">
+  <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <title>NEUDC 2026 Venue Map | Rooms, Food and Restrooms | Cornell University</title>
+  <meta name="description" content="Venue map for NEUDC 2026: find session rooms 294A to 294H in Clark Hall, breakfast and breaks in the Physical Sciences Building, restrooms, elevators and exits.">
+  <meta name="keywords" content="NEUDC 2026 travel, Ithaca hotels NEUDC, Cornell University venue, Physical Sciences Building, Ithaca airport, NEUDC lodging, TCAT Cornell, development economics conference travel">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <meta name="author" content="NEUDC 2026 Organizing Committee, Cornell University">
+  <meta name="creator" content="Carey Okal">
+  <meta name="designer" content="Carey Okal">
+  <meta name="geo.region" content="US-NY">
+  <meta name="geo.placename" content="Ithaca">
+  <meta name="theme-color" content="#b31b1b">
+  <link rel="canonical" href="https://cidercornell.github.io/neudc2026/venue-map.html">
+  <link rel="alternate" hreflang="en-US" href="https://cidercornell.github.io/neudc2026/venue-map.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NEUDC 2026">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="NEUDC 2026 Venue Map">
+  <meta property="og:description" content="Airports, NEUDC conference hotels, TCAT transit, parking, and venue details for NEUDC 2026 at Cornell University in Ithaca, NY.">
+  <meta property="og:url" content="https://cidercornell.github.io/neudc2026/venue-map.html">
+  <meta property="og:image" content="https://cidercornell.github.io/neudc2026/cornell-seal-512.png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+  <meta property="og:image:alt" content="Cornell University seal — NEUDC 2026">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NEUDC 2026 Venue Map">
+  <meta name="twitter:description" content="Airports, lodging, TCAT transit, parking, and venue details for NEUDC 2026 at Cornell University in Ithaca, NY.">
+  <meta name="twitter:image" content="https://cidercornell.github.io/neudc2026/cornell-seal-512.png">
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Venue map page. Scoped to .vm; uses the site's tokens from styles.css. */
+    .vm { --vm-grey:#EDEDED; --vm-svc:#C9D6E3; --vm-food:#E3DED7; --vm-sess:#F4DDDD; --vm-green:#00843D; --vm-ink:#333333; }
+    .vm-tabs { position: sticky; top: var(--site-header-offset); z-index: 50; background: var(--white); border-bottom: 1px solid var(--border); }
+    .vm-tabs { padding: 0 var(--site-gutter); }
+    .vm-tabs ul { list-style: none; margin: 0 auto; padding: 0; max-width: var(--content-max); display: flex; gap: 0.25rem; overflow-x: auto; }
+    .vm-tabs a { display: block; padding: 0.7rem 0.9rem; font-size: 1rem; font-weight: 600; color: var(--text); text-decoration: none; border-bottom: 3px solid transparent; white-space: nowrap; }
+    .vm-tabs a[aria-current="true"] { color: var(--cornell-red); border-bottom-color: var(--cornell-red); }
+    .vm section { scroll-margin-top: calc(var(--site-header-offset) + 3.4rem); }
+    .vm-lead { font-size: var(--type-lead); }
+    .vm-map { margin: 0.75rem 0 0.5rem; background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .vm-map svg { display: block; width: 100%; height: auto; max-height: 78vh; margin: 0 auto; font-family: Arial, Calibri, sans-serif; }
+    .vm-hint { font-size: 0.95rem; margin: 0.25rem 0 0.75rem; }
+    .vm-rooms { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; margin: 0.6rem 0; }
+    .vm-room { min-height: 48px; border: 1px solid var(--sched-red-line, rgba(179,27,27,.22)); border-radius: 8px; background: var(--sched-red-wash, rgba(179,27,27,.06)); color: var(--cornell-red-dark); font-family: var(--font-heading); font-size: 1.1rem; font-weight: 700; cursor: pointer; font-variant-numeric: tabular-nums; }
+    .vm-room:hover { border-color: var(--cornell-red); }
+    .vm-room[aria-pressed="true"] { background: var(--cornell-red); border-color: var(--cornell-red); color: var(--white); }
+    .vm-found { min-height: 1.6em; font-weight: 600; font-size: 1rem; margin: 0.25rem 0; }
+    .vm .room.hl { fill: #B31B1B; }
+    .vm .roomlbl.hl { fill: #FFFFFF; }
+    .vm-key { list-style: none; padding: 0; margin: 0.5rem 0 1rem; font-size: 1.02rem; line-height: 1.45; }
+    .vm-key li { display: flex; gap: 0.75rem; align-items: flex-start; padding: 0.5rem 0; border-bottom: 1px solid var(--border-light); }
+    .vm-k { flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--vm-ink); color: var(--white); font-size: 0.85rem; font-weight: 700; line-height: 28px; text-align: center; font-family: Arial, Calibri, sans-serif; }
+    .vm-times { width: 100%; border-collapse: collapse; font-size: 1.02rem; line-height: 1.4; margin: 0.5rem 0 1rem; }
+    .vm .vm-times td { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border-light); vertical-align: top; }
+    .vm-times td:first-child { font-weight: 600; white-space: nowrap; }
+    .vm-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; font-size: 0.95rem; margin: 0.25rem 0 1rem; }
+    .vm-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .vm-sw { width: 20px; height: 14px; border: 1.5px solid var(--vm-ink); display: inline-block; }
+    .vm-exit { background: var(--vm-green); color: #fff; font: 700 11px Arial, sans-serif; padding: 1px 4px; }
+    @media (max-width: 640px) {
+      .vm-tabs { padding: 0 1rem; }
+      .vm-tabs a { padding: 0.65rem 0.6rem; font-size: 0.95rem; }
+      .vm .section-wrap { padding-left: 0; padding-right: 0; }
+      .vm-map { margin-left: calc(-1 * var(--sched-gutter, 1.25rem) + 0.25rem); margin-right: calc(-1 * var(--sched-gutter, 1.25rem) + 0.25rem); border-radius: 0; border-left: 0; border-right: 0; }
+    }
+    @media print { .vm-tabs, .scroll-to-top { display: none; } .vm section { break-inside: avoid; } }
+  </style>
+</head>
+<body id="top" class="logistics-page">
+  <a href="#top" class="scroll-to-top" aria-label="Scroll to top" title="Back to top">↑</a>
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-left">
+        <div class="logo-link">
+          <a href="index.html" class="logo-link__brand">
+            <img src="SC-Johnson-College-Logo-package/Digital/PNG/cornell-cider-header-logo.png" alt="Cornell SC Johnson College of Business" class="logo-cornell">
+          </a>
+          <span class="logo-sep" aria-hidden="true">|</span>
+          <a href="https://neudc.org/" class="logo-link__brand" target="_blank" rel="noopener noreferrer" aria-label="NEUDC (neudc.org)">
+            <img src="NEUDC%20logo.jpg" alt="" class="logo-neudc">
+          </a>
+        </div>
+        <button type="button" class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+      <nav class="nav-wrapper" aria-label="Main">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="program.html">Program</a></li>
+          <li><a href="travel.html">Travel</a></li>
+          <li><a href="venue-map.html" class="active">Venue Map</a></li>
+          <li><a href="team.html">Team</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+    <div class="vm">
+  <section class="content-section logistics-page-section" aria-labelledby="vm-heading">
+    <div class="section-wrap logistics-page__wrap">
+      <div class="program-panel">
+        <div class="program-panel-head">
+          <h1 id="vm-heading" class="subpage-title">Venue Map</h1>
+          <p class="vm-lead">All sessions are on the second floor of Clark Hall, rooms 294A to 294H. Breakfast and breaks are on the ground floor of the Physical Sciences Building, in the South Passage. The full schedule is on the <a href="program.html">Program</a> page, and directions to the building are on the <a href="travel.html#arrive">Travel</a> page.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="vm-tabs" aria-label="Venue map sections"><ul><li><a href="#sessions">Session rooms</a></li><li><a href="#ground">Food and breaks</a></li></ul></nav>
+
+  <section id="sessions" class="content-section logistics-onsite">
+    <div class="section-wrap logistics-page__wrap">
+      <h2 class="section-title">Session rooms: Clark Hall, second floor</h2>
+      <p>From the Clark Atrium, take the stairs up to the balcony and walk north to the 294 Physics Learning Suite.</p>
+      <div class="vm-rooms" role="group" aria-label="Highlight a session room"><button type="button" class="vm-room" data-go="294A">294A</button><button type="button" class="vm-room" data-go="294B">294B</button><button type="button" class="vm-room" data-go="294C">294C</button><button type="button" class="vm-room" data-go="294D">294D</button><button type="button" class="vm-room" data-go="294E">294E</button><button type="button" class="vm-room" data-go="294F">294F</button><button type="button" class="vm-room" data-go="294G">294G</button><button type="button" class="vm-room" data-go="294H">294H</button></div>
+      <p class="vm-found" id="vm-found" aria-live="polite"></p>
+      <div class="vm-map" id="suite-map"><svg viewBox="690 100 640 745" role="img" aria-label="294 Physics Learning Suite with rooms 294A to 294H"><rect x="700" y="108" width="67" height="725" fill="#FFFFFF" stroke="#333333" stroke-width="2"/><rect x="767" y="108" width="547" height="725" fill="#FFFFFF" stroke="#333333" stroke-width="2"/><rect x="770" y="143" width="125" height="127" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294A"/><text x="832.5" y="218.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294A">294A</text><rect x="898" y="143" width="92" height="154" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294B"/><text x="944.0" y="232.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294B">294B</text><rect x="1025" y="143" width="116" height="127" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294C"/><text x="1083.0" y="218.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294C">294C</text><rect x="1150" y="146" width="124" height="120" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294D"/><text x="1212.0" y="218.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294D">294D</text><rect x="1175" y="276" width="114" height="122" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294E"/><text x="1232.0" y="349.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294E">294E</text><rect x="770" y="398" width="125" height="123" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294F"/><text x="832.5" y="471.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294F">294F</text><rect x="898" y="398" width="215" height="128" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294G"/><text x="1005.5" y="474.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294G">294G</text><rect x="1148" y="401" width="128" height="125" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294H"/><text x="1212.0" y="475.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294H">294H</text><rect x="767" y="529" width="346" height="123" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="1148" y="569" width="166" height="83" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="767" y="652" width="186" height="133" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="1089" y="652" width="225" height="133" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="820" y="817" width="362" height="16" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="1209" y="785" width="105" height="48" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="1004" y="657" width="58" height="35" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="980" y="700" width="85" height="56" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="772" y="785" width="48" height="48" fill="#C9D6E3" stroke="#333333" stroke-width="2" stroke-dasharray="6 4"/><text x="1022" y="790" font-size="22" font-weight="700" text-anchor="middle" fill="#333333">Restrooms</text><rect x="762" y="305" width="10" height="48" fill="#FFFFFF"/><text x="733" y="470" font-size="22" font-weight="700" text-anchor="middle" fill="#333333" transform="rotate(-90 733 470)">Balcony</text><text x="1005" y="345" font-size="22" font-weight="700" text-anchor="middle" fill="#333333">294 Physics Learning Suite</text><g class="pin" data-pin="In"><circle cx="733" cy="329" r="22" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="733" y="335.5" font-size="18" font-weight="700" text-anchor="middle" fill="#FFFFFF">In</text></g><g class="pin" data-pin="3"><circle cx="1022" cy="728" r="22" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="1022" y="736.3" font-size="23" font-weight="700" text-anchor="middle" fill="#FFFFFF">3</text></g></svg></div>
+      <p class="vm-hint">Pinch or zoom in to see detail.</p>
+      <ol class="vm-key"><li><span class="vm-k">In</span><span>Suite entrance from the Clark Hall Balcony</span></li><li><span class="vm-k">3</span><span>Nearest restrooms, just south of the library</span></li></ol>
+      <h3>Whole second floor</h3>
+      <div class="vm-map"><svg viewBox="40 90 590 925" role="img" aria-label="Second floor map of Clark Hall"><path transform="translate(109 108)" d="M192 0H500L501 900H172V867H0V751H192Z" fill="#FFFFFF" stroke="#333333" stroke-width="2"/><rect x="264" y="147" width="37" height="712" fill="#FFFFFF" stroke="#333333" stroke-width="2"/><rect x="303" y="128" width="70" height="71" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294A"/><text x="338.0" y="174.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294A">A</text><rect x="375" y="128" width="51" height="86" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294B"/><text x="400.5" y="182.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294B">B</text><rect x="446" y="128" width="66" height="71" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294C"/><text x="479.0" y="174.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294C">C</text><rect x="518" y="130" width="69" height="66" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294D"/><text x="552.5" y="174.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294D">D</text><rect x="531" y="204" width="64" height="67" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294E"/><text x="563.0" y="248.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294E">E</text><rect x="303" y="271" width="70" height="69" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294F"/><text x="338.0" y="316.5" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294F">F</text><rect x="375" y="271" width="121" height="72" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294G"/><text x="435.5" y="318.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294G">G</text><rect x="516" y="273" width="72" height="70" fill="#F4DDDD" stroke="#333333" stroke-width="2" class="room" data-room="294H"/><text x="552.0" y="319.0" font-size="32" font-weight="700" text-anchor="middle" fill="#B31B1B" class="roomlbl" data-room="294H">H</text><rect x="301" y="345" width="195" height="69" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="516" y="367" width="93" height="47" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="301" y="414" width="105" height="75" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="482" y="414" width="127" height="75" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="331" y="507" width="203" height="38" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="301" y="567" width="233" height="63" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="550" y="489" width="60" height="441" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="301" y="651" width="107" height="101" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="408" y="698" width="126" height="54" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="484" y="651" width="50" height="47" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="301" y="777" width="68" height="141" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="374" y="774" width="43" height="68" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="416" y="778" width="61" height="48" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="478" y="774" width="56" height="68" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="369" y="842" width="21" height="76" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="495" y="842" width="39" height="76" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="109" y="859" width="172" height="59" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="109" y="937" width="172" height="38" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="281" y="937" width="329" height="71" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="434" y="417" width="33" height="19" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="421" y="441" width="48" height="31" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="408" y="651" width="76" height="23" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="417" y="675" width="31" height="23" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="390" y="842" width="103" height="49" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="419" y="891" width="58" height="25" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="304" y="489" width="27" height="27" fill="#C9D6E3" stroke="#333333" stroke-width="2" stroke-dasharray="6 4"/><rect x="304" y="516" width="27" height="29" fill="#C9D6E3" stroke="#333333" stroke-width="2" stroke-dasharray="6 4"/><rect x="226" y="660" width="38" height="54" fill="#C9D6E3" stroke="#333333" stroke-width="2" stroke-dasharray="6 4"/><text x="165" y="430" font-size="24" font-weight="700" text-anchor="middle" fill="#333333">Clark Hall</text><text x="165" y="458" font-size="24" font-weight="700" text-anchor="middle" fill="#333333">Atrium</text><text x="165" y="484" font-size="19" text-anchor="middle" fill="#333333">(open below)</text><text x="282" y="520" font-size="22" font-weight="700" text-anchor="middle" fill="#333333" transform="rotate(-90 290 520)">Balcony</text><text x="296" y="104" font-size="20" font-weight="700" text-anchor="end" fill="#333333">← To Baker</text><text x="258" y="340" font-size="20" font-weight="700" text-anchor="end" fill="#333333">← To PSB</text><text x="44" y="1000" font-size="20" font-weight="700" text-anchor="start" fill="#333333">← To Rockefeller</text><text x="165" y="780" font-size="18" font-weight="700" text-anchor="middle" fill="#333333">↓ Food: ground</text><text x="165" y="802" font-size="18" font-weight="700" text-anchor="middle" fill="#333333">floor, South Passage</text><g class="pin" data-pin="1"><circle cx="245" cy="687" r="24" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="245" y="696.0" font-size="25" font-weight="700" text-anchor="middle" fill="#FFFFFF">1</text></g><g class="pin" data-pin="2"><circle cx="449" cy="250" r="24" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="449" y="259.0" font-size="25" font-weight="700" text-anchor="middle" fill="#FFFFFF">2</text></g><g class="pin" data-pin="3"><circle cx="445" cy="456" r="24" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="445" y="465.0" font-size="25" font-weight="700" text-anchor="middle" fill="#FFFFFF">3</text></g><g class="pin" data-pin="4"><circle cx="317" cy="517" r="24" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="317" y="526.0" font-size="25" font-weight="700" text-anchor="middle" fill="#FFFFFF">4</text></g><g class="pin" data-pin="5"><circle cx="446" cy="640" r="24" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="446" y="649.0" font-size="25" font-weight="700" text-anchor="middle" fill="#FFFFFF">5</text></g><g class="pin" data-pin="6"><circle cx="441" cy="866" r="24" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="441" y="875.0" font-size="25" font-weight="700" text-anchor="middle" fill="#FFFFFF">6</text></g></svg></div>
+      <ol class="vm-key"><li><span class="vm-k">1</span><span>You arrive here: top of the Clark Atrium stair</span></li><li><span class="vm-k">2</span><span>294 Physics Learning Suite: rooms 294A to 294H</span></li><li><span class="vm-k">3</span><span>Restrooms, nearest to the session rooms</span></li><li><span class="vm-k">4</span><span>Restrooms on the balcony</span></li><li><span class="vm-k">5</span><span>Elevators</span></li><li><span class="vm-k">6</span><span>Restrooms, south end</span></li></ol>
+      <div class="vm-legend"><span><i class="vm-sw" style="background:var(--vm-sess)"></i>Session room</span><span><i class="vm-sw" style="background:var(--vm-svc)"></i>Restrooms, stairs, elevators</span><span><i class="vm-sw" style="background:var(--vm-grey)"></i>Offices, no entry</span></div>
+    </div>
+  </section>
+
+  <section id="ground" class="content-section logistics-onsite">
+    <div class="section-wrap logistics-page__wrap">
+      <h2 class="section-title">Food and breaks: ground floor</h2>
+      <table class="vm-times">
+        <tr><td>Breakfast</td><td>7:30 to 8:30 am, South Passage (Room 150)</td></tr>
+        <tr><td>Coffee and tea</td><td>All breaks, South Passage</td></tr>
+        <tr><td>Lunch, Sat</td><td>12:10 to 1:20 pm, Physical Sciences and Clark Atrium</td></tr>
+        <tr><td>Reception, Sat</td><td>5:00 to 6:50 pm, Baker Portico</td></tr>
+        <tr><td>Dinner, Sat</td><td>7:00 to 9:00 pm, Clark Atrium</td></tr>
+        <tr><td>Box lunches, Sun</td><td>12:10 pm, Clark Hall, in front of West Pavilion</td></tr>
+      </table>
+      <div class="vm-map"><svg viewBox="30 95 1200 990" role="img" aria-label="Ground floor map: food, breaks and social areas"><rect x="60" y="105" width="696" height="131" fill="#EDEDED" stroke="#333333" stroke-width="2"/><text x="408" y="185" font-size="38" font-weight="700" text-anchor="middle" fill="#333333">Baker Lab</text><rect x="878" y="110" width="320" height="756" fill="#EDEDED" stroke="#333333" stroke-width="2"/><text x="1038" y="175" font-size="38" font-weight="700" text-anchor="middle" fill="#333333">Clark Hall</text><path transform="translate(79 109)" d="M0 140 L213 140 L213 131 L677 131 L677 0 L803 0 L803 298 L873 298 L873 394 L799 394 L799 639 L764 639 L764 757 L843 757 L843 836 L764 836 L764 915 L633 915 L633 757 L646 748 L392 748 L313 713 L313 726 L69 726 L69 652 L0 652Z" fill="#FFFFFF" stroke="#333333" stroke-width="2"/><rect x="79" y="249" width="213" height="75" fill="#E3DED7" stroke="#333333" stroke-width="2"/><rect x="148" y="254" width="30" height="30" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="204" y="254" width="35" height="30" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="79" y="324" width="20" height="78" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="126" y="324" width="214" height="83" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="130" y="415" width="210" height="97" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="134" y="512" width="206" height="92" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="139" y="604" width="201" height="96" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="143" y="700" width="197" height="78" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="82" y="446" width="48" height="223" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="375" y="424" width="44" height="44" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="419" y="325" width="96" height="191" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="515" y="319" width="31" height="179" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="379" y="490" width="127" height="166" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="506" y="503" width="40" height="96" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="506" y="599" width="40" height="57" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="568" y="319" width="192" height="96" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="568" y="415" width="91" height="88" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="659" y="415" width="101" height="88" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="568" y="503" width="170" height="83" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="568" y="586" width="170" height="88" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="384" y="678" width="48" height="74" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="782" y="325" width="92" height="90" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="817" y="752" width="57" height="114" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="861" y="866" width="61" height="79" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="712" y="936" width="131" height="88" fill="#EDEDED" stroke="#333333" stroke-width="2"/><rect x="100" y="669" width="30" height="57" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="375" y="332" width="44" height="88" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="432" y="682" width="35" height="62" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="471" y="678" width="40" height="61" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="778" y="765" width="34" height="57" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="191" y="783" width="70" height="52" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><path transform="translate(515 674)" d="M0 0H223V104Q111.5 166 0 104Z" fill="#EDEDED" stroke="#333333" stroke-width="2"/><path transform="translate(471 778)" d="M0 0H44Q155.5 62 267 0L254 79H0Z" fill="#E3DED7" stroke="#333333" stroke-width="2"/><rect x="821" y="411" width="131" height="92" fill="#C9D6E3" stroke="#333333" stroke-width="2"/><rect x="760" y="114" width="118" height="205" fill="#E3DED7" stroke="#333333" stroke-width="2"/><rect x="751" y="503" width="127" height="245" fill="#E3DED7" stroke="#333333" stroke-width="2"/><rect x="843" y="612" width="35" height="114" fill="#C9D6E3" stroke="#333333" stroke-width="2" stroke-dasharray="6 4"/><rect x="270" y="770" width="114" height="52" fill="#FFFFFF" stroke="#333333" stroke-width="2" stroke-dasharray="6 4"/><polyline points="924,931 1198,931" fill="none" stroke="#00843D" stroke-width="5" stroke-dasharray="12 8"/><g><rect x="360" y="290" width="80" height="34" fill="#00843D"/><text x="400.0" y="314.5" font-size="24" font-weight="700" text-anchor="middle" fill="#FFFFFF">EXIT</text></g><g><rect x="926" y="866" width="80" height="34" fill="#00843D"/><text x="966.0" y="890.5" font-size="24" font-weight="700" text-anchor="middle" fill="#FFFFFF">EXIT</text></g><g><rect x="44" y="830" width="80" height="34" fill="#00843D"/><text x="84.0" y="854.5" font-size="24" font-weight="700" text-anchor="middle" fill="#FFFFFF">EXIT</text></g><path d="M118 790L144 800L118 810Z" fill="#333333"/><text x="1060" y="995" font-size="32" font-weight="700" text-anchor="middle" fill="#333333">Clark Breezeway</text><text x="780" y="1068" font-size="30" font-weight="700" text-anchor="middle" fill="#333333">To Rockefeller</text><g class="pin" data-pin="1"><circle cx="140" cy="780" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="140" y="792.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">1</text></g><g class="pin" data-pin="2"><circle cx="327" cy="796" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="327" y="808.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">2</text></g><g class="pin" data-pin="3"><circle cx="605" cy="835" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="605" y="847.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">3</text></g><g class="pin" data-pin="4"><circle cx="800" cy="560" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="800" y="572.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">4</text></g><g class="pin" data-pin="5"><circle cx="860" cy="669" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="860" y="681.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">5</text></g><g class="pin" data-pin="6"><circle cx="886" cy="457" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="886" y="469.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">6</text></g><g class="pin" data-pin="7"><circle cx="450" cy="713" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="450" y="725.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">7</text></g><g class="pin" data-pin="7"><circle cx="194" cy="269" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="194" y="281.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">7</text></g><g class="pin" data-pin="8"><circle cx="140" cy="300" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="140" y="312.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">8</text></g><g class="pin" data-pin="9"><circle cx="819" cy="190" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="819" y="202.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">9</text></g><g class="pin" data-pin="10"><circle cx="990" cy="900" r="36" fill="#333333" stroke="#FFFFFF" stroke-width="4"/><text x="990" y="912.2" font-size="34" font-weight="700" text-anchor="middle" fill="#FFFFFF">10</text></g></svg></div>
+      <ol class="vm-key"><li><span class="vm-k">1</span><span>Physical Sciences Building main entrance, East Ave side</span></li><li><span class="vm-k">2</span><span>Registration</span></li><li><span class="vm-k">3</span><span>Breakfast and breaks: South Passage</span></li><li><span class="vm-k">4</span><span>Clark Atrium: lunch and dinner (Sat)</span></li><li><span class="vm-k">5</span><span>Stairs up to session rooms 294A to 294H</span></li><li><span class="vm-k">6</span><span>Restrooms</span></li><li><span class="vm-k">7</span><span>Elevators</span></li><li><span class="vm-k">8</span><span>Reception (Sat): Baker Portico</span></li><li><span class="vm-k">9</span><span>Goldie&rsquo;s Cafe</span></li><li><span class="vm-k">10</span><span>Accessible exit to the Clark Breezeway</span></li></ol>
+      <div class="vm-legend"><span><i class="vm-sw" style="background:var(--vm-food)"></i>Food and social</span><span><i class="vm-sw" style="background:var(--vm-svc)"></i>Restrooms, stairs, elevators</span><span><span class="vm-exit">EXIT</span>Exit</span></div>
+    </div>
+  </section>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="site-footer__wrap">
+      <div class="site-footer__brand">
+        <h3 class="site-footer__col-title">NEUDC 2026</h3>
+        <span class="site-footer__meta">November 7–8, 2026 · Ithaca, NY</span>
+        <span class="site-footer__address">Physical Sciences Building<br>Cornell University, Ithaca, NY 14853</span>
+      </div>
+      <nav class="site-footer__links" aria-labelledby="footer-nav-heading">
+        <h3 class="site-footer__col-title" id="footer-nav-heading">Quick links</h3>
+        <div class="site-footer__link-grid">
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="program.html">Program</a>
+        <a href="travel.html">Travel</a>
+        <a href="venue-map.html">Venue Map</a>
+        <a href="team.html">Team</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#updates">Mailing list</a>
+        <a href="index.html#sponsors">Sponsors</a>
+        <a href="index.html#cfp">Submit Your Paper</a>
+        </div>
+      </nav>
+      <div class="site-footer__contact">
+        <h3 class="site-footer__col-title">Contact</h3>
+        <p class="site-footer__contact-line"><a href="mailto:neudc2026@cornell.edu" class="site-footer__link" title="Email neudc2026@cornell.edu">neudc2026@cornell.edu</a></p>
+        <p class="site-footer__contact-line">Hosted by CIDER at Cornell SC Johnson College of Business</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function() {
+      var btn = document.querySelector('.scroll-to-top');
+      if (!btn) return;
+      function toggle() { btn.classList.toggle('visible', window.scrollY > 400); }
+      window.addEventListener('scroll', toggle);
+      toggle();
+    })();
+    (function() {
+      var hamburger = document.querySelector('.hamburger');
+      var nav = document.querySelector('.nav-wrapper');
+      if (!hamburger || !nav) return;
+      function openMenu() {
+        hamburger.setAttribute('aria-expanded', 'true');
+        nav.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+      function closeMenu() {
+        hamburger.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+      hamburger.addEventListener('click', function() {
+        if (nav.classList.contains('is-open')) closeMenu();
+        else openMenu();
+      });
+      nav.querySelectorAll('.nav a').forEach(function(a) {
+        a.addEventListener('click', closeMenu);
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+  <script>
+    (function() {
+      var found = document.getElementById('vm-found');
+      var btns = Array.prototype.slice.call(document.querySelectorAll('.vm-room'));
+      function pick(id, scroll) {
+        document.querySelectorAll('.vm .hl').forEach(function(e) { e.classList.remove('hl'); });
+        btns.forEach(function(x) { x.setAttribute('aria-pressed', x.getAttribute('data-go') === id ? 'true' : 'false'); });
+        document.querySelectorAll('.vm [data-room="' + id + '"]').forEach(function(e) { e.classList.add('hl'); });
+        found.textContent = 'Room ' + id + ' is highlighted in red.';
+        if (scroll) document.getElementById('suite-map').scrollIntoView({ block: 'center' });
+        try { history.replaceState(null, '', '#' + id); } catch (e) {}
+      }
+      btns.forEach(function(b) {
+        b.setAttribute('aria-pressed', 'false');
+        b.addEventListener('click', function() { pick(b.getAttribute('data-go'), true); });
+      });
+      var h = (location.hash || '').slice(1).toUpperCase();
+      if (/^294[A-H]$/.test(h)) pick(h, true);
+      var links = Array.prototype.slice.call(document.querySelectorAll('.vm-tabs a'));
+      function mark() {
+        var cur = 'sessions';
+        ['sessions', 'ground'].forEach(function(id) { if (document.getElementById(id).getBoundingClientRect().top < 220) cur = id; });
+        links.forEach(function(a) { a.setAttribute('aria-current', a.getAttribute('href') === '#' + cur ? 'true' : 'false'); });
+      }
+      window.addEventListener('scroll', mark, { passive: true }); mark();
+    })();
+  </script>
+</body>
+</html>
